@@ -6,6 +6,23 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_GFakcKvREe6vJapU6ujEQQ">
     <importedPackage xmi:type="uml:Package" href="pathmap://SysML16_LIBRARIES/SysML-Standard-Library.uml#SysML.package_packagedElement_Libraries"/>
   </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="__Iz8sKvmEe6W8qZzA-gP9Q" name="1 Problem Domain">
+    <packagedElement xmi:type="uml:Package" xmi:id="_EcutYKvnEe6W8qZzA-gP9Q" name="1 Black Box">
+      <packagedElement xmi:type="uml:Package" xmi:id="_X51w4KvoEe6W8qZzA-gP9Q" name="1 Stakeholder Needs"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
+      <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Coneptual Subsystems"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_r8kfYKvoEe6W8qZzA-gP9Q" name="3 Traceability to Stakeholder"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_B4IpsKvnEe6W8qZzA-gP9Q" name="2 Solution Domain">
+    <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="1 System Structure"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="2 System Behavior"/>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GBBzsKvREe6vJapU6ujEQQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GBGFIKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
