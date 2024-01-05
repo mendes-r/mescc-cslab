@@ -66,24 +66,6 @@
 %%%
 \subsubsection{Use Cases and Requirements}
 
-\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
-	\setlength\itemsep{.5em}
-	\item 
-		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
-		\setlength\itemsep{0em}
-		\item While the water level is above the minimum level, WPS shall have a pump working.
-		\item When the water level is below minimum level, WPS shall have all pumps stopped.
-		\item If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS).
-		\item A second pump shall be turned on only when the water level is above 2/3 the maximum water level.
-		\item When only one pump is available, the maximum water level shall be reduced to 2/3.
-		\item If the alarm is ON, the button in the RSS shall only disable it.
-		\end{enumerate}
-	
-	\item The status of all WPS shall be displayed on all RSS.
-	\item The status of all WPS shall be visible on one web page.
-
-\end{enumerate}
-
 %%%
 \subsubsection{Measure of Effectiveness}
 
@@ -98,6 +80,30 @@
 
 %%%
 \subsection{Solution Domain}
+
+%%%
+\subsubsection{System Requirements}
+
+\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
+	\setlength\itemsep{.5em}
+	\item 
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item While the water level is above the minimum level, WPS shall have a pump working.
+		\item When the water level is below minimum level, WPS shall have all pumps stopped.
+		\item If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS).
+		\item A second pump shall be turned on only when the water level is above 2/3 the maximum water level.
+		\item When only one pump is available, the maximum water level shall be reduced to 2/3.
+		\end{enumerate}
+	\item
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]s
+		\setlength\itemsep{0em}
+		\item The status of all WPS shall be displayed on all RSS.
+		\item If the alarm is ON, the button in the RSS shall only disable it.
+		\end{enumerate}
+	\item The status of all WPS shall be visible on one web page.
+
+\end{enumerate}
 
 %%%
 \subsubsection{System Structure}
