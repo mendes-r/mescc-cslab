@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Allocations="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements">
   <uml:Model xmi:id="_F_rv4KvREe6vJapU6ujEQQ" name="pt">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_GFHpgKvREe6vJapU6ujEQQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -22,9 +22,6 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
           <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
-            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
-            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="Make WPS Status available for consumption" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
-            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_YYBcgKv6Ee6IA7qtYiEKtg" name="Alert Maintainer for malfunction" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
             <ownedAttribute xmi:type="uml:Property" xmi:id="_tWz84Kv1Ee6IA7qtYiEKtg" name="Property1" type="_xqFv8Kv1Ee6IA7qtYiEKtg" aggregation="composite">
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lZu8IKv2Ee6IA7qtYiEKtg" value="*"/>
             </ownedAttribute>
@@ -57,6 +54,20 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_gWzi4Kv4Ee6IA7qtYiEKtg" name="Display Status" client="_DYkj4Kv2Ee6IA7qtYiEKtg" supplier="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases">
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" classifierBehavior="_KyAEAKwAEe6IA7qtYiEKtg" subject="_S5HWEKv1Ee6IA7qtYiEKtg">
+            <ownedBehavior xmi:type="uml:Activity" xmi:id="_KyAEAKwAEe6IA7qtYiEKtg" name="Activity1" node="_mCx4IKwBEe6IA7qtYiEKtg _v_ex0KwBEe6IA7qtYiEKtg _HzvRMKwCEe6IA7qtYiEKtg" group="_Ygd_IKwAEe6IA7qtYiEKtg _x8Zm8KwAEe6IA7qtYiEKtg _KBFH8KwBEe6IA7qtYiEKtg">
+              <edge xmi:type="uml:ControlFlow" xmi:id="_EwHIIKwCEe6IA7qtYiEKtg" target="_v_ex0KwBEe6IA7qtYiEKtg" source="_mCx4IKwBEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_L_jxYKwCEe6IA7qtYiEKtg" target="_HzvRMKwCEe6IA7qtYiEKtg" source="_v_ex0KwBEe6IA7qtYiEKtg"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_Ygd_IKwAEe6IA7qtYiEKtg" name="Control Unit" node="_mCx4IKwBEe6IA7qtYiEKtg _HzvRMKwCEe6IA7qtYiEKtg" represents="_XqY3QKv2Ee6IA7qtYiEKtg"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_x8Zm8KwAEe6IA7qtYiEKtg" name="Water Pump" represents="_2x9osKv1Ee6IA7qtYiEKtg"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_KBFH8KwBEe6IA7qtYiEKtg" name="Water Level Sensor" represents="_xqFv8Kv1Ee6IA7qtYiEKtg"/>
+              <node xmi:type="uml:InitialNode" xmi:id="_mCx4IKwBEe6IA7qtYiEKtg" name="" outgoing="_EwHIIKwCEe6IA7qtYiEKtg" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_v_ex0KwBEe6IA7qtYiEKtg" name="Check System" incoming="_EwHIIKwCEe6IA7qtYiEKtg" outgoing="_L_jxYKwCEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:DecisionNode" xmi:id="_HzvRMKwCEe6IA7qtYiEKtg" name="" incoming="_L_jxYKwCEe6IA7qtYiEKtg" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+            </ownedBehavior>
+          </packagedElement>
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="Make WPS Status available for consumption" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_YYBcgKv6Ee6IA7qtYiEKtg" name="Alert Maintainer for WPS malfunction" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Association" xmi:id="_6UhXMKv6Ee6IA7qtYiEKtg" memberEnd="_6Uh-Qqv6Ee6IA7qtYiEKtg _6UilUKv6Ee6IA7qtYiEKtg">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6Uh-QKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6Uh-Qav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
@@ -199,4 +210,7 @@
   <Blocks:Block xmi:id="_UEhj0Kv2Ee6IA7qtYiEKtg" base_Class="_UEfHkKv2Ee6IA7qtYiEKtg"/>
   <Blocks:Block xmi:id="_Xqe94Kv2Ee6IA7qtYiEKtg" base_Class="_XqY3QKv2Ee6IA7qtYiEKtg"/>
   <PortsAndFlows:ItemFlow xmi:id="_YBkLsKv3Ee6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_Ygi3oKwAEe6IA7qtYiEKtg" base_ActivityPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_x8bcIKwAEe6IA7qtYiEKtg" base_ActivityPartition="_x8Zm8KwAEe6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_KBILQKwBEe6IA7qtYiEKtg" base_ActivityPartition="_KBFH8KwBEe6IA7qtYiEKtg"/>
 </xmi:XMI>
