@@ -21,7 +21,10 @@
           <packagedElement xmi:type="uml:Class" xmi:id="_jgKIMKvyEe6IA7qtYiEKtg" name="SN-3 Web Server"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
-          <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="Controlling Water Level">
+          <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
+            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="Make WPS Status available for consumption" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_YYBcgKv6Ee6IA7qtYiEKtg" name="Alert Maintainer for malfunction" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
             <ownedAttribute xmi:type="uml:Property" xmi:id="_tWz84Kv1Ee6IA7qtYiEKtg" name="Property1" type="_xqFv8Kv1Ee6IA7qtYiEKtg" aggregation="composite">
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lZu8IKv2Ee6IA7qtYiEKtg" value="*"/>
             </ownedAttribute>
@@ -53,7 +56,36 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_dsGQIKv4Ee6IA7qtYiEKtg" name="Status" client="_8BKRcKv1Ee6IA7qtYiEKtg" supplier="_DYkj4Kv2Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_gWzi4Kv4Ee6IA7qtYiEKtg" name="Display Status" client="_DYkj4Kv2Ee6IA7qtYiEKtg" supplier="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases">
+          <packagedElement xmi:type="uml:Association" xmi:id="_6UhXMKv6Ee6IA7qtYiEKtg" memberEnd="_6Uh-Qqv6Ee6IA7qtYiEKtg _6UilUKv6Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6Uh-QKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6Uh-Qav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_6Uh-Qqv6Ee6IA7qtYiEKtg" name="water pump" type="_2x9osKv1Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_6UilUKv6Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="__Yb9AKv6Ee6IA7qtYiEKtg" memberEnd="__YckEqv6Ee6IA7qtYiEKtg __YckE6v6Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__YckEKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__YckEav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="__YckEqv6Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="__YckE6v6Ee6IA7qtYiEKtg" name="send wps status to remote station" type="_PbdKIKv6Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_AVZ7kKv7Ee6IA7qtYiEKtg" memberEnd="_AVbJsqv7Ee6IA7qtYiEKtg _AVbJs6v7Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AVbJsKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AVbJsav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJsqv7Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJs6v7Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_CAVzYKv7Ee6IA7qtYiEKtg" memberEnd="_CAWacqv7Ee6IA7qtYiEKtg _CAXBgKv7Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CAWacKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CAWacav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CAWacqv7Ee6IA7qtYiEKtg" name="remote status station" type="_9PgT4Kv1Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CAXBgKv7Ee6IA7qtYiEKtg" name="alert maintainer for malfunction" type="_YYBcgKv6Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+        </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
