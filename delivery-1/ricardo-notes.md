@@ -39,3 +39,8 @@ ou apenas um wet weather overflow?
 - Byzantine fault
 - https://www.researchgate.net/publication/351550256_Smart_Scheduling_of_Pump_Control_in_Wastewater_Networks_Based_on_Electricity_Spot_Market_Prices/figures?lo=1
 - Pull vs Push
+
+- Se nao receber mensagem mqtt, questionar servidor quanto ao estado
+- Talvez usar mqtt tb quando comunicar com os sensores
+
+- MQTT recupera ligaçoes ao contrario de tcp
