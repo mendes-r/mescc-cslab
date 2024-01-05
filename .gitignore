@@ -48,6 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+### drawio ###
+*.bkp
+
 # Created by https://www.toptal.com/developers/gitignore/api/latex,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=latex,c
 
