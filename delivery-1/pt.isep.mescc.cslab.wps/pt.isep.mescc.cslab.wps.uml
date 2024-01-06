@@ -54,7 +54,6 @@
             <ownedAttribute xmi:type="uml:Property" xmi:id="_gV_EcKyxEe6c9Mau0FC7Ew" name="Property8" type="_hi5jgKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
             <ownedAttribute xmi:type="uml:Property" xmi:id="_9WLdMKyxEe6c9Mau0FC7Ew" type="_-clroKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump">
             <generalization xmi:type="uml:Generalization" xmi:id="_Fpkk0Ky0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
             <ownedAttribute xmi:type="uml:Property" xmi:id="_1_liwKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
@@ -185,7 +184,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
         <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Coneptual Subsystems"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Conceptual Subsystems"/>
         <packagedElement xmi:type="uml:Package" xmi:id="_r8kfYKvoEe6W8qZzA-gP9Q" name="3 Traceability to Stakeholder"/>
       </packagedElement>
     </packagedElement>
@@ -204,8 +203,28 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_5r778Kv0Ee6IA7qtYiEKtg" name="SR-3 Web Server"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure"/>
-      <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="3 System Behavior"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure">
+        <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="3 System Behavior">
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_aUCD4KzDEe6c9Mau0FC7Ew" name="StateMachine1">
+          <region xmi:type="uml:Region" xmi:id="_bsTeYKzDEe6c9Mau0FC7Ew" name="Region1">
+            <transition xmi:type="uml:Transition" xmi:id="_aHgY4KzFEe6c9Mau0FC7Ew" source="_g5ulgKzDEe6c9Mau0FC7Ew" target="_4c6jAKzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_LxSEwKzGEe6c9Mau0FC7Ew" name="level > min. : start pump one" source="_4c6jAKzDEe6c9Mau0FC7Ew" target="_zbOx0KzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_cDZBUKzGEe6c9Mau0FC7Ew" name="level > med. : start pump two" source="_zbOx0KzDEe6c9Mau0FC7Ew" target="_l4g-QKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_mPRmgKzGEe6c9Mau0FC7Ew" name="level > max. : trigger alarm" source="_l4g-QKzEEe6c9Mau0FC7Ew" target="_vJCHYKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_r9o3gKzGEe6c9Mau0FC7Ew" name="level &lt; max. : silence alarm" source="_vJCHYKzEEe6c9Mau0FC7Ew" target="_l4g-QKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_wvp1AKzGEe6c9Mau0FC7Ew" name="level &lt; med. : shut off pump two" source="_l4g-QKzEEe6c9Mau0FC7Ew" target="_zbOx0KzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_PReYkKzHEe6c9Mau0FC7Ew" name="level &lt; min. : shut off pump one" source="_zbOx0KzDEe6c9Mau0FC7Ew" target="_4c6jAKzDEe6c9Mau0FC7Ew"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_g5ulgKzDEe6c9Mau0FC7Ew" name=""/>
+            <subvertex xmi:type="uml:State" xmi:id="_zbOx0KzDEe6c9Mau0FC7Ew" name="ON LOW"/>
+            <subvertex xmi:type="uml:State" xmi:id="_4c6jAKzDEe6c9Mau0FC7Ew" name="OFF"/>
+            <subvertex xmi:type="uml:State" xmi:id="_l4g-QKzEEe6c9Mau0FC7Ew" name="ON HIGH"/>
+            <subvertex xmi:type="uml:State" xmi:id="_vJCHYKzEEe6c9Mau0FC7Ew" name="ON ALERT"/>
+          </region>
+        </packagedElement>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GBBzsKvREe6vJapU6ujEQQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GBGFIKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -267,6 +286,12 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_srkb4KzDEe6c9Mau0FC7Ew">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sroGQKzDEe6c9Mau0FC7Ew" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
   </uml:Model>
   <Requirements:Requirement xmi:id="_EXT2UKvxEe6IA7qtYiEKtg" base_NamedElement="_EU1xIKvxEe6IA7qtYiEKtg" id="SN-1" base_Class="_EU1xIKvxEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_etKIsKvxEe6IA7qtYiEKtg" base_NamedElement="_etF3QKvxEe6IA7qtYiEKtg" id="SN-1.1" text="The water in the wet well must be pumped to a higher level." base_Class="_etF3QKvxEe6IA7qtYiEKtg"/>
@@ -305,4 +330,5 @@
   <Blocks:ValueType xmi:id="_bVZ0kKyzEe6c9Mau0FC7Ew" base_DataType="_bVXYUKyzEe6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_x1kO0KyzEe6c9Mau0FC7Ew" base_Class="_x1hLgKyzEe6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_JmreIKy1Ee6c9Mau0FC7Ew" base_Class="_JmmloKy1Ee6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_SJ8tcKy6Ee6c9Mau0FC7Ew" base_Class="_SJ5DEKy6Ee6c9Mau0FC7Ew"/>
 </xmi:XMI>
