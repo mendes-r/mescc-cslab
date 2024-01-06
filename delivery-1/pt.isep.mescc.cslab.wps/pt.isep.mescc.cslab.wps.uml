@@ -19,6 +19,20 @@
             <nestedClassifier xmi:type="uml:Class" xmi:id="_XfbhQKvyEe6IA7qtYiEKtg" name="SN-2.2 Display Status"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_jgKIMKvyEe6IA7qtYiEKtg" name="SN-3 Web Server"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_jT7ioKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_5r778Kv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_kkDGsKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_egodsKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ksc0wKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_m26zMKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_k7ZPsKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_1QW98KvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lP78UKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_-VMbgKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lWNjcKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ln8MoKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_egodsKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lwTecKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_m26zMKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_l24AgKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_1QW98KvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_l9jQQKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_-VMbgKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_mQpycKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_mtBlYKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_nPojMKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_wmR_AKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ojwdgKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
           <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
@@ -65,7 +79,7 @@
           <packagedElement xmi:type="uml:InformationFlow" xmi:id="_JZ-bsKyxEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_DYkj4Kv2Ee6IA7qtYiEKtg" informationTarget="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:InformationFlow" xmi:id="_wN-Q0KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_tWz84Kv1Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:InformationFlow" xmi:id="_2higoKyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_BbfFsKyyEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_9WLdMKyxEe6c9Mau0FC7Ew" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_BbfFsKyyEe6c9Mau0FC7Ew" visibility="public" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_9WLdMKyxEe6c9Mau0FC7Ew" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Package" xmi:id="_T4NAAKyvEe6c9Mau0FC7Ew" name="1 Exchange Items">
             <packagedElement xmi:type="uml:Signal" xmi:id="_kGyHcKyvEe6c9Mau0FC7Ew" name="Pump Control"/>
             <packagedElement xmi:type="uml:Signal" xmi:id="_l8OmIKyvEe6c9Mau0FC7Ew" name="Status"/>
