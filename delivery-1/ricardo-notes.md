@@ -44,3 +44,8 @@ ou apenas um wet weather overflow?
 - Talvez usar mqtt tb quando comunicar com os sensores
 
 - MQTT recupera ligaçoes ao contrario de tcp
+
+- Why webserver also feed from mqtt broker? simplicity. Obvious no failures
+
+- View Fault Toleranze article by me
+

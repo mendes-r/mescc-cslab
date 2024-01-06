@@ -1,4 +1,4 @@
-\documentclass[11pt, english]{article}
+\documentclass[11pt]{article}
 
 \usepackage[a4paper,
             bindingoffset=0.5cm,
@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{blindtext}
+\usepackage{float}
 %
 
 \setcounter{secnumdepth}{3}
@@ -63,19 +64,55 @@
 %%%
 \subsubsection{System Context}
 
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/system-context-01.png}
+  \caption{System Context}
+  \label{fig:System Context}
+\end{figure}	
+
 %%%
 \subsubsection{Use Cases}
 By analyzing stakeholder needs, we can see that the main goal of the WPS is to control the water level inside the wet well. This goal can be captured in the model as
 the Control Water Level use case of the Control Unit In Use system context. 
 
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/use-cases-01.png}
+  \caption{Use Case diagram}
+  \label{fig:Use Case1}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/use-case-activity-diagram-01.png}
+  \caption{Use Case Activity diagram}
+  \label{fig:Use Case2}
+\end{figure}
+
 %%%
 \subsubsection{Measure of Effectiveness}
+
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/measure-of-effectiveness.png}
+  \caption{Measure of Effectiveness diagram}
+  \label{fig:MoE}
+\end{figure}
 
 %%%
 \subsubsection{Functional Analysis}
 
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/functional-analysis-wps.png}
+  \caption{Functional Analysis diagram}
+  \label{fig:Functional Analysis}
+\end{figure}
+
 %%%
 \subsubsection{Conceptual Subsystems}
+
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/conceptual-subsystem-communication-wps.png}
+  \caption{Conceptual Subsystem Communication diagram}
+  \label{fig:Conceptual Subsystem}
+\end{figure}
 
 %%%
 \subsubsection{Traceability to Stakeholder}
@@ -110,8 +147,20 @@ the Control Water Level use case of the Control Unit In Use system context.
 %%%
 \subsubsection{System Structure}
 
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/system-structure.png}
+  \caption{System Structure Diagram}
+  \label{fig:System Structure Diagram}
+\end{figure}
+
 %%%
 \subsubsection{System Behavior}
+
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/state-machine-wps.png}
+  \caption{State Machine}
+  \label{fig:State Machine}
+\end{figure}
 
 %%%
 %%%
@@ -181,7 +230,19 @@ the Control Water Level use case of the Control Unit In Use system context.
 %%%
 \section{Selected Technologies}
 
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/deployment-diagram-WPS.jpg}
+  \caption{Deployment diagram}
+  \label{fig:Deployment Diagram}
+\end{figure}
+
 %%%
 \section{List of physical sensors/actuators}
+
+\begin{figure}[H]
+  \includegraphics[width=300px]{../diagrams/network-diagram-WPS.jpg}
+  \caption{Network diagram}
+  \label{fig:Network1 Diagram}
+\end{figure}
 
 \end{document}
