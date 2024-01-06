@@ -41,12 +41,19 @@
             <ownedAttribute xmi:type="uml:Property" xmi:id="_9WLdMKyxEe6c9Mau0FC7Ew" type="_-clroKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump">
+            <generalization xmi:type="uml:Generalization" xmi:id="_Fpkk0Ky0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_1_liwKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_5pj6IKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_9PgT4Kv1Ee6IA7qtYiEKtg" name="Remote Status Station"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_QFoFUKv2Ee6IA7qtYiEKtg" name="Maintainer"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_UEfHkKv2Ee6IA7qtYiEKtg" name="Web Client"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit">
+            <generalization xmi:type="uml:Generalization" xmi:id="_E-NToKy0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_8_mB0Ky0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_hi5jgKyxEe6c9Mau0FC7Ew" name="Power Supply 1"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_-clroKyxEe6c9Mau0FC7Ew" name="Power Supply 2"/>
           <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mXLx4KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
@@ -140,7 +147,27 @@
             <ownedEnd xmi:type="uml:Property" xmi:id="_CAXBgKv7Ee6IA7qtYiEKtg" name="alert maintainer for malfunction" type="_YYBcgKv6Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
           </packagedElement>
         </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness">
+          <packagedElement xmi:type="uml:Class" xmi:id="_x1hLgKyzEe6c9Mau0FC7Ew" name="MOEs Holder">
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_JG6OYKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_d0YjAKy0Ee6c9Mau0FC7Ew" name="Well Capacity" type="_KACrQKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_iBI3UKy0Ee6c9Mau0FC7Ew" name="Water Intake" type="_WqCRoKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_ozO2MKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_JmmloKy1Ee6c9Mau0FC7Ew" name="Wet Well">
+            <generalization xmi:type="uml:Generalization" xmi:id="_qOonwKy1Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_LvMCwKy1Ee6c9Mau0FC7Ew" name="Water Intake" type="_WqCRoKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_O8578Ky1Ee6c9Mau0FC7Ew" name="Capacity" type="_KACrQKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_fQY44KyyEe6c9Mau0FC7Ew" name="5 Types">
+          <packagedElement xmi:type="uml:Stereotype" xmi:id="_i8_GcKyyEe6c9Mau0FC7Ew" name="moe">
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_5vq0EKyyEe6c9Mau0FC7Ew" name="Electricity [KW/h]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_KACrQKyzEe6c9Mau0FC7Ew" name="Volume [m3]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_WqCRoKyzEe6c9Mau0FC7Ew" name="Inflow Capacity [L/s]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_bVXYUKyzEe6c9Mau0FC7Ew" name="Outflow Capacity [L/s]"/>
+          </packagedElement>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
         <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis"/>
@@ -149,7 +176,7 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_B4IpsKvnEe6W8qZzA-gP9Q" name="2 Solution Domain">
-      <packagedElement xmi:type="uml:Package" xmi:id="_7ps7EKvyEe6IA7qtYiEKtg" name="1 System Requirements">
+      <packagedElement xmi:type="uml:Package" xmi:id="_7ps7EKvyEe6IA7qtYiEKtg" name="1 System Requirements" visibility="public">
         <packagedElement xmi:type="uml:Class" xmi:id="_Vu1Q4KvzEe6IA7qtYiEKtg" name="SR-1 WPS">
           <nestedClassifier xmi:type="uml:Class" xmi:id="_egodsKvzEe6IA7qtYiEKtg" name="SR-1.1 Water Level Control"/>
           <nestedClassifier xmi:type="uml:Class" xmi:id="_m26zMKvzEe6IA7qtYiEKtg" name="SR-1.2 Water Level Control"/>
@@ -258,4 +285,10 @@
   <PortsAndFlows:ItemFlow xmi:id="_-88RkKyvEe6c9Mau0FC7Ew" base_InformationFlow="_-8zusKyvEe6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_hi7_wKyxEe6c9Mau0FC7Ew" base_Class="_hi5jgKyxEe6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_-coH4KyxEe6c9Mau0FC7Ew" base_Class="_-clroKyxEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_5v7SwKyyEe6c9Mau0FC7Ew" base_DataType="_5vq0EKyyEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_KATJ8KyzEe6c9Mau0FC7Ew" base_DataType="_KACrQKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_WqEt4KyzEe6c9Mau0FC7Ew" base_DataType="_WqCRoKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_bVZ0kKyzEe6c9Mau0FC7Ew" base_DataType="_bVXYUKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_x1kO0KyzEe6c9Mau0FC7Ew" base_Class="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_JmreIKy1Ee6c9Mau0FC7Ew" base_Class="_JmmloKy1Ee6c9Mau0FC7Ew"/>
 </xmi:XMI>
