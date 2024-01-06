@@ -183,8 +183,87 @@
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
-        <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Conceptual Subsystems"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis">
+          <packagedElement xmi:type="uml:Activity" xmi:id="_uwpfwKzIEe6c9Mau0FC7Ew" name="Control Water Level" node="_C9zVkKzJEe6c9Mau0FC7Ew _PmYmsKzJEe6c9Mau0FC7Ew _hu5EMKzJEe6c9Mau0FC7Ew _wUIPQKzJEe6c9Mau0FC7Ew _KY4xoKzKEe6c9Mau0FC7Ew _TDqwcKzKEe6c9Mau0FC7Ew _gSosIKzKEe6c9Mau0FC7Ew _sHXecKzKEe6c9Mau0FC7Ew _3c_58KzKEe6c9Mau0FC7Ew _f8iq4KzLEe6c9Mau0FC7Ew _BPFCkKzMEe6c9Mau0FC7Ew _H2Qx8KzMEe6c9Mau0FC7Ew _pbDXQKzMEe6c9Mau0FC7Ew _HY6SIKzNEe6c9Mau0FC7Ew _TBv9gKzNEe6c9Mau0FC7Ew _gFBmkKzNEe6c9Mau0FC7Ew _2qq9wKzNEe6c9Mau0FC7Ew _Et6PAKzOEe6c9Mau0FC7Ew">
+            <edge xmi:type="uml:ControlFlow" xmi:id="_dmmZIKzJEe6c9Mau0FC7Ew" name=": water level" target="_Yp2LQKzJEe6c9Mau0FC7Ew" source="_C9zVkKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_jTfqgKzJEe6c9Mau0FC7Ew" target="_PmYmsKzJEe6c9Mau0FC7Ew" source="_hu5EMKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_W6LvAKzKEe6c9Mau0FC7Ew" name="level > min" target="_TDqwcKzKEe6c9Mau0FC7Ew" source="_KY4xoKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_0rqawKzKEe6c9Mau0FC7Ew" target="_sHXecKzKEe6c9Mau0FC7Ew" source="_PmYmsKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_6b3e0KzKEe6c9Mau0FC7Ew" target="_1k36sKzKEe6c9Mau0FC7Ew" source="_3c_58KzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="__1HbcKzKEe6c9Mau0FC7Ew" name=": water level" target="_gSosIKzKEe6c9Mau0FC7Ew" source="_50cu8KzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_BAbYAKzLEe6c9Mau0FC7Ew" name=": pump status" target="_gSosIKzKEe6c9Mau0FC7Ew" source="_85btcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_CTAaMKzLEe6c9Mau0FC7Ew" name=": data" target="_3P9Y8KzJEe6c9Mau0FC7Ew" source="_gSosIKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_WRZbQKzLEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_TDqwcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_qu1IwKzLEe6c9Mau0FC7Ew" name="level &lt; min" target="_f8iq4KzLEe6c9Mau0FC7Ew" source="_KY4xoKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_yXKMEKzLEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_f8iq4KzLEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_EKo0wKzMEe6c9Mau0FC7Ew" target="_BPFCkKzMEe6c9Mau0FC7Ew" source="_TDqwcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_NfaLwKzMEe6c9Mau0FC7Ew" name="level > med" target="_H2Qx8KzMEe6c9Mau0FC7Ew" source="_BPFCkKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_v3pAMKzMEe6c9Mau0FC7Ew" target="_pbDXQKzMEe6c9Mau0FC7Ew" source="_BPFCkKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_w9w6wKzMEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_pbDXQKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_Jl9YgKzNEe6c9Mau0FC7Ew" target="_HY6SIKzNEe6c9Mau0FC7Ew" source="_H2Qx8KzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_YH3iwKzNEe6c9Mau0FC7Ew" name="level > max" target="_TBv9gKzNEe6c9Mau0FC7Ew" source="_HY6SIKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_kPligKzNEe6c9Mau0FC7Ew" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_TBv9gKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_pcUtIKzNEe6c9Mau0FC7Ew" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_HY6SIKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_4ok04KzNEe6c9Mau0FC7Ew" target="_2qq9wKzNEe6c9Mau0FC7Ew" source="_wUIPQKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_56fvwKzNEe6c9Mau0FC7Ew" name="valid data" target="_KY4xoKzKEe6c9Mau0FC7Ew" source="_2qq9wKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_8VGxAKzNEe6c9Mau0FC7Ew" name="invalid data" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_2qq9wKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_LgjAcKzOEe6c9Mau0FC7Ew" name=": data" target="_Et6PAKzOEe6c9Mau0FC7Ew" source="_I0rQEKzOEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_C9zVkKzJEe6c9Mau0FC7Ew" name="Water Level Sensor Data" outgoing="_dmmZIKzJEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_C91KwKzJEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_PmYmsKzJEe6c9Mau0FC7Ew" name="Read Current Water Level" incoming="_jTfqgKzJEe6c9Mau0FC7Ew" outgoing="_0rqawKzKEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_Yp2LQKzJEe6c9Mau0FC7Ew" incoming="_dmmZIKzJEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Yp3ZYKzJEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_50cu8KzJEe6c9Mau0FC7Ew" name="" outgoing="__1HbcKzKEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_50dWAKzJEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:InitialNode" xmi:id="_hu5EMKzJEe6c9Mau0FC7Ew" name="" outgoing="_jTfqgKzJEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wUIPQKzJEe6c9Mau0FC7Ew" name="Process Data" outgoing="_4ok04KzNEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_3P9Y8KzJEe6c9Mau0FC7Ew" name="" incoming="_CTAaMKzLEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_3P-AAKzJEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+            </node>
+            <node xmi:type="uml:DecisionNode" xmi:id="_KY4xoKzKEe6c9Mau0FC7Ew" name="" incoming="_56fvwKzNEe6c9Mau0FC7Ew" outgoing="_W6LvAKzKEe6c9Mau0FC7Ew _qu1IwKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_TDqwcKzKEe6c9Mau0FC7Ew" name="Init Pump One" incoming="_W6LvAKzKEe6c9Mau0FC7Ew" outgoing="_WRZbQKzLEe6c9Mau0FC7Ew _EKo0wKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:JoinNode" xmi:id="_gSosIKzKEe6c9Mau0FC7Ew" incoming="__1HbcKzKEe6c9Mau0FC7Ew _BAbYAKzLEe6c9Mau0FC7Ew" outgoing="_CTAaMKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_sHXecKzKEe6c9Mau0FC7Ew" name="Read Pump Status" incoming="_0rqawKzKEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_1k36sKzKEe6c9Mau0FC7Ew" name="" incoming="_6b3e0KzKEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_1k5I0KzKEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_85btcKzKEe6c9Mau0FC7Ew" name="" outgoing="_BAbYAKzLEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_85c7kKzKEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_3c_58KzKEe6c9Mau0FC7Ew" name="Pumps" incoming="_WRZbQKzLEe6c9Mau0FC7Ew _yXKMEKzLEe6c9Mau0FC7Ew _w9w6wKzMEe6c9Mau0FC7Ew" outgoing="_6b3e0KzKEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_3dAhAKzKEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_f8iq4KzLEe6c9Mau0FC7Ew" name="Shut off Pumps" incoming="_qu1IwKzLEe6c9Mau0FC7Ew" outgoing="_yXKMEKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_BPFCkKzMEe6c9Mau0FC7Ew" name="" incoming="_EKo0wKzMEe6c9Mau0FC7Ew" outgoing="_NfaLwKzMEe6c9Mau0FC7Ew _v3pAMKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_H2Qx8KzMEe6c9Mau0FC7Ew" name="Init Pump Two" incoming="_NfaLwKzMEe6c9Mau0FC7Ew" outgoing="_Jl9YgKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_pbDXQKzMEe6c9Mau0FC7Ew" name="Shut off Pump Two" incoming="_v3pAMKzMEe6c9Mau0FC7Ew" outgoing="_w9w6wKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_HY6SIKzNEe6c9Mau0FC7Ew" name="" incoming="_Jl9YgKzNEe6c9Mau0FC7Ew" outgoing="_YH3iwKzNEe6c9Mau0FC7Ew _pcUtIKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_TBv9gKzNEe6c9Mau0FC7Ew" name="Trigger Alarm" incoming="_YH3iwKzNEe6c9Mau0FC7Ew" outgoing="_kPligKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_gFBmkKzNEe6c9Mau0FC7Ew" name="Publish Status" incoming="_kPligKzNEe6c9Mau0FC7Ew _pcUtIKzNEe6c9Mau0FC7Ew _8VGxAKzNEe6c9Mau0FC7Ew">
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_I0rQEKzOEe6c9Mau0FC7Ew" name="" outgoing="_LgjAcKzOEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_I0seMKzOEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:DecisionNode" xmi:id="_2qq9wKzNEe6c9Mau0FC7Ew" name="" incoming="_4ok04KzNEe6c9Mau0FC7Ew" outgoing="_56fvwKzNEe6c9Mau0FC7Ew _8VGxAKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_Et6PAKzOEe6c9Mau0FC7Ew" name="Remote Status Station" incoming="_LgjAcKzOEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Et8rQKzOEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Conceptual Subsystems">
+          <packagedElement xmi:type="uml:Class" xmi:id="_HkAc8KzPEe6c9Mau0FC7Ew" name="WPS Control Unit">
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_ct0IQKzPEe6c9Mau0FC7Ew" name="Sensor Data Transfer" aggregation="composite" isService="false"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_piG6IKzPEe6c9Mau0FC7Ew" name="Output Information" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_0bjv8KzPEe6c9Mau0FC7Ew" name="Output Command" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_-tkLQKzPEe6c9Mau0FC7Ew" name="Output Alert" aggregation="composite"/>
+          </packagedElement>
+        </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_r8kfYKvoEe6W8qZzA-gP9Q" name="3 Traceability to Stakeholder"/>
       </packagedElement>
     </packagedElement>
@@ -331,4 +410,5 @@
   <Blocks:Block xmi:id="_x1kO0KyzEe6c9Mau0FC7Ew" base_Class="_x1hLgKyzEe6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_JmreIKy1Ee6c9Mau0FC7Ew" base_Class="_JmmloKy1Ee6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_SJ8tcKy6Ee6c9Mau0FC7Ew" base_Class="_SJ5DEKy6Ee6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_HkDgQKzPEe6c9Mau0FC7Ew" base_Class="_HkAc8KzPEe6c9Mau0FC7Ew"/>
 </xmi:XMI>
