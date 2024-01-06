@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Allocations="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Allocations="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements">
   <uml:Model xmi:id="_F_rv4KvREe6vJapU6ujEQQ" name="pt">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_GFHpgKvREe6vJapU6ujEQQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -37,6 +37,8 @@
             <ownedAttribute xmi:type="uml:Property" xmi:id="_Wv2hoKv2Ee6IA7qtYiEKtg" name="Property7" type="_XqY3QKv2Ee6IA7qtYiEKtg" aggregation="composite">
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ArxxAKv3Ee6IA7qtYiEKtg" value="*"/>
             </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_gV_EcKyxEe6c9Mau0FC7Ew" name="Property8" type="_hi5jgKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_9WLdMKyxEe6c9Mau0FC7Ew" type="_-clroKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump"/>
@@ -45,13 +47,25 @@
           <packagedElement xmi:type="uml:Class" xmi:id="_QFoFUKv2Ee6IA7qtYiEKtg" name="Maintainer"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_UEfHkKv2Ee6IA7qtYiEKtg" name="Web Client"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_13R3MKv3Ee6IA7qtYiEKtg" name="Water Level" client="_tWz84Kv1Ee6IA7qtYiEKtg" supplier="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_AvpH4Kv4Ee6IA7qtYiEKtg" name="Command" client="_Wv2hoKv2Ee6IA7qtYiEKtg" supplier="_1kqvIKv1Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_NFj7sKv4Ee6IA7qtYiEKtg" name="Status" client="_Wv2hoKv2Ee6IA7qtYiEKtg" supplier="_8BKRcKv1Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_Yk_MYKv4Ee6IA7qtYiEKtg" name="Command" client="_PRujMKv2Ee6IA7qtYiEKtg" supplier="_8BKRcKv1Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_bLmpUKv4Ee6IA7qtYiEKtg" name="Status" client="_8BKRcKv1Ee6IA7qtYiEKtg" supplier="_PRujMKv2Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_dsGQIKv4Ee6IA7qtYiEKtg" name="Status" client="_8BKRcKv1Ee6IA7qtYiEKtg" supplier="_DYkj4Kv2Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_gWzi4Kv4Ee6IA7qtYiEKtg" name="Display Status" client="_DYkj4Kv2Ee6IA7qtYiEKtg" supplier="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_hi5jgKyxEe6c9Mau0FC7Ew" name="Power Supply 1"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_-clroKyxEe6c9Mau0FC7Ew" name="Power Supply 2"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mXLx4KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_-8zusKyvEe6c9Mau0FC7Ew" conveyed="_w-A4kKyvEe6c9Mau0FC7Ew" informationSource="_tWz84Kv1Ee6IA7qtYiEKtg" informationTarget="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_bZ3lMKywEe6c9Mau0FC7Ew" conveyed="_kGyHcKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_n13y4KywEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_z5LzwKywEe6c9Mau0FC7Ew" conveyed="_yG3hkKywEe6c9Mau0FC7Ew" informationSource="_PRujMKv2Ee6IA7qtYiEKtg" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_-Aez4KywEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_DYkj4Kv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_JZ-bsKyxEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_DYkj4Kv2Ee6IA7qtYiEKtg" informationTarget="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_wN-Q0KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_tWz84Kv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_2higoKyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_BbfFsKyyEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_9WLdMKyxEe6c9Mau0FC7Ew" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_T4NAAKyvEe6c9Mau0FC7Ew" name="1 Exchange Items">
+            <packagedElement xmi:type="uml:Signal" xmi:id="_kGyHcKyvEe6c9Mau0FC7Ew" name="Pump Control"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_l8OmIKyvEe6c9Mau0FC7Ew" name="Status"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_n41cwKyvEe6c9Mau0FC7Ew" name="Power"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_w-A4kKyvEe6c9Mau0FC7Ew" name="Water Level"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_yG3hkKywEe6c9Mau0FC7Ew" name="Alarm Control"/>
+          </packagedElement>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases">
           <packagedElement xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" classifierBehavior="_KyAEAKwAEe6IA7qtYiEKtg" subject="_S5HWEKv1Ee6IA7qtYiEKtg">
@@ -241,4 +255,7 @@
   <Allocations:AllocateActivityPartition xmi:id="_Ygi3oKwAEe6IA7qtYiEKtg" base_ActivityPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
   <Allocations:AllocateActivityPartition xmi:id="_x8bcIKwAEe6IA7qtYiEKtg" base_ActivityPartition="_x8Zm8KwAEe6IA7qtYiEKtg"/>
   <Allocations:AllocateActivityPartition xmi:id="_KBILQKwBEe6IA7qtYiEKtg" base_ActivityPartition="_KBFH8KwBEe6IA7qtYiEKtg"/>
+  <PortsAndFlows:ItemFlow xmi:id="_-88RkKyvEe6c9Mau0FC7Ew" base_InformationFlow="_-8zusKyvEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_hi7_wKyxEe6c9Mau0FC7Ew" base_Class="_hi5jgKyxEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_-coH4KyxEe6c9Mau0FC7Ew" base_Class="_-clroKyxEe6c9Mau0FC7Ew"/>
 </xmi:XMI>
