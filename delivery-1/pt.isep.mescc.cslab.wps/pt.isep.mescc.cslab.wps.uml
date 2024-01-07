@@ -265,6 +265,10 @@
             <ownedAttribute xmi:type="uml:Port" xmi:id="_0bjv8KzPEe6c9Mau0FC7Ew" name="Output Command" aggregation="composite"/>
             <ownedAttribute xmi:type="uml:Port" xmi:id="_-tkLQKzPEe6c9Mau0FC7Ew" name="Output Alert" aggregation="composite"/>
           </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_PLD5MK1kEe6HJs30QlsQCQ" name="RSS">
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_XnKi0K1kEe6HJs30QlsQCQ" name="Maintenance push" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_fJkkUK1kEe6HJs30QlsQCQ" name="Input WPS status" aggregation="composite"/>
+          </packagedElement>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_r8kfYKvoEe6W8qZzA-gP9Q" name="3 Traceability to Stakeholder"/>
       </packagedElement>
@@ -414,4 +418,5 @@
   <Blocks:Block xmi:id="_SJ8tcKy6Ee6c9Mau0FC7Ew" base_Class="_SJ5DEKy6Ee6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_HkDgQKzPEe6c9Mau0FC7Ew" base_Class="_HkAc8KzPEe6c9Mau0FC7Ew"/>
   <Requirements:Requirement xmi:id="_hu1h8K1aEe6HJs30QlsQCQ" base_NamedElement="_hufjsK1aEe6HJs30QlsQCQ" id="SN-2.3" text="The alarm must be ON when a problem in the system is identified." base_Class="_hufjsK1aEe6HJs30QlsQCQ"/>
+  <Blocks:Block xmi:id="_PLORQK1kEe6HJs30QlsQCQ" base_Class="_PLD5MK1kEe6HJs30QlsQCQ"/>
 </xmi:XMI>

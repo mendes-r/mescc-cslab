@@ -145,7 +145,7 @@ As illustrated, each characteristic can be related to a specific element of the 
 %%%
 \subsubsection{Functional Analysis}
 
-For the functional analysis, we only focused our attention to the Control Unit; the most critical of the identified subsystems.
+For the functional analysis, we only focused our attention to the Control Unit; the most critical of the subsystems.
 
 \begin{figure}[H]
   \centering
@@ -154,14 +154,34 @@ For the functional analysis, we only focused our attention to the Control Unit; 
   \label{fig:Functional Analysis}
 \end{figure}
 
+For a reliable \textit{Water Level Control}, the Control Unit needs to be able to read data from the sensors and also get the current status of the water pumps.
+
+This data is used to decide the correct behavior - turn on or off the water pumps - and publish the system's status to be consumed by the RSS.
+
+The system's status also has the information that can trigger an alarm on the RSS side.
+
 %%%
 \subsubsection{Conceptual Subsystems}
 
+After identifying conceptual subsystems during the functional analysis, we tried to capture the communication between them. This was achieved by pinpointing  the inputs and outputs of those subsystems.
+
 \begin{figure}[H]
-  \includegraphics[width=300px]{../diagrams/conceptual-subsystem-communication-wps.png}
-  \caption{Conceptual Subsystem Communication diagram}
-  \label{fig:Conceptual Subsystem}
+\centering
+\begin{minipage}{.5\linewidth}
+  \centering
+  \includegraphics[width=150px]{../diagrams/conceptual-subsystem-communication-wps.png}
+  \caption{Communication WPS}
+  \label{fig:Conceptual Subsystem 1}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \centering
+  \includegraphics[width=150px]{../diagrams/conceptual-subsystem-communication-rss.png}
+  \caption{Communication RSS}
+  \label{fig:Conceptual Subsystem 2}
+\end{minipage}
 \end{figure}
+
+In the diagrams above, we analyzed the WSP Control Unit and the RSS.
 
 %%%
 \subsubsection{Traceability to Stakeholder}
