@@ -49,3 +49,6 @@ ou apenas um wet weather overflow?
 
 - View Fault Toleranze article by me
 
+- Sub to all MQTT brokers
+
+
