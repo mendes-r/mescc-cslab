@@ -62,7 +62,6 @@
             <ownedAttribute xmi:type="uml:Property" xmi:id="_5pj6IKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_9PgT4Kv1Ee6IA7qtYiEKtg" name="Remote Status Station"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_QFoFUKv2Ee6IA7qtYiEKtg" name="Maintainer"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_UEfHkKv2Ee6IA7qtYiEKtg" name="Web Client"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit">
@@ -290,7 +289,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure">
         <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="3 System Behavior">
         <packagedElement xmi:type="uml:StateMachine" xmi:id="_aUCD4KzDEe6c9Mau0FC7Ew" name="StateMachine1">
