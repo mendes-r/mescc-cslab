@@ -17,6 +17,7 @@
           <packagedElement xmi:type="uml:Class" xmi:id="_60ql8KvxEe6IA7qtYiEKtg" name="SN-2 Remote Status Station">
             <nestedClassifier xmi:type="uml:Class" xmi:id="_IhbQ4KvyEe6IA7qtYiEKtg" name="SN-2.1 WPS Status"/>
             <nestedClassifier xmi:type="uml:Class" xmi:id="_XfbhQKvyEe6IA7qtYiEKtg" name="SN-2.2 Display Status"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_hufjsK1aEe6HJs30QlsQCQ" name="SN-2.3 Alarm on failure"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_jgKIMKvyEe6IA7qtYiEKtg" name="SN-3 Web Server"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_jT7ioKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_5r778Kv0Ee6IA7qtYiEKtg"/>
@@ -33,6 +34,7 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_mtBlYKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_nPojMKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_wmR_AKv0Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_ojwdgKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_zE9gQK1aEe6HJs30QlsQCQ" client="_hufjsK1aEe6HJs30QlsQCQ" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
           <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
@@ -373,10 +375,10 @@
     </profileApplication>
   </uml:Model>
   <Requirements:Requirement xmi:id="_EXT2UKvxEe6IA7qtYiEKtg" base_NamedElement="_EU1xIKvxEe6IA7qtYiEKtg" id="SN-1" base_Class="_EU1xIKvxEe6IA7qtYiEKtg"/>
-  <Requirements:Requirement xmi:id="_etKIsKvxEe6IA7qtYiEKtg" base_NamedElement="_etF3QKvxEe6IA7qtYiEKtg" id="SN-1.1" text="The water in the wet well must be pumped to a higher level." base_Class="_etF3QKvxEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_etKIsKvxEe6IA7qtYiEKtg" base_NamedElement="_etF3QKvxEe6IA7qtYiEKtg" id="SN-1.1" text="The water in the wet well must be pumped from a lower level to a higher one." base_Class="_etF3QKvxEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_oBBgwKvxEe6IA7qtYiEKtg" base_NamedElement="_oA3IsKvxEe6IA7qtYiEKtg" id="SN-1.2" text="Every WPS is an independent system; they don't have influence on each other." base_Class="_oA3IsKvxEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_60wskKvxEe6IA7qtYiEKtg" base_NamedElement="_60ql8KvxEe6IA7qtYiEKtg" id="SN-2" base_Class="_60ql8KvxEe6IA7qtYiEKtg"/>
-  <Requirements:Requirement xmi:id="_Ihe7QKvyEe6IA7qtYiEKtg" base_NamedElement="_IhbQ4KvyEe6IA7qtYiEKtg" id="SN-2.1" text="The status of each element of the wet well needs to be displayed in a Remote Status Station." base_Class="_IhbQ4KvyEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_Ihe7QKvyEe6IA7qtYiEKtg" base_NamedElement="_IhbQ4KvyEe6IA7qtYiEKtg" id="SN-2.1" text="The status of each element of the WPS needs to be displayed in a Remote Status Station." base_Class="_IhbQ4KvyEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_XfkrMKvyEe6IA7qtYiEKtg" base_NamedElement="_XfbhQKvyEe6IA7qtYiEKtg" id="SN-2.2" text="The RSS must display the water level, the pump status, an alarme and a button to disable the alarm." base_Class="_XfbhQKvyEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_jgQO0KvyEe6IA7qtYiEKtg" base_NamedElement="_jgKIMKvyEe6IA7qtYiEKtg" id="SN-3" text="The status information must be accessible through a web page." base_Class="_jgKIMKvyEe6IA7qtYiEKtg"/>
   <Requirements:Requirement xmi:id="_Vu47QKvzEe6IA7qtYiEKtg" base_NamedElement="_Vu1Q4KvzEe6IA7qtYiEKtg" id="SR-1" base_Class="_Vu1Q4KvzEe6IA7qtYiEKtg"/>
@@ -411,4 +413,5 @@
   <Blocks:Block xmi:id="_JmreIKy1Ee6c9Mau0FC7Ew" base_Class="_JmmloKy1Ee6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_SJ8tcKy6Ee6c9Mau0FC7Ew" base_Class="_SJ5DEKy6Ee6c9Mau0FC7Ew"/>
   <Blocks:Block xmi:id="_HkDgQKzPEe6c9Mau0FC7Ew" base_Class="_HkAc8KzPEe6c9Mau0FC7Ew"/>
+  <Requirements:Requirement xmi:id="_hu1h8K1aEe6HJs30QlsQCQ" base_NamedElement="_hufjsK1aEe6HJs30QlsQCQ" id="SN-2.3" text="The alarm must be ON when a problem in the system is identified." base_Class="_hufjsK1aEe6HJs30QlsQCQ"/>
 </xmi:XMI>

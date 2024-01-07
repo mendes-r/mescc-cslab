@@ -37,13 +37,14 @@
 
 The current document, is the result of the work done during the first delivery of the CSLAB class.
 
-The document is divided into three parts, each one of them focused on the evaluation topics: requirements specification documentation, rationale for selected technology and list of physical sensor and/or actuator used for the demo.
+The document is divided into three parts, each one of them focused on the evaluation topics: \textbf{requirements specification} documentation, \textbf{rationale for selected technology} and \textbf{list of physical sensor and/or actuator} used for the demo.
 
 The system that we are modeling is a Water Pumping System (WPS) for two rainwater wells. These types of systems are essentially used to move water from a lower elevation to a higher one.
 
 A Remote Status Station is also described in the document. Its main function is to give a level of observability of the WPS and to alert the \textit{maintenance team} for a possible failure.
 
 There is also an additional feature. The status of the system should also be visible through a web server.
+
 
 %%%
 \section{Requirement Specification}
@@ -54,14 +55,14 @@ There is also an additional feature. The status of the system should also be vis
 %%%
 \subsubsection{Stakeholder Needs}
 
-Based on the description of the system, and some clarifications during the classes, we identified the following Stakeholder needs:
+Based on the system's description and some clarifications during the classes, we identified the following Stakeholder needs:
 
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SN-\arabic*}]
 	\setlength\itemsep{.5em}
 	\item 
 		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
 		\setlength\itemsep{0em}	
-		\item The water in the wet well must be pumped to a higher level.
+		\item The water in the WPS must be pumped from a lower level to a higher one.
 		\item Every WPS is an independent system; they don't have influence on each other.
 		\end{enumerate}
 	\item 
@@ -69,32 +70,51 @@ Based on the description of the system, and some clarifications during the class
 		\setlength\itemsep{0em}	
 		\item The status of each element of the wet well needs to be displayed in a Remote Status Station (RSS). 
 		\item The RSS must display the water level, the pump status, an alarme and a button to disable the alarm.
+		\item The alarm must be ON when a problem in the system is identified.
 		\end{enumerate}
 		
 	\item The status information must be accessible through a web page.
 \end{enumerate}
 
+\noindent
+\textbf{SN-1} is WPS specific, \textbf{SN-2} is RSS specific and \textbf{SN-3} is Web Server specific.
+
 %%%
 \subsubsection{System Context}
 
+For a better understanding of the system, we developed an external view, and so, identified external entities that do not belong to the system but interact with it. The following diagram is the output of this analysis:
+
 \begin{figure}[H]
+  \centering
   \includegraphics[width=300px]{../diagrams/system-context-01.png}
   \caption{System Context}
   \label{fig:System Context}
-\end{figure}	
+\end{figure}
+
+Although some elements represented in the diagram are part of the WPS (sensor, control unit, pump and RSS), we divide them into subsystems with their own responsibilities and interactions. 
+
+By decoupling the WPS responsibilities, we are simplifying it and turning the critical system requirements easier to grasp and model. 
+
+The main identified external entities are: \textbf{Power Supply}, \textbf{Maintenance Team} and \textbf{Web Client}. 
+
+Please notice the independent Power Supply for the Control Unit and the RSS as a way to deal with the critical requirements.
 
 %%%
 \subsubsection{Use Cases}
-By analyzing stakeholder needs, we can see that the main goal of the WPS is to control the water level inside the wet well. This goal can be captured in the model as
-the Control Water Level use case of the Control Unit In Use system context. 
+
+By analyzing the Stakeholder Needs, we can see that the main goal of the WPS is to control the water level inside the wet well. This goal can be captured in the model as the \textit{"Control Water Level"} use case of the \textit{Control Unit In Use} system context. 
 
 \begin{figure}[H]
+  \centering
   \includegraphics[width=300px]{../diagrams/use-cases-01.png}
   \caption{Use Case diagram}
   \label{fig:Use Case1}
 \end{figure}
 
+A closer look at the use case \textit{"Control Water Level"} gave rise to the below activity diagram. No alternative scenario was modeled.
+
 \begin{figure}[H]
+  \centering
   \includegraphics[width=300px]{../diagrams/use-case-activity-diagram-01.png}
   \caption{Use Case Activity diagram}
   \label{fig:Use Case2}
@@ -103,16 +123,32 @@ the Control Water Level use case of the Control Unit In Use system context.
 %%%
 \subsubsection{Measure of Effectiveness}
 
+To be able to describe the performance of the system, some quantifiable characteristics of the WPS were identified:
+
+\begin{itemize}
+\setlength\itemsep{0em}
+  \item Energy Consumption in \textit{kilowatts per hour}
+  \item Wet Well Capacity in \textit{cubic meters};
+  \item Water Inflow in \textit{liters per second};
+  \item Water Outflow in \textit{liters per second}.
+\end{itemize}
+
 \begin{figure}[H]
+  \centering
   \includegraphics[width=300px]{../diagrams/measure-of-effectiveness.png}
   \caption{Measure of Effectiveness diagram}
   \label{fig:MoE}
 \end{figure}
 
+As illustrated, each characteristic can be related to a specific element of the WPS.
+
 %%%
 \subsubsection{Functional Analysis}
 
+For the functional analysis, we only focused our attention to the Control Unit; the most critical of the identified subsystems.
+
 \begin{figure}[H]
+  \centering
   \includegraphics[width=300px]{../diagrams/functional-analysis-wps.png}
   \caption{Functional Analysis diagram}
   \label{fig:Functional Analysis}
@@ -240,6 +276,7 @@ the Control Water Level use case of the Control Unit In Use system context.
 		\end{itemize} 
 \end{enumerate}
 
+\newpage
 %%%
 \section{Selected Technologies}
 
@@ -249,6 +286,7 @@ the Control Water Level use case of the Control Unit In Use system context.
   \label{fig:Deployment Diagram}
 \end{figure}
 
+\newpage
 %%%
 \section{List of physical sensors/actuators}
 

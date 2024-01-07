@@ -1810,13 +1810,13 @@
     <owner xmi:type="uml:Package" href="pt.isep.mescc.cslab.wps.uml#_r8kfYKvoEe6W8qZzA-gP9Q"/>
     <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/configs/generic_matrix_of_relationships.nattableconfiguration#UMLGenericMatrixOfRelationships_XMI_ID"/>
     <columnAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_FMY8wqy4Ee6c9Mau0FC7Ew" description="This axis provider manages the columns, according to the wanted hierarchy" name="HierarchicalColumnsAxisManager" disconnectSlave="true">
-      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_drMN8Ky4Ee6c9Mau0FC7Ew">
+      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_EDRbgK1bEe6HJs30QlsQCQ">
         <element xmi:type="uml:Class" href="pt.isep.mescc.cslab.wps.uml#_EU1xIKvxEe6IA7qtYiEKtg"/>
       </sources>
-      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_drMN8ay4Ee6c9Mau0FC7Ew">
+      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_EDRbga1bEe6HJs30QlsQCQ">
         <element xmi:type="uml:Class" href="pt.isep.mescc.cslab.wps.uml#_60ql8KvxEe6IA7qtYiEKtg"/>
       </sources>
-      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_drMN8qy4Ee6c9Mau0FC7Ew">
+      <sources xmi:type="nattablewrapper:EObjectWrapper" xmi:id="_EDRbgq1bEe6HJs30QlsQCQ">
         <element xmi:type="uml:Class" href="pt.isep.mescc.cslab.wps.uml#_jgKIMKvyEe6IA7qtYiEKtg"/>
       </sources>
     </columnAxisProvidersHistory>
