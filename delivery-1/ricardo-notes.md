@@ -1,24 +1,6 @@
 # Notes
 
-## (RAMDE)
-
-- projecto em papyrus
-- mais um pdf com screenshots dos principais diagramas e justificações
-    - diagrama de caso de uso
-
-- Nao te esqueças do SERVIDOR durante a modelação
-
 ### QA
-
-- porquê a existência de dois poços? existe uma relação entre eles?
-    - se não é o caso, podemos apenas simular um dos poços? E no WWW simularuma fonte de informação falsa do segundo poço?
-
-- O que acontece se o nível máximo de água é alcançada? a bomba para? Ou fechamos o input? Ou aumentamos a potência das bombas? Tendo em conta o caudal maximo do cano de input podemos ter bombas prontas para o máximo. 
-ou apenas um wet weather overflow?
-
-- Quando soa um alarme e depois manualmente clicamos no botão de disable, o que acontece?
-
-- As remote status stations são por poço ou ambas mostram o estado de ambos os poços?
 
 ### Respostas
 
@@ -41,14 +23,6 @@ ou apenas um wet weather overflow?
 - Pull vs Push
 
 - Se nao receber mensagem mqtt, questionar servidor quanto ao estado
-- Talvez usar mqtt tb quando comunicar com os sensores
 
 - MQTT recupera ligaçoes ao contrario de tcp
-
-- Why webserver also feed from mqtt broker? simplicity. Obvious no failures
-
-- View Fault Toleranze article by me
-
-- Sub to all MQTT brokers
-
 

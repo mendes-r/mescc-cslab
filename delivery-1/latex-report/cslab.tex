@@ -37,13 +37,13 @@
 
 The current document, is the result of the work done during the first delivery of the CSLAB class.
 
-The document is divided into three parts, each one of them focused on the evaluation topics: \textbf{requirements specification} documentation, \textbf{rationale for selected technology} and \textbf{list of physical sensor and/or actuator} used for the demo.
+The document is divided into three parts, each one is focused on the evaluation topics: \textbf{requirements specification} documentation, \textbf{rationale for selected technology} and \textbf{list of physical sensor and/or actuator} used for the demo.
 
 The system that we are modeling is a Water Pumping System (WPS) for two rainwater wells. These types of systems are essentially used to move water from a lower elevation to a higher one.
 
-A Remote Status Station is also described in the document. Its main function is to give a level of observability of the WPS and to alert the \textit{maintenance team} for a possible failure.
+A Remote Status Station (RSS) is also described in the document. Its main function is to give a level of observability of the WPS and to alert the \textit{Maintenance team} for a possible failure.
 
-There is also an additional feature. The status of the system should also be visible through a web server.
+There is also an additional feature: the status of the system should also be accesible through a web page.
 
 
 %%%
@@ -82,7 +82,7 @@ Based on the system's description and some clarifications during the classes, we
 %%%
 \subsubsection{System Context}
 
-For a better understanding of the system, we developed an external view, and so, identified external entities that do not belong to the system but interact with it. The following diagram is the output of this analysis:
+For a better understanding of the system, we developed an external view. By doing that we identified external entities that do not belong to the system but interact with it. The following diagram is the output of this analysis:
 
 \begin{figure}[H]
   \centering
@@ -93,11 +93,11 @@ For a better understanding of the system, we developed an external view, and so,
 
 Although some elements represented in the diagram are part of the WPS (sensor, control unit, pump and RSS), we divide them into subsystems with their own responsibilities and interactions. 
 
-By decoupling the WPS responsibilities, we are simplifying it and turning the critical system requirements easier to grasp and model. 
+By decoupling the WPS responsibilities, we are simplifying it and turning the critical system requirements easier to grasp and model.
 
-The main identified external entities are: \textbf{Power Supply}, \textbf{Maintenance Team} and \textbf{Web Client}. 
+The main external entities are: \textbf{Power Supply}, \textbf{Maintenance Team} and \textbf{Web Client}. 
 
-Please notice the independent Power Supply for the Control Unit and the RSS as a way to deal with the critical requirements.
+Please notice the independent \textbf{Power Supply} for the Control Unit and the RSS as a way to deal with the critical requirements.
 
 %%%
 \subsubsection{Use Cases}
@@ -111,7 +111,7 @@ By analyzing the Stakeholder Needs, we can see that the main goal of the WPS is 
   \label{fig:Use Case1}
 \end{figure}
 
-A closer look at the use case \textit{"Control Water Level"} gave rise to the below activity diagram. No alternative scenario was modeled.
+A closer look at the use case \textit{"Control Water Level"} gave rise to the below activity diagram.
 
 \begin{figure}[H]
   \centering
@@ -189,9 +189,9 @@ In the diagrams above, we analyzed the WSP Control Unit and the RSS.
 %%%
 \subsubsection{System Requirements}
 
-These system's requirements were expressed using the EARS method. The objective of this approach is to state in a concise, feasible and traceable way what the system must do and its limitations.
+The system's requirements were expressed using the EARS method. The objective of this approach is to state in a concise, feasible and traceable way what the system must do and its limitations.
 
-All the requirements below are functional requirements. non-functional requirements are not being taken into account. These are specified on a later chapter.
+All the requirements below are functional requirements. Non-functional requirements are not being taken into account. These are specified on a later chapter.
 
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
 	\setlength\itemsep{.5em}
@@ -217,7 +217,7 @@ All the requirements below are functional requirements. non-functional requireme
 \noindent
 \textbf{SR-1} is WPS specific, \textbf{SR-2} is RSS specific and \textbf{SR-3} is Web Server specific.
 
-The requirements are the output of the previous analysis. If we look at the functional analysis made for the \textit{"Control Water Level"} use case, we can clearly map it to the \textbf{SR-1}. 
+These requirements are the output of the previous analysis. If we look at the functional analysis made for the \textit{"Control Water Level"} use case, we can clearly map it to the \textbf{SR-1}. 
 
 \newpage
 
@@ -226,7 +226,7 @@ The requirements are the output of the previous analysis. If we look at the func
 
 In order to confirm that the output of the problem domain model is being followed, we need to establish traceability relationships. 
 
-In this particular case, we jumped the system's functions during the white-box analysis, and focused on the identified requirements and confirmed that they respond to the Stakeholders needs.
+In this particular case, we jumped the system's functions during the white-box analysis, and focused on the identified requirements and confirmed that they answer the Stakeholders needs.
 
 \begin{figure}[H]
   \centering
@@ -234,8 +234,6 @@ In this particular case, we jumped the system's functions during the white-box a
   \caption{Traceability to Stakeholder Needs}
   \label{fig:Traceability}
 \end{figure}
-
-As illustrated, the requirements are answering the Stakeholder needs.
 
 %%%
 \subsubsection{System Structure}
@@ -257,7 +255,8 @@ Although the Web Server was not explicitly described during the problem domain, 
 
 %%%
 \subsubsection{System Behavior}
-\textit{Mealy Finite State Machine} to describe the behavior of the WPS.
+
+We adopted the \textit{Mealy Finite State Machine} to describe the behavior of the WPS.
 
 The only input to the machine is the current water level. The state of the machine changes according to these values.
 
@@ -340,7 +339,7 @@ Given that we are dealing with a critical system, the analysis of safety and rel
 		\end{itemize} 
 \end{enumerate}
 
-Most of the hazards here listed could be handled as non-functional requirements. Because of that, a more detailed description of some of them is needed.
+Most of the hazards listed could be handled as non-functional requirements. Because of that, a more detailed description of some of them is needed.
 \\[12pt]
 \textbf{H-1} and \textbf{H-4} touches on the redundancy of the water pumps. Because having an unused water pump would mean a reduced performance of the system, we choose to use the two pumps even when the system is healthy. The second pump is only used when the water level is high. If, for some reason, one of the pumps is not working, the system will reduce the max capacity of the well and trigger an alarm to alert the maintenance team.
 \\[12pt]
@@ -354,44 +353,39 @@ Most of the hazards here listed could be handled as non-functional requirements.
 %%%
 \section{Selected Technologies}
 
-Before describing the selected technologies, we want to emphasize that the selection was made on the basis of this being an academic exercise and that at the end a demo must be presented using microcontrollers, simple sensors and actuators.
+Before describing the selected technologies, we want to emphasize that the selection was made on an academic basis with a demo using simple microcontrollers, sensors and actuators as end result.
 
 Here are the selected communication technologies:
 
 \begin{itemize}
-	\item \textbf{MQTT} is a lightweigh messaging protocol specially developed for the IoT. It is based on the publish/subscribe paradigm and is a perfect choise for a small code footprint and reduced network bandwidth.
+	\item \textbf{MQTT} is a lightweigh messaging protocol specially developed for the IoT. It is based on the publish/subscribe paradigm and is a perfect choise for a small code footprint and reduced network bandwidth. This makes the protocol ideal for this project.
 	
 The MQTT protocol was not design to deal with authentication or authorization standards in a possible effort to avoid weaken some of its strengths i.e. low bandwidth usage, speed and low power consumption.
 
-Not being encrypted, MQTT supports itself on TLS/SSL for security encryption as we already wrote in a previous chapter. MQTT is not trust symmetrical and by using SSL certificates the client can have some assurance that the 
-server is legit.
-
-In conclusion, the protocol includes recommendations for its implementation in application so to ensure a level of security according to today’s standards
-
-Although the above-mentioned security issues, the main communication protocol between sensors and control units will be MQTT. Because the status of the system will be displayed in the RSS and also on a web page. The publish/subscribe method is ideal when multiple consumer are in play.
+Although the above-mentioned security issues, the main communication protocol between sensors and control units will be MQTT. Because the status of the system will be displayed in the RSS and also on a web page, the publish/subscribe method is ideal when handling multiple consumer.
 
 	\item \textbf{TCP} will be used as a fallback in case no data is being made available by the MQTT broker. If a sensor fails and the control unit confirms that no message is being sent, it can always make a request to the sensor the query about its status.
 
-TCP is also the main communication protocol of the IP suite. Some of the communication in the network that we will use for the demo will use it on a higher level, i.e. HTTP.
+TCP is also the main communication protocol of the IP suite. Some of the communication in the network will use it on a lower level, i.e. HTTP.
 
 	\item \textbf{HTTP and REST}. The required web page, that displays the status of the system, almost forces us to use the HTTP protocol during the client-server communication. On the server side, an API following the REST guidelines will be implemented.
 
-	\item \textbf{JSON}. The data between Web client and Web server will be made available in JSON. This text format is ideal for the demo because of being widely uses, language independent and easily parsed by all the main programming languages.
+	\item \textbf{JSON}. The data between Web client and Web server will be made available in JSON. This text format is ideal for the demo because of being widely used, language independent and easily parsed by all the main programming languages.
 
-	Binary formats like Parquet or Protobuf could have being an interesting alternative, but the overhead of the implementation is not realistic for this exercise.
+	Binary formats like Parquet or Protobuf are interesting alternative, but the overhead of the implementation is not realistic for this exercise.
 	
 \end{itemize}
 
 Here are the selected programming languages:
 
 \begin{itemize}
-	\item \textbf{C}. All the main services will be written in C. This enables us a smaller code footprint an a greater control of the hardware resources.
+	\item \textbf{C}. All the main services will be written in C. This enables a smaller code footprint and a greater control of the hardware resources.
 	\item \textbf{Assembly} is a requirement of the exercise and will be used to simulate the Water Level Sensors.
-	\item \textbf{Python} is certainly not used in critical systems. Because of that, this programming language will be used to implement the HTTP server that doesn't have any critical requirement.
-	\item HTML is not a programming language! But for the sake of completeness, this markup language will be used to use a common browser as our Web client.
+	\item \textbf{Python} is not usually adopted on critical systems. Because of that, this programming language will be used to implement the HTTP server that doesn't have any critical requirement.
+	\item \textbf{HTML} is not a programming language! But for the sake of completeness, this markup language will be used. Using a browser as our Web client we will be able to visualize the current status of the WPS.
 \end{itemize}
 
-To have a better overview of the proposed implementation of the system, we elaborated a deployment diagram with all the discussed services:
+To have a better view of the proposed implementation, we elaborated a deployment diagram with all the discussed services:
 
 \begin{figure}[H]
   \centering
@@ -403,6 +397,25 @@ To have a better overview of the proposed implementation of the system, we elabo
 \newpage
 %%%
 \section{List of physical sensors/actuators}
+
+Given that the water level is the main input of the system, this subsystem will be simulated by a ESP32. Using 4 buttons we will be able to state that the water level is below min., above min., medium, or above max capacity.
+
+The Control Unit will also be simulated using an ESP32. The unit will have a physical connection to two light emitting diodes that will show the water pump's state: ON or OFF.
+
+An ESP32 will also be used to simulate the RSS. Two light emitting diodes will show the pump's status, 3 will show the current water level, and one if the alarm was triggered or not. To complement the alarm, we will use a sound speaker and a button to turn the alarm off.
+
+For the Web Server and MQTT Broker, a Raspberry Pi will be used. In a realistic environment, those two services should be running in different hardware.
+
+A complete list of the hardware can be seen below:
+
+\begin{itemize}
+	\item 17x Light emmitting diodes,
+	\item 9x buttons;
+	\item 4x ESP32
+	\item 1x Raspberry Pi
+\end{itemize}
+
+A simplistic network diagram can be seen below. This is a first proposal for a realist demo for the final delivery.
 
 \begin{figure}[H]
   \centering
