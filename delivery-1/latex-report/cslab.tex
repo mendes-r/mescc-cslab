@@ -341,20 +341,57 @@ Given that we are dealing with a critical system, the analysis of safety and rel
 \end{enumerate}
 
 Most of the hazards here listed could be handled as non-functional requirements. Because of that, a more detailed description of some of them is needed.
-
+\\[12pt]
 \textbf{H-1} and \textbf{H-4} touches on the redundancy of the water pumps. Because having an unused water pump would mean a reduced performance of the system, we choose to use the two pumps even when the system is healthy. The second pump is only used when the water level is high. If, for some reason, one of the pumps is not working, the system will reduce the max capacity of the well and trigger an alarm to alert the maintenance team.
-
+\\[12pt]
 \textbf{H-2} is interesting because introduces a problem that cannot be answered with a reliable voting system. If the reading of both sensor are too unequal, there must be a way to distinguish between the wrong and the correct data. There are three possible ways to deal with the issues: choose a master and a slave sensor, retain the previous input and compare it with the current one, or choose the worst case.
-
+\\[12pt]
 \textbf{H-3} and \textbf{H-6} illustrates the importance of the RSS. During a localized power shortage on the well, the RSS should not be affected and so, still be able to alert the maintenance team. Having two RSS in the building also assures redundancy, specially if they have separated power supplies.
-
+\\[12pt]
 \textbf{H-5} is sensible to a special limitation of having only one system dealing with the main communication. A single MQTT broker is also a single point of failure that could jeopardize the whole system. Having a cluster of brokers or using a middleware like DDS is a way to mitigate or even remove completely this risk.
 
 \newpage
 %%%
 \section{Selected Technologies}
 
-Before describing the technologies we choosed to use
+Before describing the selected technologies, we want to emphasize that the selection was made on the basis of this being an academic exercise and that at the end a demo must be presented using microcontrollers, simple sensors and actuators.
+
+Here are the selected communication technologies:
+
+\begin{itemize}
+	\item \textbf{MQTT} is a lightweigh messaging protocol specially developed for the IoT. It is based on the publish/subscribe paradigm and is a perfect choise for a small code footprint and reduced network bandwidth.
+	
+The MQTT protocol was not design to deal with authentication or authorization standards in a possible effort to avoid weaken some of its strengths i.e. low bandwidth usage, speed and low power consumption.
+
+Not being encrypted, MQTT supports itself on TLS/SSL for security encryption as we already wrote in a previous chapter. MQTT is not trust symmetrical and by using SSL certificates the client can have some assurance that the 
+server is legit.
+
+In conclusion, the protocol includes recommendations for its implementation in application so to ensure a level of security according to today’s standards
+
+Although the above-mentioned security issues, the main communication protocol between sensors and control units will be MQTT. Because the status of the system will be displayed in the RSS and also on a web page. The publish/subscribe method is ideal when multiple consumer are in play.
+
+	\item \textbf{TCP} will be used as a fallback in case no data is being made available by the MQTT broker. If a sensor fails and the control unit confirms that no message is being sent, it can always make a request to the sensor the query about its status.
+
+TCP is also the main communication protocol of the IP suite. Some of the communication in the network that we will use for the demo will use it on a higher level, i.e. HTTP.
+
+	\item \textbf{HTTP and REST}. The required web page, that displays the status of the system, almost forces us to use the HTTP protocol during the client-server communication. On the server side, an API following the REST guidelines will be implemented.
+
+	\item \textbf{JSON}. The data between Web client and Web server will be made available in JSON. This text format is ideal for the demo because of being widely uses, language independent and easily parsed by all the main programming languages.
+
+	Binary formats like Parquet or Protobuf could have being an interesting alternative, but the overhead of the implementation is not realistic for this exercise.
+	
+\end{itemize}
+
+Here are the selected programming languages:
+
+\begin{itemize}
+	\item \textbf{C}. All the main services will be written in C. This enables us a smaller code footprint an a greater control of the hardware resources.
+	\item \textbf{Assembly} is a requirement of the exercise and will be used to simulate the Water Level Sensors.
+	\item \textbf{Python} is certainly not used in critical systems. Because of that, this programming language will be used to implement the HTTP server that doesn't have any critical requirement.
+	\item HTML is not a programming language! But for the sake of completeness, this markup language will be used to use a common browser as our Web client.
+\end{itemize}
+
+To have a better overview of the proposed implementation of the system, we elaborated a deployment diagram with all the discussed services:
 
 \begin{figure}[H]
   \centering
