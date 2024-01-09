@@ -43,32 +43,59 @@ It takes into account the feedback received during the last presentation and als
 \section{Requirement Specification}
 
 %%%
-\subsection{Problem Domain - Update}
+\subsection{Problem Domain}
 
 %%%
-\subsubsection{Notes on the previous work}
+\subsubsection{[UPDATE] Stakeholder Needs}
 
 Although not mentioned on the assignment, we choosed to add some changes to the Stakeholder Needs that are paramount to understand the next chapters.
 
+\begin{itemize}
+	\item \textbf{SN-1.3} Every WPS will have two pumps and two water level sensors to achieve a certain level of redundancy and reliability on the system.
+	\item \textbf{SN-1.4} To improve the systems performance, and given that we have one unused water pump, this pump should only be used when the water level is above medium.
+	\item \textbf{SN-1.5} In case that only one water pump is operational, the max capacity of the WPS should be lower.
+\end{itemize}
 
+\subsubsection{[UPDATE] System Context and Use Cases}
 
+During the previous analysis of the System's Context and Use Cases we want to split the WPS system as a whole. The main objective is to split responsabilities and so, simplifying the clarification of the requirements. Another output is the creation of two easy to grasp systems: on a simple system we can achieve a system with obviously no bugs, on a complex one we can only wich to achieve a system with no obvious bugs.
 
-SN-1.3 Every WPS will have two pumps mainly for redundancy purpose.
+The update were made in the Use Case diagrams:
 
-SN-1.4 To improve the systems performance, and given that we have one unused water pump, this pump should only be used when the water level is above medium.
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\linewidth}
+  \centering
+  \includegraphics[width=150px]{../diagrams/use-case-wps.png}
+  \caption{Use Case diagram - WPS}
+  \label{fig:Use Case WPS}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \centering
+  \includegraphics[width=150px]{../diagrams/use-case-rss.png}
+  \caption{Use Case diagram - RSS}
+  \label{fig:Use Case RSS}
+\end{minipage}
+\end{figure}
 
-SN-1.5 In case that only one water pump is operational, the max capacity of the WPS should be lower.
+The activity diagram of the use case \textit{"Control Water Level"}, also shows that WPS can be seen as an independent system regarding the RSS.
+The interactions are between the sensors, the water pump and actuator and the control unit.
 
-[adicionar ao papyrus]
+The most importante externality of the WPS -in this academic context- is give visibility to its internal status.
 
-
-Show traceability (system context and system subsystems)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=300px]{../diagrams/use-case-activity-diagram-01.png}
+  \caption{Control the Water Level inside the well}
+  \label{fig:Control Water Level Activity Diagram}
+\end{figure}
 
 %%%
 \subsection{Solution Domain}
 
 
 
+Show traceability (system context and system subsystems)
 
 
 
@@ -78,9 +105,11 @@ Specify how sensor works
 
 
 
-
 %%%
 \subsubsection{System Requirements}
+
+!!!!!!!!!!!!! Change color of new requirements !!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!! Update Traceability !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
 	\setlength\itemsep{.5em}
@@ -114,25 +143,6 @@ Specify how sensor works
 \end{figure}
 
 \newpage
-
-%%%
-\subsubsection{System Behavior}
-
-We adopted the \textit{Mealy Finite State Machine} to describe the behavior of the WPS.
-
-The only input to the machine is the current water level. The state of the machine changes according to these values.
-
-There are two main states are ON and OFF, corresponding to water being or not pumped outside the well. If the water level in above the minimum, a water pump must be working (ON LOW). Depending on the levels above minimum, we can have a second pump working with (ON HIGH) or without (ON ALERT) an alert being triggered.
-
-The state machine, beneath, models this behavior.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=300px]{../diagrams/state-machine-wps.png}
-  \caption{State Machine}
-  \label{fig:State Machine}
-\end{figure}
-
 
 %%%
 %%%

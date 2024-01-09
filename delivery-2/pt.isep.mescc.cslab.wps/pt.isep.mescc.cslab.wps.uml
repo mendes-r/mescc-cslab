@@ -13,6 +13,9 @@
           <packagedElement xmi:type="uml:Class" xmi:id="_EU1xIKvxEe6IA7qtYiEKtg" name="SN-1 WPS">
             <nestedClassifier xmi:type="uml:Class" xmi:id="_etF3QKvxEe6IA7qtYiEKtg" name="SN-1.1 Pump"/>
             <nestedClassifier xmi:type="uml:Class" xmi:id="_oA3IsKvxEe6IA7qtYiEKtg" name="SN-1.2 System Independence"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_9-SYUK8dEe6XBLpnRAAEFA" name="SN-1.3 Critical System"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="__6ipoK8dEe6XBLpnRAAEFA" name="SN-1.4 Performance"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_YmOgQK8eEe6XBLpnRAAEFA" name="SN-1.5 Failure"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_60ql8KvxEe6IA7qtYiEKtg" name="SN-2 Remote Status Station">
             <nestedClassifier xmi:type="uml:Class" xmi:id="_IhbQ4KvyEe6IA7qtYiEKtg" name="SN-2.1 WPS Status"/>
@@ -37,7 +40,7 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_zE9gQK1aEe6HJs30QlsQCQ" client="_hufjsK1aEe6HJs30QlsQCQ" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
-          <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
+          <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg">
             <ownedAttribute xmi:type="uml:Property" xmi:id="_tWz84Kv1Ee6IA7qtYiEKtg" name="Property1" type="_xqFv8Kv1Ee6IA7qtYiEKtg" aggregation="composite">
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lZu8IKv2Ee6IA7qtYiEKtg" value="*"/>
             </ownedAttribute>
@@ -87,6 +90,11 @@
             <packagedElement xmi:type="uml:Signal" xmi:id="_w-A4kKyvEe6c9Mau0FC7Ew" name="Water Level"/>
             <packagedElement xmi:type="uml:Signal" xmi:id="_yG3hkKywEe6c9Mau0FC7Ew" name="Alarm Control"/>
           </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_aNJlUK8fEe6XBLpnRAAEFA" name="RSS in Use" useCase="_fTZGYK8fEe6XBLpnRAAEFA _qdhAAK8gEe6XBLpnRAAEFA">
+            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_fTZGYK8fEe6XBLpnRAAEFA" name="Alert Maintenance Team when a failure is reported" subject="_aNJlUK8fEe6XBLpnRAAEFA"/>
+            <ownedUseCase xmi:type="uml:UseCase" xmi:id="_qdhAAK8gEe6XBLpnRAAEFA" name="Access WPS status remotely" subject="_aNJlUK8fEe6XBLpnRAAEFA"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_9INkkK8gEe6XBLpnRAAEFA" name="Web Server"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases">
           <packagedElement xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" classifierBehavior="_KyAEAKwAEe6IA7qtYiEKtg" subject="_S5HWEKv1Ee6IA7qtYiEKtg">
@@ -130,35 +138,27 @@
               <node xmi:type="uml:JoinNode" xmi:id="_T_UmkKytEe6c9Mau0FC7Ew" name="" incoming="_oLAcwKytEe6c9Mau0FC7Ew _pIh08KytEe6c9Mau0FC7Ew _qvytsKytEe6c9Mau0FC7Ew" outgoing="_4hzFAKytEe6c9Mau0FC7Ew" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
             </ownedBehavior>
           </packagedElement>
-          <packagedElement xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="Make WPS Status available for consumption" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:UseCase" xmi:id="_YYBcgKv6Ee6IA7qtYiEKtg" name="Alert Maintainer for WPS malfunction" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
-          <packagedElement xmi:type="uml:Association" xmi:id="_6UhXMKv6Ee6IA7qtYiEKtg" memberEnd="_6Uh-Qqv6Ee6IA7qtYiEKtg _6UilUKv6Ee6IA7qtYiEKtg">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6Uh-QKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6Uh-Qav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="The WPS Status must be visible" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Association" xmi:id="_CvAf4K8fEe6XBLpnRAAEFA" memberEnd="_CvC8IK8fEe6XBLpnRAAEFA _CvC8Ia8fEe6XBLpnRAAEFA">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CvCVEK8fEe6XBLpnRAAEFA" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CvCVEa8fEe6XBLpnRAAEFA" key="nature" value="UML_Nature"/>
             </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_6Uh-Qqv6Ee6IA7qtYiEKtg" name="water pump" type="_2x9osKv1Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_6UilUKv6Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CvC8IK8fEe6XBLpnRAAEFA" name="remote status station" type="_9PgT4Kv1Ee6IA7qtYiEKtg" association="_CvAf4K8fEe6XBLpnRAAEFA"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CvC8Ia8fEe6XBLpnRAAEFA" name="the wps status must be visible" type="_PbdKIKv6Ee6IA7qtYiEKtg" association="_CvAf4K8fEe6XBLpnRAAEFA"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="__Yb9AKv6Ee6IA7qtYiEKtg" memberEnd="__YckEqv6Ee6IA7qtYiEKtg __YckE6v6Ee6IA7qtYiEKtg">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__YckEKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__YckEav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+          <packagedElement xmi:type="uml:Association" xmi:id="_CIDisK8hEe6XBLpnRAAEFA" memberEnd="_CIEJwq8hEe6XBLpnRAAEFA _CIEJw68hEe6XBLpnRAAEFA">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CIEJwK8hEe6XBLpnRAAEFA" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CIEJwa8hEe6XBLpnRAAEFA" key="nature" value="UML_Nature"/>
             </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="__YckEqv6Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
-            <ownedEnd xmi:type="uml:Property" xmi:id="__YckE6v6Ee6IA7qtYiEKtg" name="send wps status to remote station" type="_PbdKIKv6Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CIEJwq8hEe6XBLpnRAAEFA" name="web server" type="_9INkkK8gEe6XBLpnRAAEFA" association="_CIDisK8hEe6XBLpnRAAEFA"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CIEJw68hEe6XBLpnRAAEFA" name="access wps status remotely" type="_qdhAAK8gEe6XBLpnRAAEFA" association="_CIDisK8hEe6XBLpnRAAEFA"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_AVZ7kKv7Ee6IA7qtYiEKtg" memberEnd="_AVbJsqv7Ee6IA7qtYiEKtg _AVbJs6v7Ee6IA7qtYiEKtg">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AVbJsKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AVbJsav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+          <packagedElement xmi:type="uml:Association" xmi:id="_CtX2QK8hEe6XBLpnRAAEFA" memberEnd="_CtYdUq8hEe6XBLpnRAAEFA _CtYdU68hEe6XBLpnRAAEFA">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CtYdUK8hEe6XBLpnRAAEFA" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CtYdUa8hEe6XBLpnRAAEFA" key="nature" value="UML_Nature"/>
             </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJsqv7Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJs6v7Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_CAVzYKv7Ee6IA7qtYiEKtg" memberEnd="_CAWacqv7Ee6IA7qtYiEKtg _CAXBgKv7Ee6IA7qtYiEKtg">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CAWacKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CAWacav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_CAWacqv7Ee6IA7qtYiEKtg" name="remote status station" type="_9PgT4Kv1Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_CAXBgKv7Ee6IA7qtYiEKtg" name="alert maintainer for malfunction" type="_YYBcgKv6Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CtYdUq8hEe6XBLpnRAAEFA" name="maintainer" type="_QFoFUKv2Ee6IA7qtYiEKtg" association="_CtX2QK8hEe6XBLpnRAAEFA"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CtYdU68hEe6XBLpnRAAEFA" name="alert maintenance team when a failure is reported" type="_fTZGYK8fEe6XBLpnRAAEFA" association="_CtX2QK8hEe6XBLpnRAAEFA"/>
           </packagedElement>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness">
@@ -420,4 +420,9 @@
   <Blocks:Block xmi:id="_HkDgQKzPEe6c9Mau0FC7Ew" base_Class="_HkAc8KzPEe6c9Mau0FC7Ew"/>
   <Requirements:Requirement xmi:id="_hu1h8K1aEe6HJs30QlsQCQ" base_NamedElement="_hufjsK1aEe6HJs30QlsQCQ" id="SN-2.3" text="The alarm must be ON when a problem in the system is identified." base_Class="_hufjsK1aEe6HJs30QlsQCQ"/>
   <Blocks:Block xmi:id="_PLORQK1kEe6HJs30QlsQCQ" base_Class="_PLD5MK1kEe6HJs30QlsQCQ"/>
+  <Requirements:Requirement xmi:id="_9-w5cK8dEe6XBLpnRAAEFA" base_NamedElement="_9-SYUK8dEe6XBLpnRAAEFA" id="SN-1.3 " text="Every WPS will have two pumps and two water level sensors to achieve a certain level of redundancy and reliability on the system." base_Class="_9-SYUK8dEe6XBLpnRAAEFA"/>
+  <Requirements:Requirement xmi:id="__67rMK8dEe6XBLpnRAAEFA" base_NamedElement="__6ipoK8dEe6XBLpnRAAEFA" id="SN-1.4 " text="To improve the systems performance, and given that we have one unused water pump, this pump should only be used when the water level is above medium." base_Class="__6ipoK8dEe6XBLpnRAAEFA"/>
+  <Requirements:Requirement xmi:id="_YmYRQK8eEe6XBLpnRAAEFA" base_NamedElement="_YmOgQK8eEe6XBLpnRAAEFA" id="SN-1.5" text="In case that only one water pump is operational, the max capacity of the WPS should be lower." base_Class="_YmOgQK8eEe6XBLpnRAAEFA"/>
+  <Blocks:Block xmi:id="_aNduYK8fEe6XBLpnRAAEFA" base_Class="_aNJlUK8fEe6XBLpnRAAEFA"/>
+  <Blocks:Block xmi:id="_9IRO8K8gEe6XBLpnRAAEFA" base_Class="_9INkkK8gEe6XBLpnRAAEFA"/>
 </xmi:XMI>

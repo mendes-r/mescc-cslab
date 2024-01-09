@@ -26,7 +26,7 @@
 
 - No final, o modelo que foi 'modelado' tem de bater certo com o prototipo. se nao for o caso, deve ser justificado
 
-
+- No final, requisitos e diagrama e blocos com os elementos!!!!! No state machine
 
 ### Why Critical
 
