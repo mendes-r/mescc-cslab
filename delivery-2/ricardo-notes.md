@@ -16,6 +16,16 @@
 
 
 
+### Respostas-2
+
+- Os Hazards no documento sao um Stakeholder need. Por isso a lista da analise de safety pode ser entendido como requesitos.
+- Ter duas bombas e um stakeholder need
+- mapear o MoE a um requisito que diz para usar as duas bombas.
+
+- Use case: o block com use case devia ligar a actores e nao a blocks que pertencem ao mesmo sistema.
+
+- No final, o modelo que foi 'modelado' tem de bater certo com o prototipo. se nao for o caso, deve ser justificado
+
 
 
 ### Why Critical
