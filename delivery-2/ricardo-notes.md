@@ -28,6 +28,10 @@
 
 - No final, requisitos e diagrama e blocos com os elementos!!!!! No state machine
 
+- Deployment diagram with own MQTT broker cluster or other protocol
+
+- Cluster strategy.... load balancer to all nodes in cluster !!!!
+
 ### Why Critical
 
 - Byzantine fault

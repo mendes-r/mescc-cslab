@@ -59,18 +59,8 @@
             <ownedAttribute xmi:type="uml:Property" xmi:id="_gV_EcKyxEe6c9Mau0FC7Ew" name="Property8" type="_hi5jgKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
             <ownedAttribute xmi:type="uml:Property" xmi:id="_9WLdMKyxEe6c9Mau0FC7Ew" type="_-clroKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump">
-            <generalization xmi:type="uml:Generalization" xmi:id="_Fpkk0Ky0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_1_liwKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_5pj6IKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_9PgT4Kv1Ee6IA7qtYiEKtg" name="Remote Status Station"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_QFoFUKv2Ee6IA7qtYiEKtg" name="Maintainer"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_UEfHkKv2Ee6IA7qtYiEKtg" name="Web Client"/>
-          <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit">
-            <generalization xmi:type="uml:Generalization" xmi:id="_E-NToKy0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_8_mB0Ky0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
-          </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_hi5jgKyxEe6c9Mau0FC7Ew" name="Power Supply 1"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_-clroKyxEe6c9Mau0FC7Ew" name="Power Supply 2"/>
           <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mXLx4KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
@@ -288,9 +278,22 @@
         <packagedElement xmi:type="uml:Class" xmi:id="_5r778Kv0Ee6IA7qtYiEKtg" name="SR-3 Web Server"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure">
-        <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS">
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS + RSS">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_YZhJ4K8yEe6NF-QK4E3fbA" name="WPS">
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Fpkk0Ky0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+              <ownedAttribute xmi:type="uml:Property" xmi:id="_1_liwKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+              <ownedAttribute xmi:type="uml:Property" xmi:id="_5pj6IKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            </nestedClassifier>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit">
+              <generalization xmi:type="uml:Generalization" xmi:id="_E-NToKy0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+              <ownedAttribute xmi:type="uml:Property" xmi:id="_8_mB0Ky0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+            </nestedClassifier>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
+          </nestedClassifier>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_9PgT4Kv1Ee6IA7qtYiEKtg" name="Remote Status Station">
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
+          </nestedClassifier>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="3 System Behavior">
@@ -421,8 +424,9 @@
   <Requirements:Requirement xmi:id="_hu1h8K1aEe6HJs30QlsQCQ" base_NamedElement="_hufjsK1aEe6HJs30QlsQCQ" id="SN-2.3" text="The alarm must be ON when a problem in the system is identified." base_Class="_hufjsK1aEe6HJs30QlsQCQ"/>
   <Blocks:Block xmi:id="_PLORQK1kEe6HJs30QlsQCQ" base_Class="_PLD5MK1kEe6HJs30QlsQCQ"/>
   <Requirements:Requirement xmi:id="_9-w5cK8dEe6XBLpnRAAEFA" base_NamedElement="_9-SYUK8dEe6XBLpnRAAEFA" id="SN-1.3 " text="Every WPS will have two pumps and two water level sensors to achieve a certain level of redundancy and reliability on the system." base_Class="_9-SYUK8dEe6XBLpnRAAEFA"/>
-  <Requirements:Requirement xmi:id="__67rMK8dEe6XBLpnRAAEFA" base_NamedElement="__6ipoK8dEe6XBLpnRAAEFA" id="SN-1.4 " text="To improve the systems performance, and given that we have one unused water pump, this pump should only be used when the water level is above medium." base_Class="__6ipoK8dEe6XBLpnRAAEFA"/>
+  <Requirements:Requirement xmi:id="__67rMK8dEe6XBLpnRAAEFA" base_NamedElement="__6ipoK8dEe6XBLpnRAAEFA" id="SN-1.4 " text="To improve the systems performance, and given that we have one unused water pump, this pump should be used when the water level is above 2/3 of the well max capacity.&#xA;" base_Class="__6ipoK8dEe6XBLpnRAAEFA"/>
   <Requirements:Requirement xmi:id="_YmYRQK8eEe6XBLpnRAAEFA" base_NamedElement="_YmOgQK8eEe6XBLpnRAAEFA" id="SN-1.5" text="In case that only one water pump is operational, the max capacity of the WPS should be lower." base_Class="_YmOgQK8eEe6XBLpnRAAEFA"/>
   <Blocks:Block xmi:id="_aNduYK8fEe6XBLpnRAAEFA" base_Class="_aNJlUK8fEe6XBLpnRAAEFA"/>
   <Blocks:Block xmi:id="_9IRO8K8gEe6XBLpnRAAEFA" base_Class="_9INkkK8gEe6XBLpnRAAEFA"/>
+  <Blocks:Block xmi:id="_YZpswK8yEe6NF-QK4E3fbA" base_Class="_YZhJ4K8yEe6NF-QK4E3fbA"/>
 </xmi:XMI>

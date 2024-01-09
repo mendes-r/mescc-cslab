@@ -14,6 +14,8 @@
 \usepackage{enumitem}
 \usepackage{blindtext}
 \usepackage{float}
+\usepackage{xcolor}
+\usepackage{multirow}
 %
 
 \setcounter{secnumdepth}{3}
@@ -52,9 +54,13 @@ Although not mentioned on the assignment, we choosed to add some changes to the 
 
 \begin{itemize}
 	\item \textbf{SN-1.3} Every WPS will have two pumps and two water level sensors to achieve a certain level of redundancy and reliability on the system.
-	\item \textbf{SN-1.4} To improve the systems performance, and given that we have one unused water pump, this pump should only be used when the water level is above medium.
+	\item \textbf{SN-1.4} To improve the systems performance, and given that we have one unused water pump, this pump should be used when the water level is above 2/3 of the well max capacity.
 	\item \textbf{SN-1.5} In case that only one water pump is operational, the max capacity of the WPS should be lower.
 \end{itemize}
+
+SN-1.4 and SN-1.5 are the result of the stakeholder capacity to describe the system performance using the identified \textit{Measure of Effectiveness}. The wet well capacity and the input flow can be greater if we use the second pump instead of leaving it on stand-by to be used during failure.
+
+As described in the Stakeholder Needs, the second pump will work only if the water level is above 2/3 of the well capacity. In case that one of the pumps stops to be operational, an alarm will be triggered to alert the maintenance team, and the max water level will be reduced.
 
 \subsubsection{[UPDATE] System Context and Use Cases}
 
@@ -104,33 +110,144 @@ Model the reality
 Specify how sensor works
 
 
+%%%
+\subsubsection{Hazard Analysis}
+
+Given the critical nature of the system, we reintroduced here an updated analysis if its hazards. This list maps directly to the Stakeholder Need SN-1.3 but goes a little bit further.
+
+\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{H-\arabic*:}]
+	\setlength\itemsep{.5em}
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+        	\item \textbf{Description:} One of the pumps stops working.
+			\item Cause: Mechanical problem.
+    		\item Effect: Lost of redundancy and reduction of system performance.
+    		\item \textbf{Mitigation:} Reduce the maximum water level to 2/3 and trigger alarm.
+		\end{itemize}
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Both pumps stopped working.
+			\item Cause: Mechanical problem.
+    		\item Effect: Complete failure of the system.
+    		\item \textbf{Mitigation:} Trigger alarm.
+		\end{itemize} 	
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} A pump doesn't turn OFF when the water level in bellow minimum.
+			\item Cause: Mechanical problem.
+    		\item Effect: Pump overheating and complete failure.
+    		\item \textbf{Mitigation:} Trigger alarm.
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} The two level sensors give contradictory readings, i.e. one above max and one below min.
+			\item Cause: Sensor malfunction, connection issues.
+    		\item Effect: Inappropriate system behavior. 
+    		\item \textbf{Mitigation:} If the reading of both sensor are too unequal, there must be a way to distinguish between the wrong and the correct data. There are three possible ways to deal with the issues: choose a master and a slave sensor, retain the previous input and compare it with the current one, or choose the worst case. Tirgger the alarm if the system in unable to achieve a consensus.
+		\end{itemize}
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Power shortage.
+			\item Cause: Multiple causes
+    		\item Effect: Complete failure of the system.
+    		\item \textbf{Mitigation:} RSS with independente power supply and trigger alarm.
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} RSS are not getting information from WPS.
+			\item Cause: Connection issues or Messagem broker stoped working.
+    		\item Effect: Unknown status of the system.
+    		\item \textbf{Mitigation:} Implement a cluter of MQTT Brokers or remove this single point of failure by adopting DDS.
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} RSS stops working.
+			\item Cause: Malfunction.
+    		\item Effect: Unknown WPS status.
+    		\item \textbf{Mitigation:} Have redundancy by having multiple RSS and each one displaying all statuses from all WPS.
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Control Unit stops working.
+			\item Cause: Malfunction, bug.
+    		\item Effect: Total failure of the system.
+    		\item \textbf{Mitigation:} Have redundancy by having a cluster of nodes running the Control Unit. If the number of nodes is 3 we can implement a voting system and run the same process with the same input in parallell. This would improve the system fault tolerance.
+		\end{itemize} 
+\end{enumerate}
+
+
+The main output of this analysis is the update of the System Requirements.
+
 
 %%%
 \subsubsection{System Requirements}
 
-!!!!!!!!!!!!! Change color of new requirements !!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!! Update Traceability !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
 	\setlength\itemsep{.5em}
 	\item 
+
 		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
 		\setlength\itemsep{0em}
-		\item While the water level is above the minimum level, WPS shall have a pump working.
-		\item When the water level is below minimum level, WPS shall have all pumps stopped.
-		\item If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS).
+		\item \textcolor{gray}{While the water level is above the minimum level, WPS shall have a pump working.}
+		\item \textcolor{gray}{When the water level is below minimum level, WPS shall have all pumps stopped.}
+		\item \textcolor{gray}{If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS).}
+		
 		\item A second pump shall be turned on only when the water level is above 2/3 the maximum water level.
 		\item When only one pump is available, the maximum water level shall be reduced to 2/3.
+		\item If the readings of the sensor are uneven to a level of 20cm, the system should choose the worst case scenario, following the table below: 
+		
+\begin{table}[H]
+\begin{tabular}{lrllll}
+                                               & \multicolumn{1}{l}{}            & \multicolumn{4}{l}{sensor \#1}                                                                                                          \\ \cline{3-6} 
+                                               & \multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{0}} & \multicolumn{1}{l|}{\textbf{1}} & \multicolumn{1}{l|}{\textbf{2}} & \multicolumn{1}{l|}{\textbf{3}} \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{4}{*}{sensor \#2}} & \multicolumn{1}{r|}{\textbf{0}} & \multicolumn{1}{l|}{0}          & \multicolumn{1}{l|}{0}          & \multicolumn{1}{l|}{0}          & \multicolumn{1}{l|}{3}          \\ \cline{2-6} 
+\multicolumn{1}{l|}{}                          & \multicolumn{1}{r|}{\textbf{1}} & \multicolumn{1}{l|}{0}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{3}          \\ \cline{2-6} 
+\multicolumn{1}{l|}{}                          & \multicolumn{1}{r|}{\textbf{2}} & \multicolumn{1}{l|}{0}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{3}          \\ \cline{2-6} 
+\multicolumn{1}{l|}{}                          & \multicolumn{1}{r|}{\textbf{3}} & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{3}          \\ \cline{2-6} 
+\end{tabular}
+\end{table}
+
+\textbf{0} = below min; \textbf{1} = above min; \textbf{2} = above med; \textbf{3} = above max.
 		\end{enumerate}
+		
 	\item
 		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
 		\setlength\itemsep{0em}
-		\item The status of all WPS shall be displayed on all RSS.
-		\item If the alarm is ON, the button in the RSS shall only disable it.
+		\item \textcolor{gray}{The status of all WPS shall be displayed on all RSS.}
+		\item \textcolor{gray}{If the alarm is ON, the button in the RSS shall only disable it.}
+		\item The RSS shall have an independent power supply from the WPS.
+		\item The alarm on the RSS shall have an independent power supply from the RSS itself and from the WPS.
 		\end{enumerate}
-	\item The status of all WPS shall be visible on a web page.
+	
+	\item	
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item \textcolor{gray}{The status of all WPS shall be visible on a web page.}
+		\end{enumerate}
+
+	\item
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item To improve the system´s communication reliability, a cluster of 2(two) MQTT brokers shall be deployed.
+		\end{enumerate}
 
 \end{enumerate}
+
+
+!!!!!!!!!!!!!!! Update Papyrus !!!!!!!!!!!!!!!!!!!
+
+%%%
+\subsubsection{Traceability}
+
+
 
 %%%
 \subsubsection{System Structure}
@@ -142,87 +259,12 @@ Specify how sensor works
   \label{fig:System Structure Diagram}
 \end{figure}
 
-\newpage
+!!!!!!!!!!!!!!!!!!!!!!!!! Define a name for the the whole system (RSS + WPS) !!
 
-%%%
-%%%
-%%%
-\subsection{Analysis of safety and reliability}
-
-Given that we are dealing with a critical system, the analysis of safety and reliability as bigger impact on the implementation of the solution.
-
-\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{H-\arabic*:}]
-	\setlength\itemsep{.5em}
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-        		\item \textbf{Description:} One of the pumps stops working.
-		\item Cause: Mechanical problem.
-    		\item Effect: Lost of redundancy and reduction of system performance.
-    		\item \textbf{Mitigation:} Reduce the maximum water level to 2/3 and trigger alarm.
-		\end{itemize}
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} The two level sensors give contradictory readings, i.e. one above max and one below min.
-		\item Cause: Sensor malfunction, connection issues.
-    		\item Effect: Inappropriate system behavior. 
-    		\item \textbf{Mitigation:} Choose a worst case or compare with the last reading to find the fault. Always trigger the alarm.
-		\end{itemize}
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} Power shortage.
-		\item Cause: Multiple causes
-    		\item Effect: Complete failure of the system.
-    		\item \textbf{Mitigation:} RSS with independente power supply and trigger alarm.
-		\end{itemize} 
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} Both pumps stopped working.
-		\item Cause: Mechanical problem.
-    		\item Effect: Complete failure of the system.
-    		\item \textbf{Mitigation:} Trigger alarm.
-		\end{itemize} 
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} RSS are not getting information from WPS.
-		\item Cause: Connection issues or Messagem broker stoped working.
-    		\item Effect: Unknown status of the system.
-    		\item \textbf{Mitigation:} Implement a cluter of MQTT Brokers or remove this single point of failure by adopting DDS.
-		\end{itemize} 
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} RSS stops working.
-		\item Cause: Malfunction.
-    		\item Effect: Unknown WPS status.
-    		\item \textbf{Mitigation:} Have redundancy by having multiple RSS and each one displaying all statuses from all WPS.
-		\end{itemize} 
-	\item 
-		\begin{itemize}
-		\setlength\itemsep{0em}
-    		\item \textbf{Description:} A pump doesn't turn OFF when the water level in bellow minimum.
-			\item Cause: Mechanical problem.
-    		\item Effect: Pump overheating and complete failure.
-    		\item \textbf{Mitigation:} Trigger alarm.
-		\end{itemize} 
-\end{enumerate}
-
-Most of the hazards listed could be handled as non-functional requirements. Because of that, a more detailed description of some of them is needed.
-\\[12pt]
-\textbf{H-1} and \textbf{H-4} touches on the redundancy of the water pumps. Because having an unused water pump would mean a reduced performance of the system, we choose to use the two pumps even when the system is healthy. The second pump is only used when the water level is high. If, for some reason, one of the pumps is not working, the system will reduce the max capacity of the well and trigger an alarm to alert the maintenance team.
-\\[12pt]
-\textbf{H-2} is interesting because introduces a problem that cannot be answered with a reliable voting system. If the reading of both sensor are too unequal, there must be a way to distinguish between the wrong and the correct data. There are three possible ways to deal with the issues: choose a master and a slave sensor, retain the previous input and compare it with the current one, or choose the worst case.
-\\[12pt]
-\textbf{H-3} and \textbf{H-6} illustrates the importance of the RSS. During a localized power shortage on the well, the RSS should not be affected and so, still be able to alert the maintenance team. Having two RSS in the building also assures redundancy, specially if they have separated power supplies.
-\\[12pt]
-\textbf{H-5} is sensible to a special limitation of having only one system dealing with the main communication. A single MQTT broker is also a single point of failure that could jeopardize the whole system. Having a cluster of brokers or using a middleware like DDS is a way to mitigate or even remove completely this risk.
 
 \newpage
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementation}
 
 \begin{figure}[H]
