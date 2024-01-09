@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Allocations="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements">
+  <uml:Model xmi:id="_F_rv4KvREe6vJapU6ujEQQ" name="pt">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_GFHpgKvREe6vJapU6ujEQQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_GFakcKvREe6vJapU6ujEQQ">
+      <importedPackage xmi:type="uml:Package" href="pathmap://SysML16_LIBRARIES/SysML-Standard-Library.uml#SysML.package_packagedElement_Libraries"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="__Iz8sKvmEe6W8qZzA-gP9Q" name="1 Problem Domain">
+      <packagedElement xmi:type="uml:Package" xmi:id="_EcutYKvnEe6W8qZzA-gP9Q" name="1 Black Box">
+        <packagedElement xmi:type="uml:Package" xmi:id="_X51w4KvoEe6W8qZzA-gP9Q" name="1 Stakeholder Needs">
+          <packagedElement xmi:type="uml:Class" xmi:id="_EU1xIKvxEe6IA7qtYiEKtg" name="SN-1 WPS">
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_etF3QKvxEe6IA7qtYiEKtg" name="SN-1.1 Pump"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_oA3IsKvxEe6IA7qtYiEKtg" name="SN-1.2 System Independence"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_60ql8KvxEe6IA7qtYiEKtg" name="SN-2 Remote Status Station">
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_IhbQ4KvyEe6IA7qtYiEKtg" name="SN-2.1 WPS Status"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_XfbhQKvyEe6IA7qtYiEKtg" name="SN-2.2 Display Status"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_hufjsK1aEe6HJs30QlsQCQ" name="SN-2.3 Alarm on failure"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_jgKIMKvyEe6IA7qtYiEKtg" name="SN-3 Web Server"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_jT7ioKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_5r778Kv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_kkDGsKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_egodsKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ksc0wKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_m26zMKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_k7ZPsKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_1QW98KvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lP78UKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_-VMbgKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lWNjcKy5Ee6c9Mau0FC7Ew" client="_etF3QKvxEe6IA7qtYiEKtg" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ln8MoKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_egodsKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_lwTecKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_m26zMKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_l24AgKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_1QW98KvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_l9jQQKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_-VMbgKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_mQpycKy5Ee6c9Mau0FC7Ew" client="_oA3IsKvxEe6IA7qtYiEKtg" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_mtBlYKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_nPojMKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_wmR_AKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_ojwdgKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_zE9gQK1aEe6HJs30QlsQCQ" client="_hufjsK1aEe6HJs30QlsQCQ" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
+          <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg _YYBcgKv6Ee6IA7qtYiEKtg">
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_tWz84Kv1Ee6IA7qtYiEKtg" name="Property1" type="_xqFv8Kv1Ee6IA7qtYiEKtg" aggregation="composite">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lZu8IKv2Ee6IA7qtYiEKtg" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_1kqvIKv1Ee6IA7qtYiEKtg" name="Property2" type="_2x9osKv1Ee6IA7qtYiEKtg" aggregation="composite">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mMKeoKv2Ee6IA7qtYiEKtg" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_8BKRcKv1Ee6IA7qtYiEKtg" name="Property3" type="_9PgT4Kv1Ee6IA7qtYiEKtg" aggregation="composite">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nRAm0Kv2Ee6IA7qtYiEKtg" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_DYkj4Kv2Ee6IA7qtYiEKtg" name="Property4" type="_Ed7pcKv2Ee6IA7qtYiEKtg" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_PRujMKv2Ee6IA7qtYiEKtg" name="Property5" type="_QFoFUKv2Ee6IA7qtYiEKtg" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_Sr0rgKv2Ee6IA7qtYiEKtg" name="Property6" type="_UEfHkKv2Ee6IA7qtYiEKtg" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_Wv2hoKv2Ee6IA7qtYiEKtg" name="Property7" type="_XqY3QKv2Ee6IA7qtYiEKtg" aggregation="composite">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ArxxAKv3Ee6IA7qtYiEKtg" value="*"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_gV_EcKyxEe6c9Mau0FC7Ew" name="Property8" type="_hi5jgKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_9WLdMKyxEe6c9Mau0FC7Ew" type="_-clroKyxEe6c9Mau0FC7Ew" aggregation="composite"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_2x9osKv1Ee6IA7qtYiEKtg" name="Water Pump">
+            <generalization xmi:type="uml:Generalization" xmi:id="_Fpkk0Ky0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_1_liwKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_5pj6IKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_9PgT4Kv1Ee6IA7qtYiEKtg" name="Remote Status Station"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_QFoFUKv2Ee6IA7qtYiEKtg" name="Maintainer"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_UEfHkKv2Ee6IA7qtYiEKtg" name="Web Client"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_XqY3QKv2Ee6IA7qtYiEKtg" name="Control Unit">
+            <generalization xmi:type="uml:Generalization" xmi:id="_E-NToKy0Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_8_mB0Ky0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_hi5jgKyxEe6c9Mau0FC7Ew" name="Power Supply 1"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_-clroKyxEe6c9Mau0FC7Ew" name="Power Supply 2"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mXLx4KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_-8zusKyvEe6c9Mau0FC7Ew" conveyed="_w-A4kKyvEe6c9Mau0FC7Ew" informationSource="_tWz84Kv1Ee6IA7qtYiEKtg" informationTarget="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_bZ3lMKywEe6c9Mau0FC7Ew" conveyed="_kGyHcKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_1kqvIKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_n13y4KywEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_z5LzwKywEe6c9Mau0FC7Ew" conveyed="_yG3hkKywEe6c9Mau0FC7Ew" informationSource="_PRujMKv2Ee6IA7qtYiEKtg" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_-Aez4KywEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_Wv2hoKv2Ee6IA7qtYiEKtg" informationTarget="_DYkj4Kv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_JZ-bsKyxEe6c9Mau0FC7Ew" conveyed="_l8OmIKyvEe6c9Mau0FC7Ew" informationSource="_DYkj4Kv2Ee6IA7qtYiEKtg" informationTarget="_Sr0rgKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_wN-Q0KyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_tWz84Kv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_2higoKyxEe6c9Mau0FC7Ew" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_gV_EcKyxEe6c9Mau0FC7Ew" informationTarget="_Wv2hoKv2Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:InformationFlow" xmi:id="_BbfFsKyyEe6c9Mau0FC7Ew" visibility="public" conveyed="_n41cwKyvEe6c9Mau0FC7Ew" informationSource="_9WLdMKyxEe6c9Mau0FC7Ew" informationTarget="_8BKRcKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_T4NAAKyvEe6c9Mau0FC7Ew" name="1 Exchange Items">
+            <packagedElement xmi:type="uml:Signal" xmi:id="_kGyHcKyvEe6c9Mau0FC7Ew" name="Pump Control"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_l8OmIKyvEe6c9Mau0FC7Ew" name="Status"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_n41cwKyvEe6c9Mau0FC7Ew" name="Power"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_w-A4kKyvEe6c9Mau0FC7Ew" name="Water Level"/>
+            <packagedElement xmi:type="uml:Signal" xmi:id="_yG3hkKywEe6c9Mau0FC7Ew" name="Alarm Control"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_b-J64KvoEe6W8qZzA-gP9Q" name="3 Use Cases">
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_vxCm0Kv5Ee6IA7qtYiEKtg" name="Control Water Level" classifierBehavior="_KyAEAKwAEe6IA7qtYiEKtg" subject="_S5HWEKv1Ee6IA7qtYiEKtg">
+            <ownedBehavior xmi:type="uml:Activity" xmi:id="_KyAEAKwAEe6IA7qtYiEKtg" name="Activity1" node="_mCx4IKwBEe6IA7qtYiEKtg _v_ex0KwBEe6IA7qtYiEKtg _HzvRMKwCEe6IA7qtYiEKtg _m6O10KwHEe6IA7qtYiEKtg _3lLJIKwHEe6IA7qtYiEKtg _JAzSgKwIEe6IA7qtYiEKtg _VFdXMKwIEe6IA7qtYiEKtg _czL34KwIEe6IA7qtYiEKtg _p3HBMKwIEe6IA7qtYiEKtg _-F8SAKwIEe6IA7qtYiEKtg _QGDBcKwJEe6IA7qtYiEKtg _b4p3YKwKEe6IA7qtYiEKtg _9KeVwKysEe6c9Mau0FC7Ew _ArsZwKytEe6c9Mau0FC7Ew _T_UmkKytEe6c9Mau0FC7Ew" group="_Ygd_IKwAEe6IA7qtYiEKtg _x8Zm8KwAEe6IA7qtYiEKtg _KBFH8KwBEe6IA7qtYiEKtg">
+              <edge xmi:type="uml:ControlFlow" xmi:id="_EwHIIKwCEe6IA7qtYiEKtg" target="_v_ex0KwBEe6IA7qtYiEKtg" source="_mCx4IKwBEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_9SDzcKwHEe6IA7qtYiEKtg" target="_3lLJIKwHEe6IA7qtYiEKtg" source="_m6O10KwHEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_OM3uwKwIEe6IA7qtYiEKtg" target="_JAzSgKwIEe6IA7qtYiEKtg" source="_3lLJIKwHEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_XwOUUKwIEe6IA7qtYiEKtg" target="_VFdXMKwIEe6IA7qtYiEKtg" source="_JAzSgKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_jjVWAKwIEe6IA7qtYiEKtg" name="below min. level" target="_czL34KwIEe6IA7qtYiEKtg" source="_VFdXMKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_tjTmIKwIEe6IA7qtYiEKtg" name="above min. level" target="_p3HBMKwIEe6IA7qtYiEKtg" source="_VFdXMKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_Z5NkoKwJEe6IA7qtYiEKtg" name="above max. level" target="_QGDBcKwJEe6IA7qtYiEKtg" source="_-F8SAKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_kGUcYKwKEe6IA7qtYiEKtg" target="_-F8SAKwIEe6IA7qtYiEKtg" source="_p3HBMKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_pv8-YKwKEe6IA7qtYiEKtg" target="_b4p3YKwKEe6IA7qtYiEKtg" source="_QGDBcKwJEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_rMmikKwKEe6IA7qtYiEKtg" target="_b4p3YKwKEe6IA7qtYiEKtg" source="_czL34KwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_vL_JQKwKEe6IA7qtYiEKtg" target="_b4p3YKwKEe6IA7qtYiEKtg" source="_-F8SAKwIEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_yHvIsKwKEe6IA7qtYiEKtg" target="_3lLJIKwHEe6IA7qtYiEKtg" source="_b4p3YKwKEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_hE25cKytEe6c9Mau0FC7Ew" target="_9KeVwKysEe6c9Mau0FC7Ew" source="_v_ex0KwBEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_jvlaUKytEe6c9Mau0FC7Ew" target="_ArsZwKytEe6c9Mau0FC7Ew" source="_v_ex0KwBEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_oLAcwKytEe6c9Mau0FC7Ew" target="_T_UmkKytEe6c9Mau0FC7Ew" source="_v_ex0KwBEe6IA7qtYiEKtg"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_pIh08KytEe6c9Mau0FC7Ew" target="_T_UmkKytEe6c9Mau0FC7Ew" source="_ArsZwKytEe6c9Mau0FC7Ew"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_qvytsKytEe6c9Mau0FC7Ew" target="_T_UmkKytEe6c9Mau0FC7Ew" source="_9KeVwKysEe6c9Mau0FC7Ew"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_4hzFAKytEe6c9Mau0FC7Ew" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg" target="_HzvRMKwCEe6IA7qtYiEKtg" source="_T_UmkKytEe6c9Mau0FC7Ew"/>
+              <edge xmi:type="uml:ControlFlow" xmi:id="_6UfKoKytEe6c9Mau0FC7Ew" name="OK" target="_m6O10KwHEe6IA7qtYiEKtg" source="_HzvRMKwCEe6IA7qtYiEKtg"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_Ygd_IKwAEe6IA7qtYiEKtg" name="Control Unit" node="_mCx4IKwBEe6IA7qtYiEKtg _HzvRMKwCEe6IA7qtYiEKtg _VFdXMKwIEe6IA7qtYiEKtg _-F8SAKwIEe6IA7qtYiEKtg _T_UmkKytEe6c9Mau0FC7Ew" represents="_XqY3QKv2Ee6IA7qtYiEKtg" edge="_4hzFAKytEe6c9Mau0FC7Ew"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_x8Zm8KwAEe6IA7qtYiEKtg" name="Water Pump" represents="_2x9osKv1Ee6IA7qtYiEKtg"/>
+              <group xmi:type="uml:ActivityPartition" xmi:id="_KBFH8KwBEe6IA7qtYiEKtg" name="Water Level Sensor" represents="_xqFv8Kv1Ee6IA7qtYiEKtg"/>
+              <node xmi:type="uml:InitialNode" xmi:id="_mCx4IKwBEe6IA7qtYiEKtg" name="" outgoing="_EwHIIKwCEe6IA7qtYiEKtg" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_v_ex0KwBEe6IA7qtYiEKtg" name="Check System" incoming="_EwHIIKwCEe6IA7qtYiEKtg" outgoing="_hE25cKytEe6c9Mau0FC7Ew _jvlaUKytEe6c9Mau0FC7Ew _oLAcwKytEe6c9Mau0FC7Ew"/>
+              <node xmi:type="uml:DecisionNode" xmi:id="_HzvRMKwCEe6IA7qtYiEKtg" name="" incoming="_4hzFAKytEe6c9Mau0FC7Ew" outgoing="_6UfKoKytEe6c9Mau0FC7Ew" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_m6O10KwHEe6IA7qtYiEKtg" name="Start Control Unit" incoming="_6UfKoKytEe6c9Mau0FC7Ew" outgoing="_9SDzcKwHEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_3lLJIKwHEe6IA7qtYiEKtg" name="Measure Water Level" incoming="_9SDzcKwHEe6IA7qtYiEKtg _yHvIsKwKEe6IA7qtYiEKtg" outgoing="_OM3uwKwIEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_JAzSgKwIEe6IA7qtYiEKtg" name="Evaluate Reading" incoming="_OM3uwKwIEe6IA7qtYiEKtg" outgoing="_XwOUUKwIEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:DecisionNode" xmi:id="_VFdXMKwIEe6IA7qtYiEKtg" name="" incoming="_XwOUUKwIEe6IA7qtYiEKtg" outgoing="_jjVWAKwIEe6IA7qtYiEKtg _tjTmIKwIEe6IA7qtYiEKtg" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_czL34KwIEe6IA7qtYiEKtg" name="Turn Off Water Pump" incoming="_jjVWAKwIEe6IA7qtYiEKtg" outgoing="_rMmikKwKEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_p3HBMKwIEe6IA7qtYiEKtg" name="Turn On Water Pump" incoming="_tjTmIKwIEe6IA7qtYiEKtg" outgoing="_kGUcYKwKEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:DecisionNode" xmi:id="_-F8SAKwIEe6IA7qtYiEKtg" incoming="_kGUcYKwKEe6IA7qtYiEKtg" outgoing="_Z5NkoKwJEe6IA7qtYiEKtg _vL_JQKwKEe6IA7qtYiEKtg" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_QGDBcKwJEe6IA7qtYiEKtg" name="Trigger Alarm" incoming="_Z5NkoKwJEe6IA7qtYiEKtg" outgoing="_pv8-YKwKEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_b4p3YKwKEe6IA7qtYiEKtg" name="Check Sensor Data" incoming="_pv8-YKwKEe6IA7qtYiEKtg _rMmikKwKEe6IA7qtYiEKtg _vL_JQKwKEe6IA7qtYiEKtg" outgoing="_yHvIsKwKEe6IA7qtYiEKtg"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_9KeVwKysEe6c9Mau0FC7Ew" name="Check Sensor Status" incoming="_hE25cKytEe6c9Mau0FC7Ew" outgoing="_qvytsKytEe6c9Mau0FC7Ew"/>
+              <node xmi:type="uml:OpaqueAction" xmi:id="_ArsZwKytEe6c9Mau0FC7Ew" name="Check Pump Status" incoming="_jvlaUKytEe6c9Mau0FC7Ew" outgoing="_pIh08KytEe6c9Mau0FC7Ew"/>
+              <node xmi:type="uml:JoinNode" xmi:id="_T_UmkKytEe6c9Mau0FC7Ew" name="" incoming="_oLAcwKytEe6c9Mau0FC7Ew _pIh08KytEe6c9Mau0FC7Ew _qvytsKytEe6c9Mau0FC7Ew" outgoing="_4hzFAKytEe6c9Mau0FC7Ew" inPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+            </ownedBehavior>
+          </packagedElement>
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_PbdKIKv6Ee6IA7qtYiEKtg" name="Make WPS Status available for consumption" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:UseCase" xmi:id="_YYBcgKv6Ee6IA7qtYiEKtg" name="Alert Maintainer for WPS malfunction" subject="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Association" xmi:id="_6UhXMKv6Ee6IA7qtYiEKtg" memberEnd="_6Uh-Qqv6Ee6IA7qtYiEKtg _6UilUKv6Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6Uh-QKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6Uh-Qav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_6Uh-Qqv6Ee6IA7qtYiEKtg" name="water pump" type="_2x9osKv1Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_6UilUKv6Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_6UhXMKv6Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="__Yb9AKv6Ee6IA7qtYiEKtg" memberEnd="__YckEqv6Ee6IA7qtYiEKtg __YckE6v6Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__YckEKv6Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__YckEav6Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="__YckEqv6Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="__YckE6v6Ee6IA7qtYiEKtg" name="send wps status to remote station" type="_PbdKIKv6Ee6IA7qtYiEKtg" association="__Yb9AKv6Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_AVZ7kKv7Ee6IA7qtYiEKtg" memberEnd="_AVbJsqv7Ee6IA7qtYiEKtg _AVbJs6v7Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AVbJsKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AVbJsav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJsqv7Ee6IA7qtYiEKtg" name="control unit" type="_XqY3QKv2Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_AVbJs6v7Ee6IA7qtYiEKtg" name="control water level" type="_vxCm0Kv5Ee6IA7qtYiEKtg" association="_AVZ7kKv7Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_CAVzYKv7Ee6IA7qtYiEKtg" memberEnd="_CAWacqv7Ee6IA7qtYiEKtg _CAXBgKv7Ee6IA7qtYiEKtg">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CAWacKv7Ee6IA7qtYiEKtg" source="org.eclipse.papyrus">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CAWacav7Ee6IA7qtYiEKtg" key="nature" value="UML_Nature"/>
+            </eAnnotations>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CAWacqv7Ee6IA7qtYiEKtg" name="remote status station" type="_9PgT4Kv1Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
+            <ownedEnd xmi:type="uml:Property" xmi:id="_CAXBgKv7Ee6IA7qtYiEKtg" name="alert maintainer for malfunction" type="_YYBcgKv6Ee6IA7qtYiEKtg" association="_CAVzYKv7Ee6IA7qtYiEKtg"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_gjj_wKvoEe6W8qZzA-gP9Q" name="4 Measure of Effectiveness">
+          <packagedElement xmi:type="uml:Class" xmi:id="_x1hLgKyzEe6c9Mau0FC7Ew" name="MOEs Holder">
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_JG6OYKy0Ee6c9Mau0FC7Ew" name="Energy Consumption" type="_5vq0EKyyEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_d0YjAKy0Ee6c9Mau0FC7Ew" name="Well Capacity" type="_KACrQKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_iBI3UKy0Ee6c9Mau0FC7Ew" name="Water Intake" type="_WqCRoKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_ozO2MKy0Ee6c9Mau0FC7Ew" name="Pump Output" type="_bVXYUKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_JmmloKy1Ee6c9Mau0FC7Ew" name="Wet Well">
+            <generalization xmi:type="uml:Generalization" xmi:id="_qOonwKy1Ee6c9Mau0FC7Ew" general="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_LvMCwKy1Ee6c9Mau0FC7Ew" name="Water Intake" type="_WqCRoKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_O8578Ky1Ee6c9Mau0FC7Ew" name="Capacity" type="_KACrQKyzEe6c9Mau0FC7Ew" isDerived="true"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_fQY44KyyEe6c9Mau0FC7Ew" name="5 Types">
+          <packagedElement xmi:type="uml:Stereotype" xmi:id="_i8_GcKyyEe6c9Mau0FC7Ew" name="moe">
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_5vq0EKyyEe6c9Mau0FC7Ew" name="Electricity [KW/h]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_KACrQKyzEe6c9Mau0FC7Ew" name="Volume [m3]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_WqCRoKyzEe6c9Mau0FC7Ew" name="Inflow Capacity [L/s]"/>
+            <nestedClassifier xmi:type="uml:DataType" xmi:id="_bVXYUKyzEe6c9Mau0FC7Ew" name="Outflow Capacity [L/s]"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_HynEEKvnEe6W8qZzA-gP9Q" name="2 White Box">
+        <packagedElement xmi:type="uml:Package" xmi:id="_j4TuAKvoEe6W8qZzA-gP9Q" name="1 Functional Analysis">
+          <packagedElement xmi:type="uml:Activity" xmi:id="_uwpfwKzIEe6c9Mau0FC7Ew" name="Control Water Level" node="_C9zVkKzJEe6c9Mau0FC7Ew _PmYmsKzJEe6c9Mau0FC7Ew _hu5EMKzJEe6c9Mau0FC7Ew _wUIPQKzJEe6c9Mau0FC7Ew _KY4xoKzKEe6c9Mau0FC7Ew _TDqwcKzKEe6c9Mau0FC7Ew _gSosIKzKEe6c9Mau0FC7Ew _sHXecKzKEe6c9Mau0FC7Ew _3c_58KzKEe6c9Mau0FC7Ew _f8iq4KzLEe6c9Mau0FC7Ew _BPFCkKzMEe6c9Mau0FC7Ew _H2Qx8KzMEe6c9Mau0FC7Ew _pbDXQKzMEe6c9Mau0FC7Ew _HY6SIKzNEe6c9Mau0FC7Ew _TBv9gKzNEe6c9Mau0FC7Ew _gFBmkKzNEe6c9Mau0FC7Ew _2qq9wKzNEe6c9Mau0FC7Ew _Et6PAKzOEe6c9Mau0FC7Ew">
+            <edge xmi:type="uml:ControlFlow" xmi:id="_dmmZIKzJEe6c9Mau0FC7Ew" name=": water level" target="_Yp2LQKzJEe6c9Mau0FC7Ew" source="_C9zVkKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_jTfqgKzJEe6c9Mau0FC7Ew" target="_PmYmsKzJEe6c9Mau0FC7Ew" source="_hu5EMKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_W6LvAKzKEe6c9Mau0FC7Ew" name="level > min" target="_TDqwcKzKEe6c9Mau0FC7Ew" source="_KY4xoKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_0rqawKzKEe6c9Mau0FC7Ew" target="_sHXecKzKEe6c9Mau0FC7Ew" source="_PmYmsKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_6b3e0KzKEe6c9Mau0FC7Ew" target="_1k36sKzKEe6c9Mau0FC7Ew" source="_3c_58KzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="__1HbcKzKEe6c9Mau0FC7Ew" name=": water level" target="_gSosIKzKEe6c9Mau0FC7Ew" source="_50cu8KzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_BAbYAKzLEe6c9Mau0FC7Ew" name=": pump status" target="_gSosIKzKEe6c9Mau0FC7Ew" source="_85btcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_CTAaMKzLEe6c9Mau0FC7Ew" name=": data" target="_3P9Y8KzJEe6c9Mau0FC7Ew" source="_gSosIKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_WRZbQKzLEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_TDqwcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_qu1IwKzLEe6c9Mau0FC7Ew" name="level &lt; min" target="_f8iq4KzLEe6c9Mau0FC7Ew" source="_KY4xoKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_yXKMEKzLEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_f8iq4KzLEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_EKo0wKzMEe6c9Mau0FC7Ew" target="_BPFCkKzMEe6c9Mau0FC7Ew" source="_TDqwcKzKEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_NfaLwKzMEe6c9Mau0FC7Ew" name="level > med" target="_H2Qx8KzMEe6c9Mau0FC7Ew" source="_BPFCkKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_v3pAMKzMEe6c9Mau0FC7Ew" target="_pbDXQKzMEe6c9Mau0FC7Ew" source="_BPFCkKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_w9w6wKzMEe6c9Mau0FC7Ew" target="_3c_58KzKEe6c9Mau0FC7Ew" source="_pbDXQKzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_Jl9YgKzNEe6c9Mau0FC7Ew" target="_HY6SIKzNEe6c9Mau0FC7Ew" source="_H2Qx8KzMEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_YH3iwKzNEe6c9Mau0FC7Ew" name="level > max" target="_TBv9gKzNEe6c9Mau0FC7Ew" source="_HY6SIKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_kPligKzNEe6c9Mau0FC7Ew" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_TBv9gKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_pcUtIKzNEe6c9Mau0FC7Ew" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_HY6SIKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_4ok04KzNEe6c9Mau0FC7Ew" target="_2qq9wKzNEe6c9Mau0FC7Ew" source="_wUIPQKzJEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_56fvwKzNEe6c9Mau0FC7Ew" name="valid data" target="_KY4xoKzKEe6c9Mau0FC7Ew" source="_2qq9wKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_8VGxAKzNEe6c9Mau0FC7Ew" name="invalid data" target="_gFBmkKzNEe6c9Mau0FC7Ew" source="_2qq9wKzNEe6c9Mau0FC7Ew"/>
+            <edge xmi:type="uml:ControlFlow" xmi:id="_LgjAcKzOEe6c9Mau0FC7Ew" name=": data" target="_Et6PAKzOEe6c9Mau0FC7Ew" source="_I0rQEKzOEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_C9zVkKzJEe6c9Mau0FC7Ew" name="Water Level Sensor Data" outgoing="_dmmZIKzJEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_C91KwKzJEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_PmYmsKzJEe6c9Mau0FC7Ew" name="Read Current Water Level" incoming="_jTfqgKzJEe6c9Mau0FC7Ew" outgoing="_0rqawKzKEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_Yp2LQKzJEe6c9Mau0FC7Ew" incoming="_dmmZIKzJEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Yp3ZYKzJEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_50cu8KzJEe6c9Mau0FC7Ew" name="" outgoing="__1HbcKzKEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_50dWAKzJEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:InitialNode" xmi:id="_hu5EMKzJEe6c9Mau0FC7Ew" name="" outgoing="_jTfqgKzJEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_wUIPQKzJEe6c9Mau0FC7Ew" name="Process Data" outgoing="_4ok04KzNEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_3P9Y8KzJEe6c9Mau0FC7Ew" name="" incoming="_CTAaMKzLEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_3P-AAKzJEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+            </node>
+            <node xmi:type="uml:DecisionNode" xmi:id="_KY4xoKzKEe6c9Mau0FC7Ew" name="" incoming="_56fvwKzNEe6c9Mau0FC7Ew" outgoing="_W6LvAKzKEe6c9Mau0FC7Ew _qu1IwKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_TDqwcKzKEe6c9Mau0FC7Ew" name="Init Pump One" incoming="_W6LvAKzKEe6c9Mau0FC7Ew" outgoing="_WRZbQKzLEe6c9Mau0FC7Ew _EKo0wKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:JoinNode" xmi:id="_gSosIKzKEe6c9Mau0FC7Ew" incoming="__1HbcKzKEe6c9Mau0FC7Ew _BAbYAKzLEe6c9Mau0FC7Ew" outgoing="_CTAaMKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_sHXecKzKEe6c9Mau0FC7Ew" name="Read Pump Status" incoming="_0rqawKzKEe6c9Mau0FC7Ew">
+              <inputValue xmi:type="uml:InputPin" xmi:id="_1k36sKzKEe6c9Mau0FC7Ew" name="" incoming="_6b3e0KzKEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_1k5I0KzKEe6c9Mau0FC7Ew" value="1"/>
+              </inputValue>
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_85btcKzKEe6c9Mau0FC7Ew" name="" outgoing="_BAbYAKzLEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_85c7kKzKEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_3c_58KzKEe6c9Mau0FC7Ew" name="Pumps" incoming="_WRZbQKzLEe6c9Mau0FC7Ew _yXKMEKzLEe6c9Mau0FC7Ew _w9w6wKzMEe6c9Mau0FC7Ew" outgoing="_6b3e0KzKEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_3dAhAKzKEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_f8iq4KzLEe6c9Mau0FC7Ew" name="Shut off Pumps" incoming="_qu1IwKzLEe6c9Mau0FC7Ew" outgoing="_yXKMEKzLEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_BPFCkKzMEe6c9Mau0FC7Ew" name="" incoming="_EKo0wKzMEe6c9Mau0FC7Ew" outgoing="_NfaLwKzMEe6c9Mau0FC7Ew _v3pAMKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_H2Qx8KzMEe6c9Mau0FC7Ew" name="Init Pump Two" incoming="_NfaLwKzMEe6c9Mau0FC7Ew" outgoing="_Jl9YgKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_pbDXQKzMEe6c9Mau0FC7Ew" name="Shut off Pump Two" incoming="_v3pAMKzMEe6c9Mau0FC7Ew" outgoing="_w9w6wKzMEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_HY6SIKzNEe6c9Mau0FC7Ew" name="" incoming="_Jl9YgKzNEe6c9Mau0FC7Ew" outgoing="_YH3iwKzNEe6c9Mau0FC7Ew _pcUtIKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_TBv9gKzNEe6c9Mau0FC7Ew" name="Trigger Alarm" incoming="_YH3iwKzNEe6c9Mau0FC7Ew" outgoing="_kPligKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:OpaqueAction" xmi:id="_gFBmkKzNEe6c9Mau0FC7Ew" name="Publish Status" incoming="_kPligKzNEe6c9Mau0FC7Ew _pcUtIKzNEe6c9Mau0FC7Ew _8VGxAKzNEe6c9Mau0FC7Ew">
+              <outputValue xmi:type="uml:OutputPin" xmi:id="_I0rQEKzOEe6c9Mau0FC7Ew" name="" outgoing="_LgjAcKzOEe6c9Mau0FC7Ew">
+                <upperBound xmi:type="uml:LiteralInteger" xmi:id="_I0seMKzOEe6c9Mau0FC7Ew" value="1"/>
+              </outputValue>
+            </node>
+            <node xmi:type="uml:DecisionNode" xmi:id="_2qq9wKzNEe6c9Mau0FC7Ew" name="" incoming="_4ok04KzNEe6c9Mau0FC7Ew" outgoing="_56fvwKzNEe6c9Mau0FC7Ew _8VGxAKzNEe6c9Mau0FC7Ew"/>
+            <node xmi:type="uml:ActivityParameterNode" xmi:id="_Et6PAKzOEe6c9Mau0FC7Ew" name="Remote Status Station" incoming="_LgjAcKzOEe6c9Mau0FC7Ew">
+              <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Et8rQKzOEe6c9Mau0FC7Ew" value="1"/>
+            </node>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_o-gLwKvoEe6W8qZzA-gP9Q" name="2 Conceptual Subsystems">
+          <packagedElement xmi:type="uml:Class" xmi:id="_HkAc8KzPEe6c9Mau0FC7Ew" name="WPS Control Unit">
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_ct0IQKzPEe6c9Mau0FC7Ew" name="Sensor Data Transfer" aggregation="composite" isService="false"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_piG6IKzPEe6c9Mau0FC7Ew" name="Output Information" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_0bjv8KzPEe6c9Mau0FC7Ew" name="Output Command" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_-tkLQKzPEe6c9Mau0FC7Ew" name="Output Alert" aggregation="composite"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_PLD5MK1kEe6HJs30QlsQCQ" name="RSS">
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_XnKi0K1kEe6HJs30QlsQCQ" name="Maintenance push" aggregation="composite"/>
+            <ownedAttribute xmi:type="uml:Port" xmi:id="_fJkkUK1kEe6HJs30QlsQCQ" name="Input WPS status" aggregation="composite"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_r8kfYKvoEe6W8qZzA-gP9Q" name="3 Traceability to Stakeholder"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_B4IpsKvnEe6W8qZzA-gP9Q" name="2 Solution Domain">
+      <packagedElement xmi:type="uml:Package" xmi:id="_7ps7EKvyEe6IA7qtYiEKtg" name="1 System Requirements" visibility="public">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Vu1Q4KvzEe6IA7qtYiEKtg" name="SR-1 WPS">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_egodsKvzEe6IA7qtYiEKtg" name="SR-1.1 Water Level Control"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_m26zMKvzEe6IA7qtYiEKtg" name="SR-1.2 Water Level Control"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_1QW98KvzEe6IA7qtYiEKtg" name="SR-1.3 Water Level Control"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_-VMbgKvzEe6IA7qtYiEKtg" name="SR-1.4 Water Level Control"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_IaOKwKv0Ee6IA7qtYiEKtg" name="SR-1.5 Pump Redundancy"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_jhcPsKv0Ee6IA7qtYiEKtg" name="SR-2 Remote Status Station">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_n_fIUKv0Ee6IA7qtYiEKtg" name="SR-2.1 Display WPS Status"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_wmR_AKv0Ee6IA7qtYiEKtg" name="SR-2.2 Disable Alarm"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_5r778Kv0Ee6IA7qtYiEKtg" name="SR-3 Web Server"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure">
+        <packagedElement xmi:type="uml:Class" xmi:id="_xqFv8Kv1Ee6IA7qtYiEKtg" name="Water Level Sensor"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_Ed7pcKv2Ee6IA7qtYiEKtg" name="Web Server"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_MLw1oKvnEe6W8qZzA-gP9Q" name="3 System Behavior">
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_aUCD4KzDEe6c9Mau0FC7Ew" name="StateMachine1">
+          <region xmi:type="uml:Region" xmi:id="_bsTeYKzDEe6c9Mau0FC7Ew" name="Region1">
+            <transition xmi:type="uml:Transition" xmi:id="_aHgY4KzFEe6c9Mau0FC7Ew" source="_g5ulgKzDEe6c9Mau0FC7Ew" target="_4c6jAKzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_LxSEwKzGEe6c9Mau0FC7Ew" name="level > min. : start pump one" source="_4c6jAKzDEe6c9Mau0FC7Ew" target="_zbOx0KzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_cDZBUKzGEe6c9Mau0FC7Ew" name="level > med. : start pump two" source="_zbOx0KzDEe6c9Mau0FC7Ew" target="_l4g-QKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_mPRmgKzGEe6c9Mau0FC7Ew" name="level > max. : trigger alarm" source="_l4g-QKzEEe6c9Mau0FC7Ew" target="_vJCHYKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_r9o3gKzGEe6c9Mau0FC7Ew" name="level &lt; max. : silence alarm" source="_vJCHYKzEEe6c9Mau0FC7Ew" target="_l4g-QKzEEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_wvp1AKzGEe6c9Mau0FC7Ew" name="level &lt; med. : shut off pump two" source="_l4g-QKzEEe6c9Mau0FC7Ew" target="_zbOx0KzDEe6c9Mau0FC7Ew"/>
+            <transition xmi:type="uml:Transition" xmi:id="_PReYkKzHEe6c9Mau0FC7Ew" name="level &lt; min. : shut off pump one" source="_zbOx0KzDEe6c9Mau0FC7Ew" target="_4c6jAKzDEe6c9Mau0FC7Ew"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_g5ulgKzDEe6c9Mau0FC7Ew" name=""/>
+            <subvertex xmi:type="uml:State" xmi:id="_zbOx0KzDEe6c9Mau0FC7Ew" name="ON LOW"/>
+            <subvertex xmi:type="uml:State" xmi:id="_4c6jAKzDEe6c9Mau0FC7Ew" name="OFF"/>
+            <subvertex xmi:type="uml:State" xmi:id="_l4g-QKzEEe6c9Mau0FC7Ew" name="ON HIGH"/>
+            <subvertex xmi:type="uml:State" xmi:id="_vJCHYKzEEe6c9Mau0FC7Ew" name="ON ALERT"/>
+          </region>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GBBzsKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GBGFIKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GE7cQKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GE8DUKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Activities"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GE-fkKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GE_GoKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Allocations"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GE_GoavREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GE_tsKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Blocks"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFAUwKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFAUwavREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//constraintblocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_ConstraintBlocks"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFBi4KvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFCJ8KvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//deprecatedelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_DeprecatedElements"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFCxAKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFCxAavREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_ModelElements"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFD_IKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFD_IavREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Ports_u0026Flows"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFEmMKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFFNQKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Requirements"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GFF0UKvREe6vJapU6ujEQQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GFGbYKvREe6vJapU6ujEQQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_srkb4KzDEe6c9Mau0FC7Ew">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sroGQKzDEe6c9Mau0FC7Ew" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_EXT2UKvxEe6IA7qtYiEKtg" base_NamedElement="_EU1xIKvxEe6IA7qtYiEKtg" id="SN-1" base_Class="_EU1xIKvxEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_etKIsKvxEe6IA7qtYiEKtg" base_NamedElement="_etF3QKvxEe6IA7qtYiEKtg" id="SN-1.1" text="The water in the wet well must be pumped from a lower level to a higher one." base_Class="_etF3QKvxEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_oBBgwKvxEe6IA7qtYiEKtg" base_NamedElement="_oA3IsKvxEe6IA7qtYiEKtg" id="SN-1.2" text="Every WPS is an independent system; they don't have influence on each other." base_Class="_oA3IsKvxEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_60wskKvxEe6IA7qtYiEKtg" base_NamedElement="_60ql8KvxEe6IA7qtYiEKtg" id="SN-2" base_Class="_60ql8KvxEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_Ihe7QKvyEe6IA7qtYiEKtg" base_NamedElement="_IhbQ4KvyEe6IA7qtYiEKtg" id="SN-2.1" text="The status of each element of the WPS needs to be displayed in a Remote Status Station." base_Class="_IhbQ4KvyEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_XfkrMKvyEe6IA7qtYiEKtg" base_NamedElement="_XfbhQKvyEe6IA7qtYiEKtg" id="SN-2.2" text="The RSS must display the water level, the pump status, an alarme and a button to disable the alarm." base_Class="_XfbhQKvyEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_jgQO0KvyEe6IA7qtYiEKtg" base_NamedElement="_jgKIMKvyEe6IA7qtYiEKtg" id="SN-3" text="The status information must be accessible through a web page." base_Class="_jgKIMKvyEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_Vu47QKvzEe6IA7qtYiEKtg" base_NamedElement="_Vu1Q4KvzEe6IA7qtYiEKtg" id="SR-1" base_Class="_Vu1Q4KvzEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_egrhAKvzEe6IA7qtYiEKtg" base_NamedElement="_egodsKvzEe6IA7qtYiEKtg" id="SR-1.1" text="While the water level is above the minimum level, WPS shall have a pump working." base_Class="_egodsKvzEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_m3DWEKvzEe6IA7qtYiEKtg" base_NamedElement="_m26zMKvzEe6IA7qtYiEKtg" id="SR-1.2" text="When the water level is below minimum level, WPS shall have all pumps stopped." base_Class="_m26zMKvzEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_1QbPYKvzEe6IA7qtYiEKtg" base_NamedElement="_1QW98KvzEe6IA7qtYiEKtg" id="SR-1.3" text="If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station." base_Class="_1QW98KvzEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_-VPe0KvzEe6IA7qtYiEKtg" base_NamedElement="_-VMbgKvzEe6IA7qtYiEKtg" id="SR-1.4" text="A second pump shall be turned on only when the water level is above 2/3 the maximum water level." base_Class="_-VMbgKvzEe6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_IaiT0Kv0Ee6IA7qtYiEKtg" base_NamedElement="_IaOKwKv0Ee6IA7qtYiEKtg" id="SR-1.5" text="When only one pump is available, the maximum water level shall be reduced to 2/3." base_Class="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_jhfTAKv0Ee6IA7qtYiEKtg" base_NamedElement="_jhcPsKv0Ee6IA7qtYiEKtg" id="SR-2" base_Class="_jhcPsKv0Ee6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_n_hkkKv0Ee6IA7qtYiEKtg" base_NamedElement="_n_fIUKv0Ee6IA7qtYiEKtg" id="SR-2.1" text="The status of all WPS shall be displayed on all RSS." base_Class="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_wmUbQKv0Ee6IA7qtYiEKtg" base_NamedElement="_wmR_AKv0Ee6IA7qtYiEKtg" id="SR-2.2" text="If the alarm is ON, the button in the RSS shall only disable it." base_Class="_wmR_AKv0Ee6IA7qtYiEKtg"/>
+  <Requirements:Requirement xmi:id="_5r9xIKv0Ee6IA7qtYiEKtg" base_NamedElement="_5r778Kv0Ee6IA7qtYiEKtg" id="SR-3" text="The status of all WPS shall be visible on one web page.&#xA;" base_Class="_5r778Kv0Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_S5XNsKv1Ee6IA7qtYiEKtg" base_Class="_S5HWEKv1Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_xqKocKv1Ee6IA7qtYiEKtg" base_Class="_xqFv8Kv1Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_2yAE8Kv1Ee6IA7qtYiEKtg" base_Class="_2x9osKv1Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_9PjXMKv1Ee6IA7qtYiEKtg" base_Class="_9PgT4Kv1Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_EeAh8Kv2Ee6IA7qtYiEKtg" base_Class="_Ed7pcKv2Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_QFqhkKv2Ee6IA7qtYiEKtg" base_Class="_QFoFUKv2Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_UEhj0Kv2Ee6IA7qtYiEKtg" base_Class="_UEfHkKv2Ee6IA7qtYiEKtg"/>
+  <Blocks:Block xmi:id="_Xqe94Kv2Ee6IA7qtYiEKtg" base_Class="_XqY3QKv2Ee6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_Ygi3oKwAEe6IA7qtYiEKtg" base_ActivityPartition="_Ygd_IKwAEe6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_x8bcIKwAEe6IA7qtYiEKtg" base_ActivityPartition="_x8Zm8KwAEe6IA7qtYiEKtg"/>
+  <Allocations:AllocateActivityPartition xmi:id="_KBILQKwBEe6IA7qtYiEKtg" base_ActivityPartition="_KBFH8KwBEe6IA7qtYiEKtg"/>
+  <PortsAndFlows:ItemFlow xmi:id="_-88RkKyvEe6c9Mau0FC7Ew" base_InformationFlow="_-8zusKyvEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_hi7_wKyxEe6c9Mau0FC7Ew" base_Class="_hi5jgKyxEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_-coH4KyxEe6c9Mau0FC7Ew" base_Class="_-clroKyxEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_5v7SwKyyEe6c9Mau0FC7Ew" base_DataType="_5vq0EKyyEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_KATJ8KyzEe6c9Mau0FC7Ew" base_DataType="_KACrQKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_WqEt4KyzEe6c9Mau0FC7Ew" base_DataType="_WqCRoKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:ValueType xmi:id="_bVZ0kKyzEe6c9Mau0FC7Ew" base_DataType="_bVXYUKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_x1kO0KyzEe6c9Mau0FC7Ew" base_Class="_x1hLgKyzEe6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_JmreIKy1Ee6c9Mau0FC7Ew" base_Class="_JmmloKy1Ee6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_SJ8tcKy6Ee6c9Mau0FC7Ew" base_Class="_SJ5DEKy6Ee6c9Mau0FC7Ew"/>
+  <Blocks:Block xmi:id="_HkDgQKzPEe6c9Mau0FC7Ew" base_Class="_HkAc8KzPEe6c9Mau0FC7Ew"/>
+  <Requirements:Requirement xmi:id="_hu1h8K1aEe6HJs30QlsQCQ" base_NamedElement="_hufjsK1aEe6HJs30QlsQCQ" id="SN-2.3" text="The alarm must be ON when a problem in the system is identified." base_Class="_hufjsK1aEe6HJs30QlsQCQ"/>
+  <Blocks:Block xmi:id="_PLORQK1kEe6HJs30QlsQCQ" base_Class="_PLD5MK1kEe6HJs30QlsQCQ"/>
+</xmi:XMI>

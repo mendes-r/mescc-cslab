@@ -1,8 +1,6 @@
 # Notes
 
-### QA
-
-### Respostas
+### Respostas-1
 
 24-01-04
 
@@ -15,6 +13,10 @@
 - No final de CSLAB podemos simular apenas um dos WSP, contudo temos de mostrar que é possível adicionar mais um no sistema.
 
 - A Control Unit pode estar conectado fisicamente aos sensores e pumps.... ou só aos pumps !!!! Mas tem de haver redundancia ou no minimo lancar alarm se nao funcionar
+
+
+
+
 
 ### Why Critical
 
