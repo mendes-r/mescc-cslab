@@ -38,6 +38,12 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_nPojMKy5Ee6c9Mau0FC7Ew" client="_IhbQ4KvyEe6IA7qtYiEKtg" supplier="_wmR_AKv0Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_ojwdgKy5Ee6c9Mau0FC7Ew" client="_XfbhQKvyEe6IA7qtYiEKtg" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_zE9gQK1aEe6HJs30QlsQCQ" client="_hufjsK1aEe6HJs30QlsQCQ" supplier="_n_fIUKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_4J-MEK_oEe6WyMYnu-5vDA" client="__6ipoK8dEe6XBLpnRAAEFA" supplier="_-VMbgKvzEe6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_AI5xgK_pEe6WyMYnu-5vDA" client="_YmOgQK8eEe6XBLpnRAAEFA" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_BJRCUK_pEe6WyMYnu-5vDA" client="_9-SYUK8dEe6XBLpnRAAEFA" supplier="_IaOKwKv0Ee6IA7qtYiEKtg"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_BmfJ0K_pEe6WyMYnu-5vDA" client="_9-SYUK8dEe6XBLpnRAAEFA" supplier="_70M3kK_nEe6WyMYnu-5vDA"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_CDaWYK_pEe6WyMYnu-5vDA" client="_9-SYUK8dEe6XBLpnRAAEFA" supplier="_uJhQQK_nEe6WyMYnu-5vDA"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_CL0EcK_pEe6WyMYnu-5vDA" client="_9-SYUK8dEe6XBLpnRAAEFA" supplier="_kazvQK_nEe6WyMYnu-5vDA"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_Z8LcEKvoEe6W8qZzA-gP9Q" name="2 System Context">
           <packagedElement xmi:type="uml:Class" xmi:id="_S5HWEKv1Ee6IA7qtYiEKtg" name="WPS in Use" useCase="_vxCm0Kv5Ee6IA7qtYiEKtg _PbdKIKv6Ee6IA7qtYiEKtg">
@@ -265,17 +271,21 @@
     <packagedElement xmi:type="uml:Package" xmi:id="_B4IpsKvnEe6W8qZzA-gP9Q" name="2 Solution Domain">
       <packagedElement xmi:type="uml:Package" xmi:id="_7ps7EKvyEe6IA7qtYiEKtg" name="1 System Requirements" visibility="public">
         <packagedElement xmi:type="uml:Class" xmi:id="_Vu1Q4KvzEe6IA7qtYiEKtg" name="SR-1 WPS">
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_egodsKvzEe6IA7qtYiEKtg" name="SR-1.1 Water Level Control"/>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_m26zMKvzEe6IA7qtYiEKtg" name="SR-1.2 Water Level Control"/>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_1QW98KvzEe6IA7qtYiEKtg" name="SR-1.3 Water Level Control"/>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_-VMbgKvzEe6IA7qtYiEKtg" name="SR-1.4 Water Level Control"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_egodsKvzEe6IA7qtYiEKtg" name="SR-1.1 Water Level Min"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_m26zMKvzEe6IA7qtYiEKtg" name="SR-1.2 Water Level Low"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_1QW98KvzEe6IA7qtYiEKtg" name="SR-1.3 Water Level Max"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_-VMbgKvzEe6IA7qtYiEKtg" name="SR-1.4 Water Level 2/3"/>
           <nestedClassifier xmi:type="uml:Class" xmi:id="_IaOKwKv0Ee6IA7qtYiEKtg" name="SR-1.5 Pump Redundancy"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_ZTWSoK_nEe6WyMYnu-5vDA" name="SN-1.6 Sensor Data"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_jhcPsKv0Ee6IA7qtYiEKtg" name="SR-2 Remote Status Station">
           <nestedClassifier xmi:type="uml:Class" xmi:id="_n_fIUKv0Ee6IA7qtYiEKtg" name="SR-2.1 Display WPS Status"/>
           <nestedClassifier xmi:type="uml:Class" xmi:id="_wmR_AKv0Ee6IA7qtYiEKtg" name="SR-2.2 Disable Alarm"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_uJhQQK_nEe6WyMYnu-5vDA" name="SR-2.3 RSS Power Supply"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_kazvQK_nEe6WyMYnu-5vDA" name="SR-2.4 Alarm Power Supply"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_5r778Kv0Ee6IA7qtYiEKtg" name="SR-3 Web Server"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_70M3kK_nEe6WyMYnu-5vDA" name="SR-4 MQTT Communication"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_J2hckKvnEe6W8qZzA-gP9Q" name="2 System Structure">
         <packagedElement xmi:type="uml:Class" xmi:id="_SJ5DEKy6Ee6c9Mau0FC7Ew" name="WPS + RSS">
@@ -429,4 +439,8 @@
   <Blocks:Block xmi:id="_aNduYK8fEe6XBLpnRAAEFA" base_Class="_aNJlUK8fEe6XBLpnRAAEFA"/>
   <Blocks:Block xmi:id="_9IRO8K8gEe6XBLpnRAAEFA" base_Class="_9INkkK8gEe6XBLpnRAAEFA"/>
   <Blocks:Block xmi:id="_YZpswK8yEe6NF-QK4E3fbA" base_Class="_YZhJ4K8yEe6NF-QK4E3fbA"/>
+  <Requirements:Requirement xmi:id="_ZTljMK_nEe6WyMYnu-5vDA" base_NamedElement="_ZTWSoK_nEe6WyMYnu-5vDA" id="SR-1.6" text="If the readings of the sensor are uneven to a level of 20cm, the system should choose the worst case scenario" base_Class="_ZTWSoK_nEe6WyMYnu-5vDA"/>
+  <Requirements:Requirement xmi:id="_ka4nwK_nEe6WyMYnu-5vDA" base_NamedElement="_kazvQK_nEe6WyMYnu-5vDA" id="SR-2.4" text="The alarm on the RSS shall have an independent power supply from the RSS itself and from the WPS." base_Class="_kazvQK_nEe6WyMYnu-5vDA"/>
+  <Requirements:Requirement xmi:id="_uJ4coK_nEe6WyMYnu-5vDA" base_NamedElement="_uJhQQK_nEe6WyMYnu-5vDA" id="SR-2.3" text="The RSS shall have an independent power supply from the WPS." base_Class="_uJhQQK_nEe6WyMYnu-5vDA"/>
+  <Requirements:Requirement xmi:id="_70RJAK_nEe6WyMYnu-5vDA" base_NamedElement="_70M3kK_nEe6WyMYnu-5vDA" id="SR-4" text="To improve the system´s communication reliability, a cluster of 2(two) MQTT brokers shall be deployed." base_Class="_70M3kK_nEe6WyMYnu-5vDA"/>
 </xmi:XMI>

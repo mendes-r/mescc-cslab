@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-09T21:26:03.421Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="csDzvDkUu-uYu7I5hf0d" version="22.1.16" type="device">
+<mxfile host="Electron" modified="2024-01-10T20:11:44.383Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="95zQzYyAKkenzrxplOuZ" version="22.1.16" type="device">
   <diagram id="-jloQYBRYK6Awh3fImPs" name="Página-1">
     <mxGraphModel dx="2261" dy="2012" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -46,7 +46,7 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=100;entryDy=75;entryPerimeter=0;endArrow=block;endFill=1;" parent="1" source="bxP-EH-jp1SR5SKdyFND-1" target="bxP-EH-jp1SR5SKdyFND-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-31" value="MQTT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="bxP-EH-jp1SR5SKdyFND-29" vertex="1" connectable="0">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-31" value="I2C" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="bxP-EH-jp1SR5SKdyFND-29" vertex="1" connectable="0">
           <mxGeometry x="-0.3452" y="2" relative="1" as="geometry">
             <mxPoint x="23" y="-14" as="offset" />
           </mxGeometry>
