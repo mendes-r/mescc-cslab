@@ -49,12 +49,22 @@ Implementation of a prototype:
 
 Concorrency and Scheduling RT
   - mutex stuff in control unit
+  - Control Unit, give one core for comunication and one core for processing
+  - Mutex whe processing is writing the new state to be send
+  - This is only descriptive 
+
 
 Baseline communication
   - network diagram
 
 Assembly funcionality
-  - if statement for sensor
+  - bit manipulation: 00001 > 00010
+  - 0000 : 0
+  - 1000 : 8
+  - 0100 : 4
+  - 0010 : 2
+  - 0001 : 1
+
 
 Demostration
   Sensor sim + Control Unit MVP + Pump Led
