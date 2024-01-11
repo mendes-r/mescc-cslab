@@ -42,3 +42,22 @@
 
 - MQTT recupera ligaçoes ao contrario de tcp
 
+
+-------------------------------------------
+
+Implementation of a prototype:
+
+Concorrency and Scheduling RT
+  - mutex stuff in control unit
+
+Baseline communication
+  - network diagram
+
+Assembly funcionality
+  - if statement for sensor
+
+Demostration
+  Sensor sim + Control Unit MVP + Pump Led
+
+
+  

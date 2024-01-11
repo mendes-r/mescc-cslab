@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-10T20:11:44.383Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="95zQzYyAKkenzrxplOuZ" version="22.1.16" type="device">
+<mxfile host="Electron" modified="2024-01-11T19:37:24.011Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.18 Chrome/120.0.6099.199 Electron/28.1.2 Safari/537.36" etag="PSCyjTBR8ufIFCUbHnTO" version="22.1.18" type="device">
   <diagram id="-jloQYBRYK6Awh3fImPs" name="Página-1">
     <mxGraphModel dx="2261" dy="2012" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -19,25 +19,30 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" parent="1" source="bxP-EH-jp1SR5SKdyFND-1" target="bxP-EH-jp1SR5SKdyFND-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="yxCRoeXFlVbRXxYkmi1v-1" value="physical connection" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="bxP-EH-jp1SR5SKdyFND-33">
+          <mxGeometry x="-0.7867" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-1" value="Control Unit Cluster" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="220" y="325" width="320" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-3" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-3" value="«ESP32»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="220" y="180" width="140" height="100" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-4" value="«artifact»&lt;br&gt;&lt;b&gt;Water Level Sensor 1 Sim&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="229.5" y="220" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-5" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-5" value="«ESP32»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="400" y="180" width="140" height="100" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-6" value="«artifact»&lt;br&gt;&lt;b&gt;Water Level Sensor 2 Sim&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="409.5" y="220" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-8" value="«device»&lt;br&gt;&lt;b&gt;Pump 1 Led&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-8" value="«LED»&lt;br&gt;&lt;b&gt;Pump 1&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="220" y="520" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-9" value="«device»&lt;br&gt;&lt;b&gt;Pump 2 Led&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-9" value="«LED»&lt;br&gt;&lt;b&gt;Pump 2&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="400" y="520" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-12" value="WPS 2" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
@@ -46,7 +51,7 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=100;entryDy=75;entryPerimeter=0;endArrow=block;endFill=1;" parent="1" source="bxP-EH-jp1SR5SKdyFND-1" target="bxP-EH-jp1SR5SKdyFND-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-31" value="I2C" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="bxP-EH-jp1SR5SKdyFND-29" vertex="1" connectable="0">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-31" value="TCP" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="bxP-EH-jp1SR5SKdyFND-29" vertex="1" connectable="0">
           <mxGeometry x="-0.3452" y="2" relative="1" as="geometry">
             <mxPoint x="23" y="-14" as="offset" />
           </mxGeometry>
@@ -71,22 +76,27 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=1;" parent="1" source="bxP-EH-jp1SR5SKdyFND-37" target="bxP-EH-jp1SR5SKdyFND-39" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-37" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="yxCRoeXFlVbRXxYkmi1v-2" value="physical connection" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="bxP-EH-jp1SR5SKdyFND-54">
+          <mxGeometry x="-0.7692" y="-4" relative="1" as="geometry">
+            <mxPoint x="-60" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-37" value="«ESP32»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-245" y="180" width="115" height="220" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-38" value="«artifact»&lt;br&gt;&lt;b&gt;Remote Status &lt;br&gt;Station&lt;br&gt;&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-232.5" y="220" width="82.5" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-39" value="«device»&lt;br&gt;&lt;b&gt;Water Level status&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-39" value="«LED»&lt;br&gt;&lt;b&gt;Water Level status&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-360" y="360" width="75" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-40" value="«device»&lt;br&gt;&lt;b&gt;Pump status&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-40" value="«LED»&lt;br&gt;&lt;b&gt;Pump status&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-360" y="300" width="75" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-41" value="«device»&lt;br&gt;&lt;b&gt;Alarm&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-41" value="«LED»&lt;br&gt;&lt;b&gt;Alarm&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-360" y="240" width="75" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-42" value="«device»&lt;br&gt;&lt;b&gt;Button&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-42" value="«button»&lt;br&gt;&lt;b&gt;Button&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-360" y="180" width="75" height="40" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-57" value="Remote Status Station 2" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
@@ -95,7 +105,7 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-61" value="WPS Status Website" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-380" y="440" width="280" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="bxP-EH-jp1SR5SKdyFND-63" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+        <mxCell id="bxP-EH-jp1SR5SKdyFND-63" value="«Raspberry Pi»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="-340" y="480" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="bxP-EH-jp1SR5SKdyFND-64" value="«artifact»&lt;br&gt;&lt;b&gt;HTTP Server&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
@@ -126,16 +136,16 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-75" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="-320" y="532.5" width="25" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="XlQ_gyAynb_7siddWxOq-1" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="XlQ_gyAynb_7siddWxOq-1" value="«Raspberry Pi»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-20" y="182.5" width="110" height="100" as="geometry" />
         </mxCell>
         <mxCell id="XlQ_gyAynb_7siddWxOq-2" value="«artifact»&lt;br&gt;&lt;b&gt;MQTT Broker&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-10" y="222.5" width="80" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="XlQ_gyAynb_7siddWxOq-3" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="XlQ_gyAynb_7siddWxOq-3" value="«Raspberry Pi»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-20" y="300" width="110" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="XlQ_gyAynb_7siddWxOq-7" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+        <mxCell id="XlQ_gyAynb_7siddWxOq-7" value="«ESP32»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="390" y="360" width="129.5" height="90" as="geometry" />
         </mxCell>
         <mxCell id="XlQ_gyAynb_7siddWxOq-4" value="«artifact»&lt;br&gt;&lt;b&gt;MQTT Broker&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
@@ -144,7 +154,7 @@
         <mxCell id="bxP-EH-jp1SR5SKdyFND-48" value="«artifact»&lt;br&gt;&lt;b&gt;Control Unit&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="404" y="400" width="95.5" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="XlQ_gyAynb_7siddWxOq-8" value="«&lt;span style=&quot;background-color: initial;&quot;&gt;device&lt;/span&gt;»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+        <mxCell id="XlQ_gyAynb_7siddWxOq-8" value="«ESP32»" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="229.5" y="360" width="125.5" height="90" as="geometry" />
         </mxCell>
         <mxCell id="XlQ_gyAynb_7siddWxOq-9" value="«artifact»&lt;br&gt;&lt;b&gt;Control Unit&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">

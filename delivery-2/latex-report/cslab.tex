@@ -261,7 +261,21 @@ The Stakeholder Needs are being answered by the Requirements that we documented:
   \label{fig:Traceability}
 \end{figure}
 
-The diagram, developed during the analysis of the System Structure, is being used as the main foundation of the deployment diagram.
+The diagram, developed during the analysis of the System Structure, is being used as the main foundation of the deployment diagram (please see the diagram on the \textit{Implementation} chapter.
+
+Most important, the Hazard analysis gave raise to multiple new requirements, that although not obvious in the Stakeholder Needs, are here handled critical for the description of the system.
+
+\newpage
+%%%
+\section{Implementation}
+
+%%%
+\subsection{Concorrency and Real Time Scheduling}
+
+%%%
+\subsection{Communication Infrastructure}
+
+The following text describes the prototype that we propose to implement. 
 
 \begin{figure}[H]
   \centering
@@ -270,24 +284,27 @@ The diagram, developed during the analysis of the System Structure, is being use
   \label{fig:Deployment Diagram}
 \end{figure}
 
-Most important, the Hazard analysis gave raise to multiple new requirements, that although not obvious in the Stakeholder Needs, are here handled critical for the description of the system.
+\textbf{Communication Software Infrastructure:}
 
-\newpage
-%%%
-\section{[UPDATED] Selected Technologies}
+\begin{itemize}
+	\item The Web Server will be implemented using the Apache HTTP Server and will run on a Raspberry Pi 4.
+	\item The MQTT Brokers will be implemented using Mosquitto MQTT and will run on a Raspberry Pi 4.
+	\item The Sensors and Control Unit will run on Arduinos ESP32 and will be implemented using 'C' with the help of some Arduino Libraries. 
+\end{itemize}
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Specify how sensor works
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Wireless Cables ?
+\textbf{Interactions between elements:}
 
-\newpage
-%%%
-\section{Implementation}
+The main communication protocol is MQTT. The only publisher is the Control Unit in the WPS. The Web Server and the RSS are the subscribers.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=300px]{../diagrams/network-diagram-WPS.jpg}
-  \caption{Network diagram}
-  \label{fig:Network1 Diagram}
-\end{figure}
+The communication made between Control Unit and Water Sensor will be TCP/IP through wireless. Given that it is a critical system, the Control Unit will query the sensor in regular intervals and asking for the data.
+
+A time-out or incorrect data sent by the sensor can trigger an alert to the RSS. Essencially is a pull strategy from the point of view of the critical system.
+
+The Web Client will interact with the HTTP Server using the HTTP protocol.
+
+All other connection shown in the diagram area physical connection inside a bread-board.
+
+
+\subsection{Assembly}
 
 \end{document}
