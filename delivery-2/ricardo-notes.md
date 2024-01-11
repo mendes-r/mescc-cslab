@@ -1,4 +1,4 @@
-# Notes
+# NotesG
 
 ### Respostas-1
 
@@ -48,11 +48,18 @@
 Implementation of a prototype:
 
 Concorrency and Scheduling RT
+  - Prof Claudio: descriç~ao das limitçoes e os cuidados
+    - desenhar um diagrama
+    - atribuir prioridades
+    - configuraçao dos periodos
+    - estimar o tempo de processaçao atraves do cpu que se usa e o numero de instruçoes
+    - ler sensor, processar dados, atualizar estado, interacao com comunicacao....
+
   - mutex stuff in control unit
   - Control Unit, give one core for comunication and one core for processing
   - Mutex whe processing is writing the new state to be send
   - This is only descriptive 
-
+  - https://www.esp32.com/viewtopic.php?t=2118
 
 Baseline communication
   - network diagram
