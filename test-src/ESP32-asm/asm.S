@@ -1,12 +1,15 @@
-.global getMatrix
+.global getMask
 
-getMatrix:  entry a1, 48
+getMask:  entry a1, 48
             movi a5, 0          # init increment
             mov a6, a2          # save number of necessary iterations
-            movi a3, 1          # init final result 0000 0001
+            movi a2, 1          # init final result
 
-loop:
+loop: 
             addi a5, a5, 1      # increment by one
-            slli a3, a3, 1      # do some work 
-            bne a5, a6, loop    # branch to loop if not equal
+            beq a5, a6, end     # branch to end if not equal
+            slli a2, a2, 1      # left shif by 1, i.e. 0001 -> 0010
+            j loop              # loop
+
+end:
             retw.n

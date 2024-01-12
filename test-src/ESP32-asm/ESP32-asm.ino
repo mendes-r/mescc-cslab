@@ -1,31 +1,45 @@
-static const int LED_BUILTIN = 2;
+static const int8_t LED = 18;
 
-// put function declarations here:
-extern "C" int	getMatrix(int a);
+static const int8_t LEVEL_LOW = 1;
+static const int8_t LEVEL_MIN = 2;
+static const int8_t LEVEL_MED = 3;
+static const int8_t LEVEL_MAX = 4;
 
-// the setup function runs once when you press reset or power the board
+extern "C" int	getMask(int a);
+
 void setup() {
   Serial.begin(9600);
-  Serial.println("Hello World");
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+
+  // initialize digital pin LED as an output.
+  pinMode(LED, OUTPUT);
 }
 
-// the loop function runs over and over again forever
 void loop() {
-  volatile uint32_t e = 0;
+  volatile uint8_t mask = 1;
 
-  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(1000);                      // wait for a second
+  digitalWrite(LED, HIGH);  
+  delay(1000);                      
 
-  Serial.print("Valor de e: ");
-  Serial.println(e);
+  mask = getMask(LEVEL_MED);
+  implementMask(mask);
 
-  e = getMatrix(4);
-  Serial.print("Resultado: ");
-  Serial.println(e);
+  digitalWrite(LED, LOW);   
+  delay(1000);                      
+}
+
+void implementMask(int8_t mask)
+{
+  int n_bit = 0;
+  while (n_bit < 8) {
+    if (mask & 0x01) {
+      Serial.print("1");
+    }
+    else {
+      Serial.print("0");
+    }
+
+    n_bit++;
+    mask = mask >> 1;
+  }
   Serial.println();
-
-  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  delay(1000);                      // wait for a second
 }
