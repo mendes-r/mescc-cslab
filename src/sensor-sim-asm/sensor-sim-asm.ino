@@ -27,10 +27,10 @@ volatile int8_t level_state = 1;
 const char* ssid     = "MyPhone";
 const char* password = "iseprules";
 
-WiFiServer server(80);
+WiFiServer server(4545);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // initialize digital pin LED as an output.
   pinMode(LED_LOW, OUTPUT);
@@ -45,7 +45,8 @@ void setup() {
 
   delay(10);
 
-  // start by connecting to a WiFi network
+  // We start by connecting to a WiFi network
+
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
@@ -64,9 +65,6 @@ void setup() {
   Serial.println(WiFi.localIP());
   
   server.begin();
-
-  // implement mask for first time
-  implementMask(mask);
 }
 
 void loop() {
@@ -74,7 +72,7 @@ void loop() {
   WiFiClient client = server.accept();   // listen for incoming clients
 
   if (client) {                             // if you get a client,
-    Serial.println("New Client.");          // print a message out the serial port
+    Serial.println("New Client.");           // print a message out the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
     while (client.connected()) {            // loop while the client's connected
       if (client.available()) {             // if there's bytes to read from the client,
@@ -82,11 +80,16 @@ void loop() {
         Serial.write(c);                    // print it out the serial monitor
         if (c == '\n') {                    // if the byte is a newline character
 
-          // if the current line is blank, you got two newline characters in a row.
-          // that's the end of the client HTTP request, so send a response:
           if (currentLine.length() == 0) {
-            client.print(level_state);
+            client.println(level_state);
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
             client.println();
+
+            // the content of the HTTP response follows the header:
+            client.println(level_state);
+            client.println();
+            // break out of the while loop:
             break;
           } else {    // if you got a newline, then clear currentLine:
             currentLine = "";
@@ -102,8 +105,9 @@ void loop() {
   }
 
   doWork();
-  delay(1000);
+  delay(100);
 }
+
 
 void doWork()
 {
@@ -126,14 +130,14 @@ int getLevel()
   while (n_button < MAX_LEVELS){
     int button_state = digitalRead(BUTTONS[n_button]);
     
-    Serial.print("button ");
+    //Serial.print("button ");
     if ( button_state == HIGH ){ 
-      Serial.print(n_button);
-      Serial.println(" is high");
+      //Serial.print(n_button);
+      //Serial.println(" is high");
       return LEVELS[n_button];
     } else {
-      Serial.print(n_button);
-      Serial.println(" is low");
+      //Serial.print(n_button);
+      //Serial.println(" is low");
     }
 
     n_button++;

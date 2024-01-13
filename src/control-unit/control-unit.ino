@@ -16,8 +16,18 @@ static const int8_t LEVEL_MAX = 4;
 volatile uint8_t pump_1 = 1;
 volatile uint8_t pump_2 = 1;
 
+#include <WiFi.h>
+#include <WiFiMulti.h>
+
+const char* ssid     = "MyPhone";
+const char* password = "iseprules";
+const uint16_t port = 4545;
+const char * host = "172.20.10.13"; 
+
+WiFiMulti WiFiMulti;
+
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(ALERT, OUTPUT);
 
@@ -30,13 +40,80 @@ void setup() {
   pinMode(PUMP_CONTROL_2, INPUT);
 
   digitalWrite(ALERT, LOW);
+
+  delay(10);
+
+  // start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFiMulti.addAP(ssid, password);
+
+  while(WiFiMulti.run() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  delay(500);
 }
 
 void loop() {
-  controlPumps(LEVEL_MED);
-  delay(2000);  
+
+  Serial.print("Connecting to ");
+  Serial.println(host);
+
+  // Use WiFiClient class to create TCP connections
+  WiFiClient client;
+
+  if (!client.connect(host, port)) {
+      Serial.println("Connection failed.");
+      Serial.println("Waiting 5 seconds before retrying...");
+      delay(5000);
+      return;
+  }
+
+  client.print("GET me the current water level\n\n");
+
+  int maxloops = 0;
+
+  //wait for the server's reply to become available
+  while (!client.available() && maxloops < 1000)
+  {
+    maxloops++;
+    delay(1); //delay 1 msec
+  }
+  if (client.available() > 0)
+  {
+    //read back one line from the server
+    String line = client.readStringUntil('\r');
+    Serial.println(line);
+  }
+  else
+  {
+    Serial.println("Client.available() timed out ");
+  }
+
+  Serial.println("Closing connection.");
+  client.stop();
+
+  Serial.println("Waiting 5 seconds before restarting...");
+  delay(1000);
 }
 
+
+    //read back one line from the server
+    //String line = client.readStringUntil('\r');
+    //Serial.println(line);
+    //int8_t level = line[0] - '0';
+    //controlPumps(level);
+    
 void controlPumps(int8_t level)
 {
   updatePumpFailureState();
