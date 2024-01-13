@@ -46,7 +46,6 @@ void setup() {
   delay(10);
 
   // We start by connecting to a WiFi network
-
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
@@ -65,6 +64,7 @@ void setup() {
   Serial.println(WiFi.localIP());
   
   server.begin();
+  implementMask(mask);
 }
 
 void loop() {
@@ -82,12 +82,8 @@ void loop() {
 
           if (currentLine.length() == 0) {
             client.println(level_state);
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text/html");
             client.println();
-
             // the content of the HTTP response follows the header:
-            client.println(level_state);
             client.println();
             // break out of the while loop:
             break;

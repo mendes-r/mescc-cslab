@@ -94,6 +94,9 @@ void loop() {
     //read back one line from the server
     String line = client.readStringUntil('\r');
     Serial.println(line);
+    //read back one line from the server
+    int8_t level = line[0] - '0';
+    controlPumps(level);
   }
   else
   {
@@ -108,11 +111,7 @@ void loop() {
 }
 
 
-    //read back one line from the server
-    //String line = client.readStringUntil('\r');
-    //Serial.println(line);
-    //int8_t level = line[0] - '0';
-    //controlPumps(level);
+
     
 void controlPumps(int8_t level)
 {
@@ -122,7 +121,6 @@ void controlPumps(int8_t level)
   switch (pumps_state) {
     case 2: // all pumps are working
       allRight(level);
-      stopAlert();
       break;
     case 1: // one pump is malfunction
       halfRight(level);
@@ -141,14 +139,17 @@ void allRight(int8_t level)
     case LEVEL_LOW: 
       digitalWrite(PUMP_1, LOW);
       digitalWrite(PUMP_2, LOW);
+      stopAlert();
       break;
     case LEVEL_MIN: 
       digitalWrite(PUMP_1, HIGH);
       digitalWrite(PUMP_2, LOW);
+      stopAlert();
       break;
     case LEVEL_MED: 
       digitalWrite(PUMP_1, HIGH);
       digitalWrite(PUMP_2, HIGH);
+      stopAlert();
       break;
     case LEVEL_MAX: 
       digitalWrite(PUMP_1, HIGH);
