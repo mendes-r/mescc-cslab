@@ -327,18 +327,93 @@ Given the two last chapters, we can, with some degree of confidence, make a real
 
 As described by the documentation \cite{c1}, the algorithms are preemptive and priority- driven, meaning that a task with a priority higher than the one currently in the CPU will interrupt it. The priority will be defined by the task period - hence simulating a \textbf{Rate Monotonic} (RM) scheduler. In RM the priority is inversely proportional to the period: the shorter the period, the higher the priority. 
 
-Using the tools given by Liu and Layland \cite{liulayland} and running them in our ESP32 for process time estimation, we reached the following number:
+Using the hardware specification for an ESP32 WROOM, 
+\newline
+\newline
+ESP-WROOM-32 \cite{c2} 
+\begin{itemize}
+	\item Clock rate: 80 to 240 MHz
+	\item Clock cycle per instruction (CPI): 2 clock cycles — for instructions following ALU and branch instructions. 4 clock cycles — in other cases.
+\end{itemize}
+
+\noindent
+Ruf estimation for \textbf{processing data} by disassembling the compilation output and using the worst hadware specifications:
+
+\begin{minted}{bash}
+$ avr-objdump -m avr -S control-unit.ino.cpp.o | wc -l
+ 448 
+\end{minted}
+\footnote{Includes instruction added by the compiler for debugging purpose}. 
+
+\begin{equation} 
+	CPU Time =  \frac{Instruction\ count * CPI}{Clock\ Rate}
+\end{equation}
+
+\begin{equation} 
+	CPU Time =  \frac{448 * 4}{80 000} = 0,0224\ seconds
+\end{equation}
+\newline
+\newline
+we reached the following numbers in milliseconds:
 
 \begin{table}[H]
 \begin{tabular}{lll}
 \textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
-\textbf{1}    & 0,1         & 3           \\
+\textbf{1}    & 23         & 3           \\
 \textbf{2}    & 0,2         & 4           \\
 \textbf{3}    & 0,3         & 5          
 \end{tabular}
 \end{table}
 
-For the task set above we will first calculate the utilization factor:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+As proved in Liu and Layland \cite{liulayland} article, the schedulability of a set of tasks can be determined by its CPU utilization.
+
+The schedulability can be confirmed by calculating the Least Upper Bound (LUB) and comparing it with the utilization factor (U).
+
+\begin{equation} 
+	U(n) = \Sigma_{i=1}^n \frac{Ci}{Ti} \leq n(2^ \frac{1}{n} - 1)
+\end{equation}
+
+{\small where \emph{C} is the WCET and \emph{T} the period.}
+\medskip
+\medskip
+
+The formula mentioned above represents the comparison made by the sum of each task's utilization time and the LUB for a \emph{n} number of tasks. 
+
+It is worth noting that if the U surpasses the value of 1 - the CPU utilization exceeds 100\% - the set is not schedulable.
+
+Yet, in the case of an intermediate value of U,
+
+\begin{equation} 
+	1 \geq U(n) \geq LUB
+\end{equation}
+
+the schedulability is undetermined.
+\medskip
+
+In those cases, we resort to an iterative technique that will diverge or converge from a worst-case response time in a finite number of steps:
+
+\begin{equation} 
+	Rwci(0) = \Sigma_{k\in hp(i)}^{} Ck + Ci
+\end{equation}
+
+\begin{equation} \label{lub}
+	Rwci(m+1) = \Sigma_{k\in hp(i)}^{}  \Bigl\lceil\dfrac{Rwci(m)}{Tk}\Bigr\rceil * Ck + Ci
+\end{equation}
+
+{\small where \emph{Rwc} is the worst case response time and \emph{hp} is the highest priority task.}
+\medskip
+\medskip
+
+The equation~\ref{lub} shows us some of the characteristics of the \emph{critical instant} when dealing with preemptive and fixed priorities. \emph {Synchronous release}, where all tasks are launched at the exact same moment, will mean a worst response time for the tasks, specially for the task with the least priority, usually more prone to miss their deadline.
+
+For large sets, the LUB to processor utilization factor in RM is around 70\%. This means that in the worst case, the CPU will be idle 30\% of the time.
+
+The article also points out that there are strong suggestions that make U=1 not feasible.\footnote{In the real world, there is always some bandwith of the CPUs time that is used by processes, i.e. OS daemons}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For our task set  we will first calculate the utilization factor:
 
 \begin{equation} 
 \begin{split}
@@ -445,6 +520,8 @@ void implementMask(int8_t mask)
 \bibitem{c1}
  Espressif documentation: {\url{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#id23/}}
  \bibitem{liulayland} C.L.Liu, J.Layland: Scheduling algorithms for multiprogramming in a hard-real-time environment. Journal of the Association of Computing Machinery, Vol.20, Nº.1, (1973)
+ \bibitem{c2}
+ ESP-WROOM-32 Specs:  {\url{https://www.mouser.com/datasheet/2/891/esp-wroom-32_datasheet_en-1223836.pdf}}
 
 \end{thebibliography}
 
