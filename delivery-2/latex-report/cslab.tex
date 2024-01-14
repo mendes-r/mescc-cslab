@@ -17,8 +17,8 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{minted}
+ \usepackage{url}
 %
-
 
 \setcounter{secnumdepth}{3}
 
@@ -274,7 +274,32 @@ Most important, the Hazard analysis gave raise to multiple new requirements, tha
 %%%
 \subsection{Concorrency and Real Time Scheduling}
 
+%%%%
+\subsubsection{Introduction}
+
+To give a realistic analysis of the processes that we are here proposing to run, we need first to describe the hardware where they will be running.
+
+The microcontroller ESP32 has FreeRTOS integrated into as a component, however in our case some there is a sligh difference:
+\newline
+\newline
+ \textit{The original FreeRTOS (...) is a compact and efficient real-time operating system supported on numerous single-core MCUs and SoCs. However, to support dual-core ESP targets, such as ESP32, ESP32-S3, and ESP32-P4, ESP-IDF provides a unique implementation of FreeRTOS with dual-core symmetric multiprocessing (SMP) capabilities (hereinafter referred to as IDF FreeRTOS).}\cite{c1}
+\newline
+\newline
+So we are dealing with a textbf{fixed priority preemptive scheduler with time slicing}, meaning:
+
+\begin{itemize}
+	\item Each task is given a constant priority upon creation.
+	\item The scheduler can switch execution to another task without the cooperation of the currently running task.
+	\item The scheduler periodically switches execution between ready-state tasks of the same priority in a round-robin fashion. 
+\end{itemize}
+
+%%%%
+\subsubsection{Concorrency}
+
+\subsubsection{Real Time Scheduling}
+
 %%%
+\newpage
 \subsection{Communication Infrastructure}
 
 The following text describes the prototype that we propose to implement. 
@@ -306,7 +331,8 @@ The Web Client will interact with the HTTP Server using the HTTP protocol.
 
 All other connection shown in the diagram area physical connection inside a bread-board.
 
-
+%%%
+\newpage
 \subsection{Assembly}
 
 The piece of functionality that we choosed to write in assembly is located in the sensor simulator.
@@ -361,5 +387,14 @@ void implementMask(int8_t mask)
   }
 }
 \end{minted}
+
+%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{thebibliography}{8}
+
+\bibitem{c1}
+ Espressif documentation: {\url{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#id23/}}
+
+\end{thebibliography}
 
 \end{document}
