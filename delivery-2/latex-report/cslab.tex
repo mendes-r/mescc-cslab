@@ -18,6 +18,7 @@
 \usepackage{multirow}
 \usepackage{minted}
  \usepackage{url}
+ \usepackage{amsmath}
 %
 
 \setcounter{secnumdepth}{3}
@@ -285,18 +286,67 @@ The microcontroller ESP32 has FreeRTOS integrated into as a component, however i
  \textit{The original FreeRTOS (...) is a compact and efficient real-time operating system supported on numerous single-core MCUs and SoCs. However, to support dual-core ESP targets, such as ESP32, ESP32-S3, and ESP32-P4, ESP-IDF provides a unique implementation of FreeRTOS with dual-core symmetric multiprocessing (SMP) capabilities (hereinafter referred to as IDF FreeRTOS).}\cite{c1}
 \newline
 \newline
-So we are dealing with a textbf{fixed priority preemptive scheduler with time slicing}, meaning:
+So we are dealing with a \textbf{fixed priority preemptive scheduler with time slicing}, meaning:
 
 \begin{itemize}
-	\item Each task is given a constant priority upon creation.
-	\item The scheduler can switch execution to another task without the cooperation of the currently running task.
-	\item The scheduler periodically switches execution between ready-state tasks of the same priority in a round-robin fashion. 
+	\item   \textit{Each task is given a constant priority upon creation.}
+	\item  \textit{The scheduler can switch execution to another task without the cooperation of the currently running task.}
+	\item  \textit{The scheduler periodically switches execution between ready-state tasks of the same priority in a round-robin fashion.} \cite{c1}
 \end{itemize}
+
+From now on, we will focus our attention to the \textbf{Control Unit}, undoubtly the most critical subsystem.
+
+This subsystem is responsable to coordina the water pumps, depending on the input from the water level sensors and the current state of those pumps.
+Additionally it must pusblish the current state of the whole WPS system to a MQTT brocker.
+Also, for this purpose, the \textbf{Control Unit} will be responsable to ask for the water level status given by the sensor. As already mentioned, the idea is to query the sensor in regular intervals. A timeout or an agreed response, can signal to our system that something is wrong with the sensor.
+
+In conclusion, the \textbf{Control Unit} will run two tasks:
+
+\begin{itemize}
+	\item  T1: Process data and give instructions to pumps;
+	\item  T2: Retrieve data from sensors;
+	\item  T3: Publish WPS status to MQTT broker.
+\end{itemize}
+
+One last note: we cannot ensure a 100\% real time system given the multiple libraries from Arduino that we are using, especially for communication purpose.
 
 %%%%
 \subsubsection{Concorrency}
 
+T1, T2 and T3 tasks share a same resource: a data structure with the WPS status; pump status, water level status and alert status.
+
+When T1 is updating this data, T3 should wait until this processed is finished. Only afterwards, has T3 the permission to read the data and publish it.
+The same happens wiht the relation between T1 and T2.
+
+This will be accomplished using a mutex. Currently, this feature is not yet implemented, but will be used on the final presentation.
+
+%%%%
 \subsubsection{Real Time Scheduling}
+
+Given the two last chapters, we can, with some degree of confidence, make a realistic predition of our system's tasks scheduling. 
+
+As described by the documentation \cite{c1}, the algorithms are preemptive and priority- driven, meaning that a task with a priority higher than the one currently in the CPU will interrupt it. The priority will be defined by the task period - hence simulating a \textbf{Rate Monotonic} (RM) scheduler. In RM the priority is inversely proportional to the period: the shorter the period, the higher the priority. 
+
+Using the tools given by Liu and Layland \cite{liulayland} and running them in our ESP32 for process time estimation, we reached the following number:
+
+\begin{table}[H]
+\begin{tabular}{lll}
+\textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
+\textbf{1}    & 0,1         & 3           \\
+\textbf{2}    & 0,2         & 4           \\
+\textbf{3}    & 0,3         & 5          
+\end{tabular}
+\end{table}
+
+For the task set above we will first calculate the utilization factor:
+
+\begin{equation} 
+\begin{split}
+	U(n) = \Sigma_{i=1}^n \frac{Ci}{Ti} ; \\
+	\\
+	U = \frac{0,5}{3} + \frac{1}{4} + \frac{2}{6} + \frac{2}{7} \approx 1,03
+\end{split}
+\end{equation}
 
 %%%
 \newpage
@@ -394,6 +444,7 @@ void implementMask(int8_t mask)
 
 \bibitem{c1}
  Espressif documentation: {\url{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#id23/}}
+ \bibitem{liulayland} C.L.Liu, J.Layland: Scheduling algorithms for multiprogramming in a hard-real-time environment. Journal of the Association of Computing Machinery, Vol.20, Nº.1, (1973)
 
 \end{thebibliography}
 
