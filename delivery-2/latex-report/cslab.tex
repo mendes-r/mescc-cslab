@@ -278,9 +278,9 @@ Most important, the Hazard analysis gave raise to multiple new requirements, tha
 %%%%
 \subsubsection{Introduction}
 
-To give a realistic analysis of the processes that we are here proposing to run, we need first to describe the hardware where they will be running.
+To give a realistic analysis of the processes that we are proposing to run, we first need to describe the hardware where they will be running.
 
-The microcontroller ESP32 has FreeRTOS integrated into as a component, however in our case some there is a sligh difference:
+The microcontroller ESP32 has FreeRTOS integrated into it as a component; however, in our case, there is a slight difference:
 \newline
 \newline
  \textit{The original FreeRTOS (...) is a compact and efficient real-time operating system supported on numerous single-core MCUs and SoCs. However, to support dual-core ESP targets, such as ESP32, ESP32-S3, and ESP32-P4, ESP-IDF provides a unique implementation of FreeRTOS with dual-core symmetric multiprocessing (SMP) capabilities (hereinafter referred to as IDF FreeRTOS).}\cite{c1}
@@ -294,18 +294,18 @@ So we are dealing with a \textbf{fixed priority preemptive scheduler with time s
 	\item  \textit{The scheduler periodically switches execution between ready-state tasks of the same priority in a round-robin fashion.} \cite{c1}
 \end{itemize}
 
-From now on, we will focus our attention to the \textbf{Control Unit}, undoubtly the most critical subsystem.
+From now on, we will focus our attention on the \textbf{Control Unit}, undoubtedly the most critical subsystem.
 
-This subsystem is responsable to coordina the water pumps, depending on the input from the water level sensors and the current state of those pumps.
-Additionally it must pusblish the current state of the whole WPS system to a MQTT brocker.
-Also, for this purpose, the \textbf{Control Unit} will be responsable to ask for the water level status given by the sensor. As already mentioned, the idea is to query the sensor in regular intervals. A timeout or an agreed response, can signal to our system that something is wrong with the sensor.
+This subsystem is responsible for coordinating the water pumps, depending on the input from the water level sensors and the current state of those pumps.
+Additionally, it must publish the current state of the whole WPS system to a MQTT broker.
+Also, for this purpose, the \textbf{Control Unit} will be responsible for asking for the water level status given by the sensor. As already mentioned, the idea is to query the sensor at regular intervals. A timeout or an agreed-upon response can signal to our system that something is wrong with the sensor.
 
-In conclusion, the \textbf{Control Unit} will run two tasks:
+In conclusion, the \textbf{Control Unit} will run three tasks:
 
 \begin{itemize}
-	\item  T1: Retrieve data from sensors;
+	\item  T1: Retrieve data from sensors (TCP Client);
 	\item  T2: Process data and give instructions to pumps;
-	\item  T3: Publish WPS status to MQTT broker.
+	\item  T3: Publish WPS status to MQTT broker (MQTT client).
 \end{itemize}
 
 One last note: we cannot ensure a 100\% real time system given the multiple libraries from Arduino that we are using, especially for communication purpose.
@@ -313,12 +313,12 @@ One last note: we cannot ensure a 100\% real time system given the multiple libr
 %%%%
 \subsubsection{Concorrency}
 
-T1, T2 and T3 tasks share a same resource: a data structure with the WPS status; pump status, water level status and alert status.
+T1, T2 and T3 tasks share the same resource: a data structure with the WPS status, pump status, water level status and alert status.
 
-When T2 is updating this data, T3 should wait until this processed is finished. Only afterwards, has T3 the permission to read the data and publish it.
-The same happens wiht the relation between T1 and T2.
+When T2 is updating this data, T3 should wait until this processing is finished. Only afterwards does T3 have permission to read the data and publish it.
+The same happens with the relation between T1 and T2.
 
-This will be accomplished using a mutex. Currently, this feature is not yet implemented, but will be used on the final presentation.
+This will be accomplished using a mutex. Currently, this feature is not yet implemented but will be used in the final presentation.
 
 %%%%
 \subsubsection{Real Time Scheduling}
@@ -326,34 +326,32 @@ This will be accomplished using a mutex. Currently, this feature is not yet impl
 Given the two last chapters, we can, with some degree of confidence, make a realistic predition of our system's tasks scheduling. 
 
 As described by the documentation \cite{c1}, the algorithms are preemptive and priority- driven, meaning that a task with a priority higher than the one currently in the CPU will interrupt it. The priority will be defined by the task period - hence simulating a \textbf{Rate Monotonic} (RM) scheduler. In RM the priority is inversely proportional to the period: the shorter the period, the higher the priority. 
-
-Using the hardware specification for an ESP32 WROOM, 
 \newline
 \newline
-ESP-WROOM-32 \cite{c2} 
+Using the hardware specification for an ESP-WROOM-32:
 \begin{itemize}
 	\item Clock rate: 80 to 240 MHz
 	\item Clock cycle per instruction (CPI): 2 clock cycles — for instructions following ALU and branch instructions. 4 clock cycles — in other cases.
 \end{itemize}
 
 \noindent
-Ruf estimation for \textbf{processing data} by disassembling the compilation output and using the worst hadware specifications:
+Ruf estimation for \textbf{processing data} by disassembling the compilation output and using the worst hardware specifications:
 
 \begin{minted}{bash}
 $ avr-objdump -m avr -S control-unit.ino.cpp.o | wc -l
 \end{minted}
-output -->  448 \footnote{Includes instruction added by the compiler for debugging purpose}. 
+output -->  448 \footnote{Includes instructions added by the compiler for debugging purpose}. 
 
 \begin{equation} 
-	CPU Time =  \frac{Instruction\ count * CPI}{Clock\ Rate}
+	CPU\ Time =  \frac{Instruction\ count * CPI}{Clock\ Rate}
 \end{equation}
 
 \begin{equation} 
-	CPU Time =  \frac{448 * 4}{80 000} = 0,0224\ seconds
+	CPU\ Time =  \frac{448 * 4}{80 000} = 0,0224\ seconds
 \end{equation}
 \newline
 \newline
-we reached the following numbers in milliseconds:
+We reached the following numbers in milliseconds, being \textit{Ci} the worst-case execution time (WCET) and \textit{Ti} the periodicity:
 
 \begin{table}[H]
 \begin{tabular}{lll}
@@ -364,10 +362,9 @@ we reached the following numbers in milliseconds:
 \end{tabular}
 \end{table}
 
-The blocking periods given by shared resources are not being taken into accoount.
+The blocking periods given by shared resources are not being taken into account.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As proved in Liu and Layland \cite{liulayland} article, the schedulability of a set of tasks can be determined by its CPU utilization.
+As proved in \textit{Liu and Layland} article\cite{liulayland} , the schedulability of a set of tasks can be determined by its CPU utilization.
 
 The schedulability can be confirmed by calculating the Least Upper Bound (LUB) and comparing it with the utilization factor (U).
 
@@ -388,7 +385,7 @@ Yet, in the case of an intermediate value of U,
 \begin{equation} 
 	1 \geq U(n) \geq LUB
 \end{equation}
-
+\noindent
 the schedulability is undetermined.
 \medskip
 
@@ -414,7 +411,7 @@ The article also points out that there are strong suggestions that make U=1 not 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-For our task set  we will first calculate the utilization factor:
+For our task set, we will first calculate the utilization factor:
 
 \begin{equation} 
 \begin{split}
@@ -459,11 +456,12 @@ The conclusion is that the \textbf{task are schedulable}.
   \label{fig:Grant Chart}
 \end{figure}
 
+
 %%%
 \newpage
 \subsection{Communication Infrastructure}
 
-The following text describes the prototype that we propose to implement. 
+The following text and diagram describes the prototype that we propose to implement. 
 
 \begin{figure}[H]
   \centering
@@ -477,7 +475,7 @@ The following text describes the prototype that we propose to implement.
 \begin{itemize}
 	\item The Web Server will be implemented using the Apache HTTP Server and will run on a Raspberry Pi 4.
 	\item The MQTT Brokers will be implemented using Mosquitto MQTT and will run on a Raspberry Pi 4.
-	\item The Sensors and Control Unit will run on Arduinos ESP32 and will be implemented using 'C' with the help of some Arduino Libraries. 
+	\item The Sensors Sim and Control Unit will run on Arduino ESP32 and will be implemented using 'C' with the help of some Arduino Libraries. 
 \end{itemize}
 
 \textbf{Interactions between elements:}
@@ -486,17 +484,19 @@ The main communication protocol is MQTT. The only publisher is the Control Unit 
 
 The communication made between Control Unit and Water Sensor will be TCP/IP through wireless. Given that it is a critical system, the Control Unit will query the sensor in regular intervals and asking for the data.
 
-A time-out or incorrect data sent by the sensor can trigger an alert to the RSS. Essencially is a pull strategy from the point of view of the critical system.
+A time-out or incorrect data sent by the sensor can trigger an alert to the RSS. Essentially, it is a pull strategy from the point of view of the Control Unit.
 
 The Web Client will interact with the HTTP Server using the HTTP protocol.
 
 All other connection shown in the diagram area physical connection inside a bread-board.
 
+During the demonstration, all those systems will be connected wirelessly to a hotspot and share the same network.
+
 %%%
 \newpage
 \subsection{Assembly}
 
-The piece of functionality that we choosed to write in assembly is located in the sensor simulator.
+The piece of functionality that we chose to write in assembly is located in the sensor simulator.
 
 The sensor simulator has four push buttons. Each button triggers a different change in the water level. 
 The current water level can be seen by the LED that is turned on.
@@ -508,7 +508,7 @@ The current water level can be seen by the LED that is turned on.
   \label{fig:Sensor sim prototype}
 \end{figure}
 
-Because only one water level state is possible we choose to use assembly to create a mask to be implemented on the leds.
+Because only one water level state is possible, we chose to use assembly to create a mask to be implemented on the LEDs.
 
 \begin{minted}{gas}
 .global getMask
@@ -528,9 +528,9 @@ end:
             retw.n
 \end{minted}
 
-For example, if we push the BUTTON\_MIN (the green one), this will trigger the code above and output the following number \textbf{2} that corresponds to \textbf{0000 0010} in a 1 byte binary. 
+For example, if we push BUTTON\_MIN (the green one), this will trigger the code above and output the following number \textbf{2} that corresponds to \textbf{0000 0010} in a 1 byte binary. 
 
-The code below, then implements the mask:
+The code below then implements the mask:
 
 \begin{minted}{c}
 void implementMask(int8_t mask)
