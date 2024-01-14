@@ -359,9 +359,9 @@ we reached the following numbers in milliseconds:
 \begin{table}[H]
 \begin{tabular}{lll}
 \textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
-\textbf{1}    & 23         & 3           \\
-\textbf{2}    & 0,2         & 4           \\
-\textbf{3}    & 0,3         & 5          
+\textbf{1}    & 23         & 100           \\
+\textbf{2}    & 75         & 200           \\
+\textbf{3}    & 50         & 250          
 \end{tabular}
 \end{table}
 
@@ -417,9 +417,13 @@ For our task set  we will first calculate the utilization factor:
 
 \begin{equation} 
 \begin{split}
-	U(n) = \Sigma_{i=1}^n \frac{Ci}{Ti} ; \\
+	U = \frac{023}{100} + \frac{75}{200} + \frac{50}{250} + \frac{2}{7} = 0,705
 	\\
-	U = \frac{0,5}{3} + \frac{1}{4} + \frac{2}{6} + \frac{2}{7} \approx 1,03
+	\\
+	LUB = 3(2^ \frac{1}{3} - 1) \approx 0,78
+	\\
+	\\
+	1 \geq  0,705 \geq 0,78 * it\ is\ schedulable!
 \end{split}
 \end{equation}
 
