@@ -16,7 +16,9 @@
 \usepackage{float}
 \usepackage{xcolor}
 \usepackage{multirow}
+\usepackage{minted}
 %
+
 
 \setcounter{secnumdepth}{3}
 
@@ -306,5 +308,58 @@ All other connection shown in the diagram area physical connection inside a brea
 
 
 \subsection{Assembly}
+
+The piece of functionality that we choosed to write in assembly is located in the sensor simulator.
+
+The sensor simulator has four push buttons. Each button triggers a different change in the water level. 
+The current water level can be seen by the LED that is turned on.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=300px]{../diagrams/sensor-sim-01.jpg}
+  \caption{Sensor Sim prototype}
+  \label{fig:Sensor sim prototype}
+\end{figure}
+
+Because only one water level state is possible we choose to use assembly to create a mask to be implemented on the leds.
+
+\begin{minted}{gas}
+.global getMask
+
+getMask:    entry a1, 48
+            movi a5, 0          # init increment
+            mov a6, a2          # save inputed water level
+            movi a2, 1          # init return value
+
+loop: 
+            addi a5, a5, 1      # increment by one
+            beq a5, a6, end     # branch to 'end' if not equal
+            slli a2, a2, 1      # left shif by 1, i.e. 0001 -> 0010
+            j loop              # jump to loop 
+
+end:
+            retw.n
+\end{minted}
+
+For example, if we push the BUTTON\_MIN (the green one), this will trigger the code above and output the following number \textbf{2} that corresponds to \textbf{0000 0010} in a 1 byte binary. 
+
+The code below, then implements the mask:
+
+\begin{minted}{c}
+void implementMask(int8_t mask)
+{
+  int8_t n_bit = 0;
+  while (n_bit < MAX_LEVELS) {
+    if (mask & 0x01) {
+      digitalWrite(STATES[n_bit], HIGH);
+    }
+    else {
+      digitalWrite(STATES[n_bit], LOW);
+    }
+    n_bit++;
+    mask = mask >> 1;
+  }
+}
+\end{minted}
 
 \end{document}
