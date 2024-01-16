@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <ArduinoMqttClient.h>
 
 //------------
 #define WIFI_NETWORK    "MyPhone"
@@ -46,6 +47,8 @@ volatile bool alert = false;
 volatile uint8_t curr_pump1_state = PUMP_STATE_OK;
 volatile uint8_t curr_pump2_state = PUMP_STATE_OK;
 
+WiFiClient client;
+
 void setup() {
   Serial.begin(115200);
 
@@ -83,17 +86,45 @@ void setup() {
                     "Task3",     /* name of task. */
                     20000,       /* Stack size of task */
                     NULL,        /* parameter of the task */
-                    3,           /* priority of the task */
+                    0,           /* priority of the task */
                     &Task3,      /* Task handle to keep track of created task */
                     0);          /* pin task to core 0 */                                                                 
 }
 
 void publishStatus (void * parameters)
 {
+  MqttClient mqttClient(client);
+  const char topic[]  = "wps1/status";
+  unsigned long previousMillis = 0;
+  const long interval = 8000;
+
   for (;;)
   {
+    if( WiFi.status() == WL_CONNECTED ){
+      connect_to_broker(mqttClient);
+      mqttClient.poll();
+
+      unsigned long currentMillis = millis();
+
+      if (currentMillis - previousMillis >= interval) {
+        // save the last time a message was sent
+        previousMillis = currentMillis;
+
+        Serial.print("Sending message to topic: ");
+        Serial.println(topic);
+
+        mqttClient.beginMessage(topic);
+        mqttClient.print("Hello World");
+        mqttClient.endMessage();
+
+        Serial.println();
+      }
+    } else{
+      connect_to_wifi();
+    }
+
     Serial.println("\nTask1 running");
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    vTaskDelay(1500 / portTICK_PERIOD_MS);
   }
 }
 
@@ -128,7 +159,6 @@ void requestSensorData (void * parameters)
   for (;;)
   {  
     if( WiFi.status() == WL_CONNECTED ){
-      WiFiClient client;
       client.print("GET me the current water level\n\n");
       int maxloops = 0;
 
@@ -222,6 +252,15 @@ void updatePumpFailureState()
     digitalWrite(PUMP_STATE_2, LOW);
     turnPump_2_OFF();
     curr_pump2_state = PUMP_STATE_NOK;;
+  }
+}
+
+void connect_to_broker (MqttClient mqttClient) {
+  if (!mqttClient.connect(BROKER, BROKER_PORT)) {
+    Serial.print("MQTT connection failed! Error code = ");
+    Serial.println(mqttClient.connectError());
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    while (1);
   }
 }
 
