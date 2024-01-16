@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiMulti.h>
+#include "TinyMqtt.h"    
+#include "TinyStreaming.h" 
 
 static const uint8_t PUMP_1 = 13;
 static const uint8_t PUMP_STATE_1 = 12;
@@ -26,14 +28,18 @@ static const int8_t PUMP_STATE_OK = 1;
 const char* ssid     = "MyPhone";
 const char* password = "iseprules";
 const uint16_t port = 4545;
-const char * host = "172.20.10.13"; 
+const char * host = "172.20.10.13";
+
+const char* BROKER = "172.20.10.3";
+const uint16_t BROKER_PORT = 1883;
 
 // Task1: TCP client
 // Task2: Data processing and pump commands
 // Task3: MQTT client
-TaskHandle_t Task1, Task2;
-xSemaphoreHandle xMutex;
+TaskHandle_t Task1, Task2, Task3;
+xSemaphoreHandle mutex;
 WiFiMulti WiFiMulti;
+static MqttClient mqttClient;
 
 // Current system's status
 volatile uint8_t wps_id = 1;
@@ -41,10 +47,11 @@ volatile uint8_t curr_water_level = LEVEL_LOW;
 volatile uint8_t curr_pump1_status = PUMP_OFF;
 volatile uint8_t curr_pump2_status = PUMP_OFF;
 
+bool alert = false;
+
 volatile uint8_t curr_pump1_state = PUMP_STATE_OK;
 volatile uint8_t curr_pump2_state = PUMP_STATE_OK;
 
-bool alert = false;
 
 void setup() {
   Serial.begin(115200);
@@ -60,7 +67,12 @@ void setup() {
   digitalWrite(ALERT, LOW);
   delay(10);
 
-  xMutex = xSemaphoreCreateMutex();
+  wifiConnection();
+  mqttClient.connect(BROKER, BROKER_PORT);
+
+  delay(500);
+
+  mutex = xSemaphoreCreateMutex();
 
   xTaskCreatePinnedToCore(
                   tcpClient,   /* Task function. */
@@ -72,16 +84,42 @@ void setup() {
                   1);          /* pin task to core 1 */
   
   xTaskCreatePinnedToCore(
-                  controlPumps,    /* Task function. */
+                  controlPumps,   /* Task function. */
                   "Task2",        /* name of task. */
                   10000,          /* Stack size of task */
                   NULL,           /* parameter of the task */
                   2,              /* priority of the task */
                   &Task2,         /* Task handle to keep track of created task */
-                  1);             /* pin task to core 1 */
+                  0);             /* pin task to core 0 */
 
-  wifiConnection();
-  delay(500);
+  xTaskCreatePinnedToCore(
+                  publish,        /* Task function. */
+                  "Task3",        /* name of task. */
+                  10000,          /* Stack size of task */
+                  NULL,           /* parameter of the task */
+                  3,              /* priority of the task */
+                  &Task3,         /* Task handle to keep track of created task */
+                  0);             /* pin task to core 0 */
+}
+
+void publish(void * parameters)
+{
+	//client.loop();	
+	static auto next_send = millis();
+	
+	if (millis() > next_send)
+	{
+		next_send += 1000;
+
+		if (not mqttClient.connected())
+		{
+      Serial.println("Not connected to broker");
+			return;
+		}
+
+    Serial.println("Publishing a new wps1/status value");
+		mqttClient.publish("wps1/status", getWpsStatus());
+	}
 }
 
 void tcpClient (void * parameters) {
@@ -99,21 +137,18 @@ void tcpClient (void * parameters) {
   }
 
   client.print("GET me the current water level\n\n");
-
   int maxloops = 0;
 
-  //wait for the server's reply to become available
   while (!client.available() && maxloops < 1000)
   {
     maxloops++;
-    delay(1); //delay 1 msec
+    delay(1); 
   }
   if (client.available() > 0)
   {
     //read back one line from the server
     String line = client.readStringUntil('\r');
-    Serial.println(line);
-    //read back one line from the server
+    // save water level
     curr_water_level = line[0] - '0';
   }
   else
@@ -126,26 +161,6 @@ void tcpClient (void * parameters) {
 
   Serial.println("Waiting 5 seconds before restarting...");
   delay(1000);
-}
-
-void wifiConnection() {
-  // start by connecting to a WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
-
-  WiFiMulti.addAP(ssid, password);
-
-  while(WiFiMulti.run() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-  }
-
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
 }
 
 void controlPumps(void * parameters)
@@ -240,6 +255,30 @@ void updatePumpFailureState()
     turnPump_2_OFF();
     curr_pump2_state = PUMP_STATE_NOK;;
   }
+}
+
+void wifiConnection() {
+  // start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFiMulti.addAP(ssid, password);
+
+  while(WiFiMulti.run() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+String getWpsStatus(){
+  return String(alert) + "," + String(wps_id) + "," + String(curr_water_level) + "," + String(curr_pump1_status) + "," + String(curr_pump2_status);
 }
 
 void sendAlert() { digitalWrite(ALERT, HIGH); alert = true; Serial.println("Send ALERT!"); }
