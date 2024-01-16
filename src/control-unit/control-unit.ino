@@ -27,6 +27,7 @@ static const int8_t PUMP_STATE_OK = 1;
 
 const char* ssid     = "MyPhone";
 const char* password = "iseprules";
+
 const uint16_t port = 4545;
 const char * host = "172.20.10.13";
 
@@ -37,7 +38,6 @@ const uint16_t BROKER_PORT = 1883;
 // Task2: Data processing and pump commands
 // Task3: MQTT client
 TaskHandle_t Task1, Task2, Task3;
-xSemaphoreHandle mutex;
 WiFiMulti WiFiMulti;
 static MqttClient mqttClient;
 
@@ -65,14 +65,8 @@ void setup() {
   pinMode(PUMP_CONTROL_2, INPUT);
 
   digitalWrite(ALERT, LOW);
-  delay(10);
-
-  wifiConnection();
-  mqttClient.connect(BROKER, BROKER_PORT);
 
   delay(500);
-
-  mutex = xSemaphoreCreateMutex();
 
   xTaskCreatePinnedToCore(
                   tcpClient,   /* Task function. */
@@ -81,7 +75,7 @@ void setup() {
                   NULL,        /* parameter of the task */
                   1,           /* priority of the task */
                   &Task1,      /* Task handle to keep track of created task */
-                  1);          /* pin task to core 1 */
+                  0);          /* pin task to core 0 */
   
   xTaskCreatePinnedToCore(
                   controlPumps,   /* Task function. */
@@ -104,6 +98,8 @@ void setup() {
 
 void publish(void * parameters)
 {
+
+  mqttClient.connect(BROKER, BROKER_PORT);
 	//client.loop();	
 	static auto next_send = millis();
 	
@@ -123,6 +119,11 @@ void publish(void * parameters)
 }
 
 void tcpClient (void * parameters) {
+  
+  if( WiFi.status() != WL_CONNECTED ){
+      wifiConnection();
+  }
+
   Serial.print("Connecting to ");
   Serial.println(host);
 
