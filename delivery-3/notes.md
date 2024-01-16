@@ -17,3 +17,11 @@
 ----
 
 - fazer lista do que foi e do que nao foi apresentado
+
+
+---
+
+- entrega
+    - report requirements
+    - report system implementation
+    - report team work

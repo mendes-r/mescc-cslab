@@ -1,3 +1,7 @@
+#include <Arduino.h>
+#include <WiFi.h>
+#include <WiFiMulti.h>
+
 static const uint8_t PUMP_1 = 13;
 static const uint8_t PUMP_STATE_1 = 12;
 static const uint8_t PUMP_CONTROL_1 = 14;
@@ -13,59 +17,74 @@ static const int8_t LEVEL_MIN = 2;
 static const int8_t LEVEL_MED = 3;
 static const int8_t LEVEL_MAX = 4;
 
-volatile uint8_t pump_1 = 1;
-volatile uint8_t pump_2 = 1;
+static const int8_t PUMP_ON = 1;
+static const int8_t PUMP_OFF = 2;
 
-#include <WiFi.h>
-#include <WiFiMulti.h>
+static const int8_t PUMP_STATE_NOK = 0;
+static const int8_t PUMP_STATE_OK = 1;
 
 const char* ssid     = "MyPhone";
 const char* password = "iseprules";
 const uint16_t port = 4545;
 const char * host = "172.20.10.13"; 
 
+// Task1: TCP client
+// Task2: Data processing and pump commands
+// Task3: MQTT client
+TaskHandle_t Task1, Task2;
+xSemaphoreHandle xMutex;
 WiFiMulti WiFiMulti;
+
+// Current system's status
+volatile uint8_t wps_id = 1;
+volatile uint8_t curr_water_level = LEVEL_LOW;
+volatile uint8_t curr_pump1_status = PUMP_OFF;
+volatile uint8_t curr_pump2_status = PUMP_OFF;
+
+volatile uint8_t curr_pump1_state = PUMP_STATE_OK;
+volatile uint8_t curr_pump2_state = PUMP_STATE_OK;
+
+bool alert = false;
 
 void setup() {
   Serial.begin(115200);
 
   pinMode(ALERT, OUTPUT);
-
   pinMode(PUMP_1, OUTPUT);
   pinMode(PUMP_STATE_1, OUTPUT);
   pinMode(PUMP_CONTROL_1, INPUT);
-
   pinMode(PUMP_2, OUTPUT);
   pinMode(PUMP_STATE_2, OUTPUT);
   pinMode(PUMP_CONTROL_2, INPUT);
 
   digitalWrite(ALERT, LOW);
-
   delay(10);
 
-  // start by connecting to a WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  xMutex = xSemaphoreCreateMutex();
 
-  WiFiMulti.addAP(ssid, password);
+  xTaskCreatePinnedToCore(
+                  tcpClient,   /* Task function. */
+                  "Task1",     /* name of task. */
+                  10000,       /* Stack size of task */
+                  NULL,        /* parameter of the task */
+                  1,           /* priority of the task */
+                  &Task1,      /* Task handle to keep track of created task */
+                  1);          /* pin task to core 1 */
+  
+  xTaskCreatePinnedToCore(
+                  controlPumps,    /* Task function. */
+                  "Task2",        /* name of task. */
+                  10000,          /* Stack size of task */
+                  NULL,           /* parameter of the task */
+                  2,              /* priority of the task */
+                  &Task2,         /* Task handle to keep track of created task */
+                  1);             /* pin task to core 1 */
 
-  while(WiFiMulti.run() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-  }
-
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-
+  wifiConnection();
   delay(500);
 }
 
-void loop() {
-
+void tcpClient (void * parameters) {
   Serial.print("Connecting to ");
   Serial.println(host);
 
@@ -95,8 +114,7 @@ void loop() {
     String line = client.readStringUntil('\r');
     Serial.println(line);
     //read back one line from the server
-    int8_t level = line[0] - '0';
-    controlPumps(level);
+    curr_water_level = line[0] - '0';
   }
   else
   {
@@ -110,50 +128,66 @@ void loop() {
   delay(1000);
 }
 
+void wifiConnection() {
+  // start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
 
+  WiFiMulti.addAP(ssid, password);
 
-    
-void controlPumps(int8_t level)
+  while(WiFiMulti.run() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void controlPumps(void * parameters)
 {
   updatePumpFailureState();
-  uint8_t pumps_state = pump_1 + pump_2;
+  uint8_t pumps_state = curr_pump1_state + curr_pump2_state;
   
   switch (pumps_state) {
     case 2: // all pumps are working
-      allRight(level);
+      allRight(curr_water_level);
       break;
     case 1: // one pump is malfunction
-      halfRight(level);
+      halfRight(curr_water_level);
       sendAlert();
       break;
     case 0: // all pumps failed
       sendAlert();
       break;
   }
-
 }
 
 void allRight(int8_t level)
 {
   switch (level) {
     case LEVEL_LOW: 
-      digitalWrite(PUMP_1, LOW);
-      digitalWrite(PUMP_2, LOW);
+      turnPump_1_OFF();
+      turnPump_2_OFF();
       stopAlert();
       break;
     case LEVEL_MIN: 
-      digitalWrite(PUMP_1, HIGH);
-      digitalWrite(PUMP_2, LOW);
+      turnPump_1_ON();
+      turnPump_2_OFF();
       stopAlert();
       break;
     case LEVEL_MED: 
-      digitalWrite(PUMP_1, HIGH);
-      digitalWrite(PUMP_2, HIGH);
+      turnPump_1_ON();
+      turnPump_2_ON();
       stopAlert();
       break;
     case LEVEL_MAX: 
-      digitalWrite(PUMP_1, HIGH);
-      digitalWrite(PUMP_2, HIGH);
+      turnPump_1_ON();
+      turnPump_2_ON();
       sendAlert();
   }
 }
@@ -162,22 +196,22 @@ void halfRight(int8_t level)
 {
   switch (level) {
     case LEVEL_LOW: 
-      digitalWrite(PUMP_1, LOW);
-      digitalWrite(PUMP_2, LOW);
+      turnPump_1_OFF();
+      turnPump_2_OFF();
       break;
     case LEVEL_MIN:
-      if (pump_1) {
-        digitalWrite(PUMP_1, HIGH);
+      if (curr_pump1_status) {
+        turnPump_1_ON();
       } else {
-        digitalWrite(PUMP_2, HIGH);
+        turnPump_2_ON();
       }
       break;
     case LEVEL_MED:
     case LEVEL_MAX:
-      if (pump_1) {
-        digitalWrite(PUMP_1, HIGH);
+      if (curr_pump1_status) {
+        turnPump_1_ON();
       } else {
-        digitalWrite(PUMP_2, HIGH);
+        turnPump_2_ON();
       } 
       sendAlert();
   }
@@ -188,25 +222,32 @@ void updatePumpFailureState()
   if (digitalRead(PUMP_CONTROL_1)){
     Serial.println("Pump 1 is functional");
     digitalWrite(PUMP_STATE_1, HIGH);
-    pump_1 = 1;
+    curr_pump1_state = PUMP_STATE_OK;
   } else {
     Serial.println("Pump 1 FAILURE");
     digitalWrite(PUMP_STATE_1, LOW);
-    digitalWrite(PUMP_1, LOW);
-    pump_1 = 0;
+    turnPump_1_OFF();
+    curr_pump1_state = PUMP_STATE_NOK;;
   }
 
-    if (digitalRead(PUMP_CONTROL_2)){
+  if (digitalRead(PUMP_CONTROL_2)){
     Serial.println("Pump 2 is functional");
     digitalWrite(PUMP_STATE_2, HIGH);
-    pump_2 = 1;
+    curr_pump2_state = PUMP_STATE_OK;;
   } else {
     Serial.println("Pump 2 FAILURE");
     digitalWrite(PUMP_STATE_2, LOW);
-    digitalWrite(PUMP_2, LOW);
-    pump_2 = 0;
+    turnPump_2_OFF();
+    curr_pump2_state = PUMP_STATE_NOK;;
   }
 }
 
-void sendAlert() { digitalWrite(ALERT, HIGH); Serial.println("Send ALERT!"); }
-void stopAlert() { digitalWrite(ALERT, LOW); Serial.println("Stop ALERT!"); }
+void sendAlert() { digitalWrite(ALERT, HIGH); alert = true; Serial.println("Send ALERT!"); }
+void stopAlert() { digitalWrite(ALERT, LOW); alert = false; Serial.println("Stop ALERT!"); }
+
+void turnPump_1_ON() { digitalWrite(PUMP_1, HIGH); curr_pump1_status = PUMP_ON;}
+void turnPump_1_OFF() { digitalWrite(PUMP_1, LOW); curr_pump1_status = PUMP_OFF;}
+void turnPump_2_ON() { digitalWrite(PUMP_2, HIGH); curr_pump2_status = PUMP_ON;}
+void turnPump_2_OFF() { digitalWrite(PUMP_2, LOW); curr_pump2_status = PUMP_OFF;}
+
+void loop() {}
