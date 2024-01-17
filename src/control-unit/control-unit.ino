@@ -37,15 +37,20 @@
 #define PUMP_STATE_OK 1
 
 TaskHandle_t Task1, Task2, Task3;
+xSemaphoreHandle xMutex;
+
+typedef struct{
+  volatile bool alert;
+  volatile uint8_t id;
+  volatile uint8_t curr_water_level;
+  volatile uint8_t curr_pump1_status;
+  volatile uint8_t curr_pump2_status;  
+  volatile uint8_t curr_pump1_state;
+  volatile uint8_t curr_pump2_state;
+} WPS;
 
 // Current system's status
-volatile uint8_t wps_id = 1;
-volatile uint8_t curr_water_level = LEVEL_LOW;
-volatile uint8_t curr_pump1_status = PUMP_OFF;
-volatile uint8_t curr_pump2_status = PUMP_OFF;
-volatile bool alert = false;
-volatile uint8_t curr_pump1_state = PUMP_STATE_OK;
-volatile uint8_t curr_pump2_state = PUMP_STATE_OK;
+WPS _wps = {false, 1, LEVEL_LOW, PUMP_OFF, PUMP_OFF, PUMP_STATE_OK, PUMP_STATE_OK};
 
 void setup() {
   Serial.begin(115200);
@@ -58,6 +63,8 @@ void setup() {
   pinMode(PUMP_STATE_2, OUTPUT);
   pinMode(PUMP_CONTROL_2, INPUT);
   digitalWrite(ALERT, LOW);
+
+  xMutex = xSemaphoreCreateMutex(); 
 
   delay(500);
 
@@ -144,14 +151,14 @@ void controlPumps (void * parameters)
   for (;;)
   {
     updatePumpFailureState();
-    uint8_t pumps_state = curr_pump1_state + curr_pump2_state;
+    uint8_t pumps_state = _wps.curr_pump1_state + _wps.curr_pump2_state;
     
     switch (pumps_state) {
       case 2: // all pumps are working
-        allRight(curr_water_level);
+        allRight(_wps.curr_water_level);
         break;
       case 1: // one pump is malfunction
-        halfRight(curr_water_level);
+        halfRight(_wps.curr_water_level);
         sendAlert();
         break;
       case 0: // all pumps failed
@@ -195,9 +202,9 @@ void requestSensorData (void * parameters)
           //read back one line from the server
           String line = client.readStringUntil('\r');
           // save water level
-          curr_water_level = line[0] - '0';
+          set_curr_water_level(line[0] - '0');
           Serial.print("Task1 Current water level: ");
-          Serial.println(curr_water_level);
+          Serial.println(_wps.curr_water_level);
         } else {
           Serial.println("Task1 Client timed out ");
         }
@@ -245,7 +252,7 @@ void halfRight(int8_t level)
       turnPump_2_OFF();
       break;
     case LEVEL_MIN:
-      if (curr_pump1_status) {
+      if (_wps.curr_pump1_status) {
         turnPump_1_ON();
       } else {
         turnPump_2_ON();
@@ -253,7 +260,7 @@ void halfRight(int8_t level)
       break;
     case LEVEL_MED:
     case LEVEL_MAX:
-      if (curr_pump1_status) {
+      if (_wps.curr_pump1_status) {
         turnPump_1_ON();
       } else {
         turnPump_2_ON();
@@ -266,20 +273,20 @@ void updatePumpFailureState()
 {
   if (digitalRead(PUMP_CONTROL_1)){
     digitalWrite(PUMP_STATE_1, HIGH);
-    curr_pump1_state = PUMP_STATE_OK;
+    set_curr_pump1_state(PUMP_STATE_OK);
   } else {
     digitalWrite(PUMP_STATE_1, LOW);
     turnPump_1_OFF();
-    curr_pump1_state = PUMP_STATE_NOK;;
+    set_curr_pump1_state(PUMP_STATE_NOK);
   }
 
   if (digitalRead(PUMP_CONTROL_2)){
     digitalWrite(PUMP_STATE_2, HIGH);
-    curr_pump2_state = PUMP_STATE_OK;;
+    set_curr_pump2_state(PUMP_STATE_OK);
   } else {
     digitalWrite(PUMP_STATE_2, LOW);
     turnPump_2_OFF();
-    curr_pump2_state = PUMP_STATE_NOK;;
+    set_curr_pump2_state(PUMP_STATE_NOK);
   }
 }
 
@@ -309,15 +316,55 @@ void connect_to_wifi (void)
 }
 
 String getWpsStatus(){
-  return String(alert) + "," + String(wps_id) + "," + String(curr_water_level) + "," + String(curr_pump1_status) + "," + String(curr_pump2_status);
+    xSemaphoreTake(xMutex, portMAX_DELAY);
+    String message = String(_wps.alert) + "," + String(_wps.id) + "," + String(_wps.curr_water_level) + "," + String(_wps.curr_pump1_status) + "," + String(_wps.curr_pump2_status);
+    xSemaphoreGive(xMutex);
+    return message;
 }
 
-void sendAlert() { digitalWrite(ALERT, HIGH); alert = true; Serial.println("Send ALERT!"); }
-void stopAlert() { digitalWrite(ALERT, LOW); alert = false; Serial.println("Stop ALERT!"); }
+void sendAlert() { digitalWrite(ALERT, HIGH); set_alert(true); Serial.println("Send ALERT!"); }
+void stopAlert() { digitalWrite(ALERT, LOW); set_alert(false); Serial.println("Stop ALERT!"); }
 
-void turnPump_1_ON() { digitalWrite(PUMP_1, HIGH); curr_pump1_status = PUMP_ON;}
-void turnPump_1_OFF() { digitalWrite(PUMP_1, LOW); curr_pump1_status = PUMP_OFF;}
-void turnPump_2_ON() { digitalWrite(PUMP_2, HIGH); curr_pump2_status = PUMP_ON;}
-void turnPump_2_OFF() { digitalWrite(PUMP_2, LOW); curr_pump2_status = PUMP_OFF;}
+void turnPump_1_ON() { digitalWrite(PUMP_1, HIGH); set_curr_pump1_status(PUMP_ON);}
+void turnPump_1_OFF() { digitalWrite(PUMP_1, LOW); set_curr_pump1_status(PUMP_OFF);}
+void turnPump_2_ON() { digitalWrite(PUMP_2, HIGH); set_curr_pump2_status(PUMP_ON);}
+void turnPump_2_OFF() { digitalWrite(PUMP_2, LOW); set_curr_pump2_status(PUMP_OFF);}
+
+
+void set_alert(bool value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.alert = value;
+  xSemaphoreGive(xMutex);
+}
+
+void set_curr_water_level(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.curr_water_level = value;
+  xSemaphoreGive(xMutex);
+}
+
+void set_curr_pump1_status(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);  
+  _wps.curr_pump1_status = value;
+  xSemaphoreGive(xMutex);
+}
+
+void set_curr_pump2_status(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.curr_pump2_status = value;
+  xSemaphoreGive(xMutex);
+}
+
+void set_curr_pump1_state(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.curr_pump1_state = value;
+  xSemaphoreGive(xMutex);
+}
+
+void set_curr_pump2_state(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.curr_pump1_state = value;
+  xSemaphoreGive(xMutex);
+}
 
 void loop() {}
