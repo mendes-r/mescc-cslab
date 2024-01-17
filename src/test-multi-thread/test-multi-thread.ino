@@ -6,7 +6,7 @@
 //------------
 #define WIFI_NETWORK    "MyPhone"
 #define WIFI_PASSWORD   "iseprules"
-#define WIFI_TIMEOUT    15000
+#define WIFI_TIMEOUT    25000
 
 #define SENSOR_1_PORT 4545
 #define SENSOR_1 "172.20.10.13"
@@ -47,8 +47,6 @@ volatile bool alert = false;
 volatile uint8_t curr_pump1_state = PUMP_STATE_OK;
 volatile uint8_t curr_pump2_state = PUMP_STATE_OK;
 
-WiFiClient client;
-
 void setup() {
   Serial.begin(115200);
 
@@ -70,38 +68,35 @@ void setup() {
                     NULL,        /* parameter of the task */
                     1,           /* priority of the task */
                     &Task1,      /* Task handle to keep track of created task */
-                    0);          /* pin task to core 0 */
+                    0);          /* pin task to core 0 */    
 
   xTaskCreatePinnedToCore(
-                    controlPumps,       /* Task function. */
+                    controlPumps,   /* Task function. */
                     "Task2",     /* name of task. */
                     10000,       /* Stack size of task */
                     NULL,        /* parameter of the task */
                     2,           /* priority of the task */
                     &Task2,      /* Task handle to keep track of created task */
-                    0);          /* pin task to core 0 */
-
-  xTaskCreatePinnedToCore(
-                    publishStatus,   /* Task function. */
-                    "Task3",     /* name of task. */
-                    20000,       /* Stack size of task */
-                    NULL,        /* parameter of the task */
-                    0,           /* priority of the task */
-                    &Task3,      /* Task handle to keep track of created task */
-                    0);          /* pin task to core 0 */                                                                 
+                    0);          /* pin task to core 0 */                                                
 }
 
 void publishStatus (void * parameters)
 {
-  MqttClient mqttClient(client);
+  
   const char topic[]  = "wps1/status";
   unsigned long previousMillis = 0;
   const long interval = 8000;
 
   for (;;)
   {
+
     if( WiFi.status() == WL_CONNECTED ){
+
+      WiFiClient client;
+      MqttClient mqttClient(client);
+      
       connect_to_broker(mqttClient);
+
       mqttClient.poll();
 
       unsigned long currentMillis = millis();
@@ -119,6 +114,10 @@ void publishStatus (void * parameters)
 
         Serial.println();
       }
+
+      mqttClient.stop();
+      client.stop();
+
     } else{
       connect_to_wifi();
     }
@@ -132,8 +131,6 @@ void controlPumps (void * parameters)
 {
   for (;;)
   {
-    Serial.println("\nTask2 running");
-
     updatePumpFailureState();
     uint8_t pumps_state = curr_pump1_state + curr_pump2_state;
     
@@ -150,6 +147,7 @@ void controlPumps (void * parameters)
         break;
     }
 
+    Serial.println("\nTask2 Running");
     vTaskDelay(500 / portTICK_PERIOD_MS);
   }
 }
@@ -159,28 +157,46 @@ void requestSensorData (void * parameters)
   for (;;)
   {  
     if( WiFi.status() == WL_CONNECTED ){
-      client.print("GET me the current water level\n\n");
-      int maxloops = 0;
 
-      while (!client.available() && maxloops < 1000) {
-        maxloops++;
-        delay(1); 
-      }
+      Serial.print("Task1 Connecting to ");
+      Serial.println(SENSOR_1);
 
-      if (client.available() > 0) {
-        //read back one line from the server
-        String line = client.readStringUntil('\r');
-        // save water level
-        curr_water_level = line[0] - '0';
+      // Use WiFiClient class to create TCP connections
+      WiFiClient client;
+
+      if (!client.connect(SENSOR_1, SENSOR_1_PORT)) {
+          Serial.println("Task1 Connection failed.");
+          Serial.println("Task1 Waiting 5 seconds before retrying...");
+          vTaskDelay(5000 / portTICK_PERIOD_MS);
       } else {
-        Serial.println("Client.available() timed out ");
+        Serial.println("Task1 Sending request");
+
+        client.print("GET me the current water level\n\n");
+        int maxloops = 0;
+
+        while (!client.available() && maxloops < 1000) {
+          maxloops++;
+          delay(1); 
+        }
+
+        if (client.available() > 0) {
+          //read back one line from the server
+          String line = client.readStringUntil('\r');
+          // save water level
+          curr_water_level = line[0] - '0';
+          Serial.print("Task1 Current water level: ");
+          Serial.println(curr_water_level);
+        } else {
+          Serial.println("Task1 Client timed out ");
+        }
       }
+      
       client.stop(); 
     } else{
       connect_to_wifi();
     }
-    Serial.println("\nTask3 running");  
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    Serial.println("\nTask1 Running");  
+    vTaskDelay(2500 / portTICK_PERIOD_MS);
   }
 }
 

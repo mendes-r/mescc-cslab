@@ -81,6 +81,9 @@ void loop() {
         if (c == '\n') {                    // if the byte is a newline character
 
           if (currentLine.length() == 0) {
+            Serial.print("Sending response: ");
+            Serial.println(level_state);
+
             client.println(level_state);
             client.println();
             // the content of the HTTP response follows the header:
