@@ -1,6 +1,5 @@
-# Python 3 server example
+# Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import paho.mqtt.client as mqtt
 import time
 
 hostName = "localhost"
@@ -21,10 +20,6 @@ if __name__ == "__main__":
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print("Server started http://%s:%s" % (hostName, serverPort))
     
-    mqttClient = mqtt.Client(client_id="myPy",
-                             transport=mytransport,
-                             protocol=mqtt.MQTTv5)
-
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:

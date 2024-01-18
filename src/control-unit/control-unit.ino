@@ -8,8 +8,9 @@
 #define WIFI_PASSWORD   "iseprules"
 #define WIFI_TIMEOUT    25000
 
-#define SENSOR_1_PORT 4545
+#define SENSOR_PORT 4545
 #define SENSOR_1 "172.20.10.13"
+#define SENSOR_2 "172.20.10.2"
 
 #define BROKER "172.20.10.3"
 #define BROKER_PORT 1883
@@ -124,7 +125,7 @@ void publishStatus (void * parameters)
           // save the last time a message was sent
           previousMillis = currentMillis;
 
-          Serial.print("Task3 Sending message to topic: ");
+          //Serial.print("Task3 Sending message to topic: ");
           Serial.println(topic);
 
           mqttClient.beginMessage(topic);
@@ -141,7 +142,7 @@ void publishStatus (void * parameters)
       connect_to_wifi();
     }
 
-    Serial.println("\nTask3 Running");
+    //Serial.println("\nTask3 Running");
     vTaskDelay(1500 / portTICK_PERIOD_MS);
   }
 }
@@ -166,57 +167,83 @@ void controlPumps (void * parameters)
         break;
     }
 
-    Serial.println("\nTask2 Running");
+    //Serial.println("\nTask2 Running");
     vTaskDelay(500 / portTICK_PERIOD_MS);
   }
 }
 
 void requestSensorData (void * parameters)
 {
+  // INVALID   = 0;
+  // LEVEL_LOW = 1;
+  // LEVEL_MIN = 2;
+  // LEVEL_MED = 3;
+  // LEVEL_MAX = 4;
+  uint8_t matrix[5][5] = {
+    {4, 1, 2, 3, 4},
+    {1, 1, 1, 1, 4},
+    {2, 1, 2, 2, 4},
+    {3, 1, 2, 3, 4},
+    {4, 4, 4, 4, 4}
+  }; 
+  
   for (;;)
   {  
     if( WiFi.status() == WL_CONNECTED ){
+      uint8_t level_1;
+      uint8_t level_2;
 
       Serial.print("Task1 Connecting to ");
       Serial.println(SENSOR_1);
+      level_1 = connect_to_sensor(SENSOR_1);
 
-      // Use WiFiClient class to create TCP connections
-      WiFiClient client;
+      Serial.print("Task1 Connecting to ");
+      Serial.println(SENSOR_2);
+      level_2 = connect_to_sensor(SENSOR_2);
 
-      if (!client.connect(SENSOR_1, SENSOR_1_PORT)) {
-          Serial.println("Task1 Connection failed.");
-          Serial.println("Task1 Waiting 5 seconds before retrying...");
-          vTaskDelay(5000 / portTICK_PERIOD_MS);
-      } else {
-        Serial.println("Task1 Sending request");
-
-        client.print("GET me the current water level\n\n");
-        int maxloops = 0;
-
-        while (!client.available() && maxloops < 1000) {
-          maxloops++;
-          delay(1); 
-        }
-
-        if (client.available() > 0) {
-          //read back one line from the server
-          String line = client.readStringUntil('\r');
-          // save water level
-          set_curr_water_level(line[0] - '0');
-          Serial.print("Task1 Current water level: ");
-          Serial.println(_wps.curr_water_level);
-        } else {
-          Serial.println("Task1 Client timed out ");
-        }
-      }
-      
-      client.stop(); 
+      set_curr_water_level(matrix[level_1][level_2]);
     } else{
       connect_to_wifi();
     }
-    Serial.println("\nTask1 Running");  
+    //Serial.println("\nTask1 Running");  
     vTaskDelay(2500 / portTICK_PERIOD_MS);
   }
+}
+
+uint8_t connect_to_sensor(const char *host){
+  // Use WiFiClient class to create TCP connections
+  WiFiClient client;
+  uint8_t water_level = 0;
+
+  if (!client.connect(host, SENSOR_PORT)) {
+      Serial.println("Task1 Connection failed.");
+      Serial.println("Task1 Waiting 5 seconds before retrying...");
+      vTaskDelay(5000 / portTICK_PERIOD_MS);
+  } else {
+    //Serial.println("Task1 Sending request");
+
+    client.print("GET me the current water level\n\n");
+    int maxloops = 0;
+
+    while (!client.available() && maxloops < 1000) {
+      maxloops++;
+      delay(1); 
+    }
+
+    if (client.available() > 0) {
+      // read back one line from the server
+      String line = client.readStringUntil('\r');
+      // save water level
+      water_level = (line[0] - '0');
+      //Serial.print("Task1 Current water level: ");
+      //Serial.println(_wps.curr_water_level);
+    } else {
+      //Serial.println("Task1 Client timed out ");
+    }
+  }
+
+  client.stop(); 
+  return water_level;
 }
 
 void allRight(int8_t level)
@@ -265,7 +292,6 @@ void halfRight(int8_t level)
       } else {
         turnPump_2_ON();
       } 
-      sendAlert();
   }
 }
 
@@ -363,7 +389,7 @@ void set_curr_pump1_state(uint8_t value) {
 
 void set_curr_pump2_state(uint8_t value) {
   xSemaphoreTake(xMutex, portMAX_DELAY);
-  _wps.curr_pump1_state = value;
+  _wps.curr_pump2_state = value;
   xSemaphoreGive(xMutex);
 }
 
