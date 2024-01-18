@@ -69,6 +69,15 @@ void setup() {
 
 void loop() {
 
+  if (WiFi.status() != WL_CONNECTED){
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+  }
+
   WiFiClient client = server.accept();   // listen for incoming clients
 
   if (client) {                             // if you get a client,

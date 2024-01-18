@@ -14,6 +14,7 @@
     - web server
     - rss
 
+- atualizar matrix de resposta das water levels
 ----
 
 - fazer lista do que foi e do que nao foi apresentado

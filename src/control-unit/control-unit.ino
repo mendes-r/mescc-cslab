@@ -31,8 +31,8 @@
 #define LEVEL_MED 3
 #define LEVEL_MAX 4
 
+#define PUMP_OFF 0
 #define PUMP_ON 1
-#define PUMP_OFF 2
 
 #define PUMP_STATE_NOK 0
 #define PUMP_STATE_OK 1
@@ -125,7 +125,7 @@ void publishStatus (void * parameters)
           // save the last time a message was sent
           previousMillis = currentMillis;
 
-          //Serial.print("Task3 Sending message to topic: ");
+          Serial.print("Task3 Sending message to topic: ");
           Serial.println(topic);
 
           mqttClient.beginMessage(topic);
@@ -143,7 +143,7 @@ void publishStatus (void * parameters)
     }
 
     //Serial.println("\nTask3 Running");
-    vTaskDelay(1500 / portTICK_PERIOD_MS);
+    vTaskDelay(2500 / portTICK_PERIOD_MS);
   }
 }
 
@@ -166,6 +166,9 @@ void controlPumps (void * parameters)
         sendAlert();
         break;
     }
+
+    Serial.print("Task2 ");
+    printWpsStatus();
 
     //Serial.println("\nTask2 Running");
     vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -193,12 +196,7 @@ void requestSensorData (void * parameters)
       uint8_t level_1;
       uint8_t level_2;
 
-      Serial.print("Task1 Connecting to ");
-      Serial.println(SENSOR_1);
       level_1 = connect_to_sensor(SENSOR_1);
-
-      Serial.print("Task1 Connecting to ");
-      Serial.println(SENSOR_2);
       level_2 = connect_to_sensor(SENSOR_2);
 
       set_curr_water_level(matrix[level_1][level_2]);
@@ -216,12 +214,9 @@ uint8_t connect_to_sensor(const char *host){
   uint8_t water_level = 0;
 
   if (!client.connect(host, SENSOR_PORT)) {
-      Serial.println("Task1 Connection failed.");
-      Serial.println("Task1 Waiting 5 seconds before retrying...");
-      vTaskDelay(5000 / portTICK_PERIOD_MS);
+      Serial.print("Task1 Connection failed: ");
+      Serial.println(host);
   } else {
-    //Serial.println("Task1 Sending request");
-
     client.print("GET me the current water level\n\n");
     int maxloops = 0;
 
@@ -235,10 +230,12 @@ uint8_t connect_to_sensor(const char *host){
       String line = client.readStringUntil('\r');
       // save water level
       water_level = (line[0] - '0');
-      //Serial.print("Task1 Current water level: ");
-      //Serial.println(_wps.curr_water_level);
+      Serial.print("Task1 Connecting successful: ");
+      Serial.print(host);
+      Serial.print(" :: water level ");
+      Serial.println(water_level);
     } else {
-      //Serial.println("Task1 Client timed out ");
+      Serial.println("Task1 Connection timed out ");
     }
   }
 
@@ -316,8 +313,7 @@ void updatePumpFailureState()
   }
 }
 
-void connect_to_wifi (void)
-{
+void connect_to_wifi (void) {
   Serial.println("Connecting to WiFi");
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_NETWORK, WIFI_PASSWORD);
@@ -348,14 +344,18 @@ String getWpsStatus(){
     return message;
 }
 
+void printWpsStatus(){
+    String status = String(_wps.alert) + ", " + String(_wps.id) + ", " + String(_wps.curr_water_level) + ", " + String(_wps.curr_pump1_status) + ", " + String(_wps.curr_pump2_status);
+    Serial.println(status);
+}
+
 void sendAlert() { digitalWrite(ALERT, HIGH); set_alert(true); Serial.println("Send ALERT!"); }
-void stopAlert() { digitalWrite(ALERT, LOW); set_alert(false); Serial.println("Stop ALERT!"); }
+void stopAlert() { digitalWrite(ALERT, LOW); set_alert(false); }
 
 void turnPump_1_ON() { digitalWrite(PUMP_1, HIGH); set_curr_pump1_status(PUMP_ON);}
 void turnPump_1_OFF() { digitalWrite(PUMP_1, LOW); set_curr_pump1_status(PUMP_OFF);}
 void turnPump_2_ON() { digitalWrite(PUMP_2, HIGH); set_curr_pump2_status(PUMP_ON);}
 void turnPump_2_OFF() { digitalWrite(PUMP_2, LOW); set_curr_pump2_status(PUMP_OFF);}
-
 
 void set_alert(bool value) {
   xSemaphoreTake(xMutex, portMAX_DELAY);
