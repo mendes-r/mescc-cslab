@@ -38,7 +38,7 @@ MqttClient mqttClient(client);
 const char topic[]  = "wps1/status";
 
 uint8_t alert_lost_broker = 0;
-const uint8_t MAX_NO_MESSAGE = 10;
+const uint8_t MAX_NO_MESSAGE = 15;
 
 bool alert_checked = false;
 bool alert = false;
@@ -65,7 +65,7 @@ void loop() {
     mqttClient.poll();  
     if (alert_lost_broker >= MAX_NO_MESSAGE) {
       alarm_on();
-      Serial.println("During the last 10 seconds, no message was received.");
+      Serial.println("During the last 15 seconds, no message was received.");
     }
     alert_lost_broker++;
   } else{

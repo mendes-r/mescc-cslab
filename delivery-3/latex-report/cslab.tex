@@ -72,44 +72,56 @@ Although the following chapter are tightly defined, the report should be read as
 %%%
 \subsection{RTAES - Concorrency and Real Time Scheduling}
 
-- mostrar codigo da implementacao
-- onde mutex
+%%%
+\subsubsection{Real Time Scheduling}
 
-    // REAL TIME WCET SIMULATION -------------------------------
+\begin{table}[!htb]
+    \caption{Theoretical values (left) and implemented values (right) in \textit{ms}:}
+    \begin{minipage}{0.75\linewidth}
+		\begin{table}[H]
+		\begin{tabular}{lll}
+		\textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
+		\textbf{1}    & 60         & 100           \\
+		\textbf{2}    & 25         & 200           \\
+		\textbf{3}    & 35         & 250          
+		\end{tabular}
+		\end{table}
+
+    \end{minipage}%
+    \begin{minipage}{.5\linewidth}
+		\begin{table}[H]
+		\begin{tabular}{lll}
+		\textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
+		\textbf{1}    & 1200         & 2000           \\
+		\textbf{2}    & 500         & 4000           \\
+		\textbf{3}    & 700         & 5000          
+		\end{tabular}
+		\end{table}
+
+    \end{minipage} 
+\end{table}
+
+The values on the right side table were found by running the code in different situations.
+
+\begin{minted}{c}
+for (;;) {
     unsigned long start_time = millis();
     unsigned long finish_time;
     unsigned long duration;
-    // REAL TIME WCET SIMULATION -------------------------------
 
-    // REAL TIME WCET SIMULATION -------------------------------
+    // Code -------------------
+
     finish_time = millis();      
     duration = finish_time - start_time;
-    Serial.print("TASK 3 - Execution Time[ms]: ");
+    Serial.print("TASK N - Execution Time[ms]: ");
     Serial.println(duration); 
-    
-    long next_release = 5000 - duration;
-    if (next_release > 0) {
-      vTaskDelay(next_release / portTICK_PERIOD_MS);
-    } else {
-      Serial.println("TRASK 3 - FAILED Deadline !!!");
-    }
-    // REAL TIME WCET SIMULATION -------------------------------
-    
+}
+\end{minted}
 
-TASK 1 - Connection failed: 172.20.10.13
-TASK 1 - Connection failed: 172.20.10.5
-TASK 1 - Duration[ms]: 2009
-TRASK 1 - FAILED Deadline !!!
-
-connection timeout = 1s
-that gives a lot of timeouts. specially with one of the sensors
-mitigation.
-
-----
-
+\begin{minted}{bash}
 TASK 3 - Duration[ms]: 40
 TASK 1 - Duration[ms]: 917
-TASK 2 - Duration[ms]: 0
+TASK 2 - Duration[ms]: 1
 TASK 1 - Duration[ms]: 658
 TASK 1 - Duration[ms]: 754
 TASK 3 - Duration[ms]: 770
@@ -124,12 +136,37 @@ TASK 2 - Duration[ms]: 0
 TASK 1 - Duration[ms]: 187
 TASK 3 - Duration[ms]: 157
 TASK 1 - Duration[ms]: 990
-TASK 2 - Duration[ms]: 0
+TASK 2 - Duration[ms]: 1
 TASK 1 - Duration[ms]: 1036
+\end{minted}
 
----
+\begin{minted}{c}
+long next_release = 5000 - duration;
+if (next_release > 0) {
+  vTaskDelay(next_release / portTICK_PERIOD_MS);
+} else {
+  Serial.println("TRASK 3 - FAILED Deadline !!!");
+}
+\end{minted}
+
+\begin{minted}{bash}
+TASK 1 - Connection failed: 172.20.10.13
+TASK 1 - Connection failed: 172.20.10.5
+TASK 1 - Duration[ms]: 2009
+TASK 1 - FAILED Deadline !!!
+\end{minted}
 
 
+connection timeout = 1s
+that gives a lot of timeouts. specially with one of the sensors
+mitigation.
+
+%%%
+\subsubsection{Concorrency}
+
+- mostrar codigo da implementacao
+
+- onde mutex
 
 %%%
 \subsection{COMCS - Communication}
@@ -150,6 +187,8 @@ TASK 1 - Duration[ms]: 1036
 - explicar a tabela dos inputs dos sensores e levantar alarm caso (A tabela agora é diferente da ultima vez)
 - strategy for cluster of control unit nodes
 
+- dois timeouts dos sensores equivale a max level.... nao devia estar assim
+
 \subsubsection{MQTT Broker}
 
 - one topic per WPS
@@ -157,7 +196,7 @@ TASK 1 - Duration[ms]: 1036
 \subsubsection{RSS}
 
 - reads broker every 1 sec
-- sends alert after 10 sec without message
+- sends alert after 15 sec without message
 - subscribes to each WPS topics (iter)
 - log who clicked the button and maintain LED on... because the system heals it self 
 

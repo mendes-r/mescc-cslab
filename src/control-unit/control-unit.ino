@@ -158,7 +158,7 @@ void publishStatus (void * parameters)
     if (next_release > 0) {
       vTaskDelay(next_release / portTICK_PERIOD_MS);
     } else {
-      Serial.println("TRASK 3 - FAILED Deadline !!!");
+      Serial.println("TASK 3 - FAILED Deadline !!!");
     }
     // REAL TIME WCET SIMULATION -------------------------------
     
@@ -204,7 +204,7 @@ void controlPumps (void * parameters)
     if (next_release > 0) {
       vTaskDelay(next_release / portTICK_PERIOD_MS);
     } else {
-      Serial.println("TRASK 2 - FAILED Deadline !!!");
+      Serial.println("TASK 2 - FAILED Deadline !!!");
     }
     // REAL TIME WCET SIMULATION -------------------------------
 
@@ -256,7 +256,7 @@ void requestSensorData (void * parameters)
     if (next_release > 0) {
       vTaskDelay(next_release / portTICK_PERIOD_MS);
     } else {
-      Serial.println("TRASK 1 - FAILED Deadline !!!");
+      Serial.println("TASK 1 - FAILED Deadline !!!");
     }
     // REAL TIME WCET SIMULATION -------------------------------
 
