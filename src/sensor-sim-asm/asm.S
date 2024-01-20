@@ -7,7 +7,7 @@ getMask:  entry a1, 48
 
 loop: 
             addi a5, a5, 1      # increment by one
-            beq a5, a6, end     # branch to end if not equal
+            beq a5, a6, end     # branch to end if equal
             slli a2, a2, 1      # left shif by 1, i.e. 0001 -> 0010
             j loop              # loop
 
