@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,
+            bindingoffset=0.5cm,
+            left=3cm,
+            right=3cm,
+            top=3cm,
+            bottom=4cm,
+            footskip=1.5cm]{geometry}
+            
+%
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{blindtext}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{minted}
+ \usepackage{url}
+ \usepackage{amsmath}
+%
+
+\setcounter{secnumdepth}{3}
+
+%%%%%%%%%%%%%%%%%%%%%
+\title{\textbf{Critical Systems Lab - MESCC\\ Water Pumping Automated System}}
+\date{ISEP, January 2024, \textbf{Third Delivery}}
+\author{Ricardo Mendes\\ 1201779
+\and Arthur Gerbelli\\ 1220201}
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle              
+\newpage
+\tableofcontents
+\newpage
+
+%
+\section{Introduction}
+
+
+%%%
+\section{Requirement Specifications}
+
+%%%
+\subsection{System Requirements}
+
+%%%
+\subsection{System Structure and Traceability}
+
+
+\newpage
+%%%
+\section{Implementation}
+
+%%%
+\subsection{CCSYA - Assembly}
+
+%%%
+\subsection{RTAES - Concorrency and Real Time Scheduling}
+
+%%%
+\subsection{COMCS - Communication}
+
+%%%
+\subsection{Prototype}
+
+\subsubsection{Overview}
+
+\subsubsection{WPS}
+
+- tasks
+
+\subsubsection{MQTT Broker}
+
+- one topic per WPS
+
+\subsubsection{RSS}
+
+- reads broker every 1 sec
+- sends alert after 10 sec without message
+- subscribes to each WPS topics (iter)
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{thebibliography}{8}
+
+\bibitem{c1}
+ Espressif documentation: {\url{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#id23/}}
+ \bibitem{liulayland} C.L.Liu, J.Layland: Scheduling algorithms for multiprogramming in a hard-real-time environment. Journal of the Association of Computing Machinery, Vol.20, Nº.1, (1973)
+ \bibitem{c2}
+ ESP-WROOM-32 Specs:  {\url{https://www.mouser.com/datasheet/2/891/esp-wroom-32_datasheet_en-1223836.pdf}}
+
+\end{thebibliography}
+
+\end{document}
