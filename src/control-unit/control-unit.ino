@@ -6,11 +6,11 @@
 //------------
 #define WIFI_NETWORK    "MyPhone"
 #define WIFI_PASSWORD   "iseprules"
-#define WIFI_TIMEOUT    25000
+#define WIFI_TIMEOUT    1500
 
 #define SENSOR_PORT 4545
 #define SENSOR_1 "172.20.10.13"
-#define SENSOR_2 "172.20.10.2"
+#define SENSOR_2 "172.20.10.5"
 
 #define BROKER "172.20.10.3"
 #define BROKER_PORT 1883
@@ -106,6 +106,11 @@ void publishStatus (void * parameters)
 
   for (;;)
   {
+    // REAL TIME WCET SIMULATION -------------------------------
+    unsigned long start_time = millis();
+    unsigned long finish_time;
+    unsigned long duration;
+    // REAL TIME WCET SIMULATION -------------------------------
 
     if( WiFi.status() == WL_CONNECTED ){
 
@@ -113,7 +118,7 @@ void publishStatus (void * parameters)
       MqttClient mqttClient(client);
       
       if (!mqttClient.connect(BROKER, BROKER_PORT)) {
-        Serial.print("Task3 MQTT connection failed! Error code = ");
+        Serial.print("TASK3 - MQTT connection failed! Error code = ");
         Serial.println(mqttClient.connectError());
         vTaskDelay(1000 / portTICK_PERIOD_MS);
       } else {
@@ -125,8 +130,8 @@ void publishStatus (void * parameters)
           // save the last time a message was sent
           previousMillis = currentMillis;
 
-          Serial.print("Task3 Sending message to topic: ");
-          Serial.println(topic);
+          //Serial.print("TASK3 - Sending message to topic: ");
+          //Serial.println(topic);
 
           mqttClient.beginMessage(topic);
           mqttClient.print(getWpsStatus());
@@ -138,12 +143,25 @@ void publishStatus (void * parameters)
 
       mqttClient.stop();
       client.stop();
+
     } else{
       connect_to_wifi();
     }
 
-    //Serial.println("\nTask3 Running");
-    vTaskDelay(2500 / portTICK_PERIOD_MS);
+    // REAL TIME WCET SIMULATION -------------------------------
+    finish_time = millis();      
+    duration = finish_time - start_time;
+    Serial.print("TASK 3 - Execution Time[ms]: ");
+    Serial.println(duration); 
+    
+    long next_release = 5000 - duration;
+    if (next_release > 0) {
+      vTaskDelay(next_release / portTICK_PERIOD_MS);
+    } else {
+      Serial.println("TRASK 3 - FAILED Deadline !!!");
+    }
+    // REAL TIME WCET SIMULATION -------------------------------
+    
   }
 }
 
@@ -151,6 +169,12 @@ void controlPumps (void * parameters)
 {
   for (;;)
   {
+    // REAL TIME WCET SIMULATION -------------------------------
+    unsigned long start_time = millis();
+    unsigned long finish_time;
+    unsigned long duration;
+    // REAL TIME WCET SIMULATION -------------------------------
+
     updatePumpFailureState();
     uint8_t pumps_state = _wps.curr_pump1_state + _wps.curr_pump2_state;
     
@@ -167,11 +191,23 @@ void controlPumps (void * parameters)
         break;
     }
 
-    Serial.print("Task2 ");
-    printWpsStatus();
+    //Serial.print("Task2 ");
+    //printWpsStatus();
 
-    //Serial.println("\nTask2 Running");
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    // REAL TIME WCET SIMULATION -------------------------------
+    finish_time = millis();      
+    duration = finish_time - start_time;
+    Serial.print("TASK 2 - Execution Time[ms]: ");
+    Serial.println(duration); 
+    
+    long next_release = 4000 - duration;
+    if (next_release > 0) {
+      vTaskDelay(next_release / portTICK_PERIOD_MS);
+    } else {
+      Serial.println("TRASK 2 - FAILED Deadline !!!");
+    }
+    // REAL TIME WCET SIMULATION -------------------------------
+
   }
 }
 
@@ -192,6 +228,12 @@ void requestSensorData (void * parameters)
   
   for (;;)
   {  
+    // REAL TIME WCET SIMULATION -------------------------------
+    unsigned long start_time = millis();
+    unsigned long finish_time;
+    unsigned long duration;
+    // REAL TIME WCET SIMULATION -------------------------------
+
     if( WiFi.status() == WL_CONNECTED ){
       uint8_t level_1;
       uint8_t level_2;
@@ -203,8 +245,21 @@ void requestSensorData (void * parameters)
     } else{
       connect_to_wifi();
     }
-    //Serial.println("\nTask1 Running");  
-    vTaskDelay(2500 / portTICK_PERIOD_MS);
+
+    // REAL TIME WCET SIMULATION -------------------------------
+    finish_time = millis();      
+    duration = finish_time - start_time;
+    Serial.print("TASK 1 - Execution Time[ms]: ");
+    Serial.println(duration); 
+    
+    long next_release = 2000 - duration;
+    if (next_release > 0) {
+      vTaskDelay(next_release / portTICK_PERIOD_MS);
+    } else {
+      Serial.println("TRASK 1 - FAILED Deadline !!!");
+    }
+    // REAL TIME WCET SIMULATION -------------------------------
+
   }
 }
 
@@ -213,14 +268,16 @@ uint8_t connect_to_sensor(const char *host){
   WiFiClient client;
   uint8_t water_level = 0;
 
+  client.setTimeout(2);
+
   if (!client.connect(host, SENSOR_PORT)) {
-      Serial.print("Task1 Connection failed: ");
+      Serial.print("TASK 1 - Connection failed: ");
       Serial.println(host);
   } else {
     client.print("GET me the current water level\n\n");
     int maxloops = 0;
 
-    while (!client.available() && maxloops < 1000) {
+    while (!client.available() && maxloops < 500) {
       maxloops++;
       delay(1); 
     }
@@ -230,12 +287,13 @@ uint8_t connect_to_sensor(const char *host){
       String line = client.readStringUntil('\r');
       // save water level
       water_level = (line[0] - '0');
-      Serial.print("Task1 Connecting successful: ");
-      Serial.print(host);
-      Serial.print(" :: water level ");
-      Serial.println(water_level);
+      // Serial.print("TASK 1 - Connecting successful: ");
+      // Serial.print(host);
+      // Serial.print(" :: water level ");
+      // Serial.println(water_level);
     } else {
-      Serial.println("Task1 Connection timed out ");
+      Serial.print("TASK 1 - Connection timed out: ");
+      Serial.println(host);
     }
   }
 
