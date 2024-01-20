@@ -40,6 +40,9 @@ const char topic[]  = "wps1/status";
 uint8_t alert_lost_broker = 0;
 const uint8_t MAX_NO_MESSAGE = 10;
 
+bool alert_checked = false;
+bool alert = false;
+
 void setup() {
   Serial.begin(115200);
 
@@ -51,23 +54,50 @@ void setup() {
   pinMode(WATER_LEVEL_MIN_PIN, OUTPUT);
   pinMode(WATER_LEVEL_MED_PIN, OUTPUT);
   pinMode(WATER_LEVEL_MAX_PIN, OUTPUT);
-  pinMode(BUZZ_BOTTON_PIN, OUTPUT);
+  pinMode(BUZZ_BOTTON_PIN, INPUT);
 
   connect_to_broker();
 }
 
 void loop() {
+  
   if( WiFi.status() == WL_CONNECTED ){
     mqttClient.poll();  
     if (alert_lost_broker >= MAX_NO_MESSAGE) {
-      digitalWrite(ALARM_PIN, HIGH);
+      alarm_on();
       Serial.println("During the last 10 seconds, no message was received.");
     }
     alert_lost_broker++;
   } else{
     connect_to_broker();
-  }         
+  }
+
+  check_alert_button();
   delay(1000);           
+}
+
+void check_alert_button() {
+  int button_state = digitalRead(BUZZ_BOTTON_PIN);
+  if ( button_state == HIGH && alert){ 
+    Serial.println("Button triggered");
+    alert_checked = true;
+    digitalWrite(BUZZ_PIN, LOW);
+  }  
+}
+
+void alarm_on(){
+  digitalWrite(ALARM_PIN, HIGH);
+  alert = true;
+  if (!alert_checked) {
+    digitalWrite(BUZZ_PIN, HIGH);
+  }
+}
+
+void alarm_off(){
+  alert = false;
+  digitalWrite(ALARM_PIN, LOW);
+  digitalWrite(BUZZ_PIN, LOW);
+  alert_checked = false;
 }
 
 void onMqttMessage(int messageSize) {
@@ -143,10 +173,10 @@ void do_pump_2(int value) {
 void do_alarm(int value){
   switch (value) {
   case 0:
-    digitalWrite(ALARM_PIN, LOW);
+    alarm_off();
     break;
   case 1:
-    digitalWrite(ALARM_PIN, HIGH);
+    alarm_on();
     break;
   }
 }
