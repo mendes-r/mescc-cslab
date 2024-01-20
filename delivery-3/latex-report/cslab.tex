@@ -40,11 +40,9 @@
 %
 \section{Introduction}
 
-This is the last report that will summarize all the analysis and implementation of the final work.
+As this is the last report, we will try to summarize all the previous analyses, with the main focus being to achieve a conclusion and not only repeat the specificities of the last reports. 
 
-We tried to focus on the conclusions and not bring back all the specificities of the previews analyses. 
-
-Although the following chapter are tightly defined, the report should be read as an whole. 
+Although the following chapters are tightly defined, the report should be read as a whole. 
 
 %%%
 \section{Requirement Specifications}
@@ -108,9 +106,9 @@ There was no change in the system requirements. Below, we listed all the identif
 \end{enumerate}
 
 %%%
-\subsubsection{Hazard Analysis}
+\subsection{Hazard Analysis}
 
-To the hazard analysis, we added one more entry. Below, we also added comments about the implementation of the prototype.
+We added one more entry to the hazard analysis, H-9. Below, we added some comments about the implementation of the identified mitigations in the prototype.
 
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{H-\arabic*:}]
 	\setlength\itemsep{.5em}
@@ -159,6 +157,25 @@ To the hazard analysis, we added one more entry. Below, we also added comments a
 %%%
 \subsection{System Structure and Traceability}
 
+This last chapter tries to map the implementation of the prototype to the model developed during the previous two deliveries.
+
+During the implementation of the system, we noticed that the Web Server is a subsystem independent of the RSS. 
+
+Although, both are ways to visualize the WPS status, they have very different objectives and levels of criticality. The RSS must alert the maintenance team; the web version is, in our understanding, only a nice thing to have. And most of all, we can remove one service without affecting the other. Because of this, we made some changes to the System Structure diagram, as it is possible to visualize below.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=300px]{../diagrams/system-structure.png}
+  \caption{System Structure diagram}
+  \label{fig:System Structure Diagram}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../diagrams/deployment-diagram.jpg}
+  \caption{Deployment diagram}
+  \label{fig:Deployment Diagram}
+\end{figure}
 
 \newpage
 %%%
