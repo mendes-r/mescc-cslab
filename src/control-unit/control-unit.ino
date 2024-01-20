@@ -177,6 +177,7 @@ void controlPumps (void * parameters)
 
     updatePumpFailureState();
     uint8_t pumps_state = _wps.curr_pump1_state + _wps.curr_pump2_state;
+    vTaskDelay(475 / portTICK_PERIOD_MS);
     
     switch (pumps_state) {
       case 2: // all pumps are working

@@ -14,11 +14,11 @@
 \usepackage{enumitem}
 \usepackage{blindtext}
 \usepackage{float}
-\usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{minted}
  \usepackage{url}
  \usepackage{amsmath}
+ \usepackage[table,xcdraw]{xcolor}
 %
 
 \setcounter{secnumdepth}{3}
@@ -49,11 +49,112 @@ Although the following chapter are tightly defined, the report should be read as
 %%%
 \section{Requirement Specifications}
 
-- ligar uma bomba de modo aleatorio de modo a nao corruer apenas uma.
-- lista do que foi implementado
-
 %%%
 \subsection{System Requirements}
+
+There was no change in the system requirements. Below, we listed all the identified system requirements and a comment about its implementation on the prototype. 
+
+\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
+	\setlength\itemsep{.5em}
+	\item 
+
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item While the water level is above the minimum level, WPS shall have a pump working. \colorbox{green}{Implemented}
+		\item When the water level is below minimum level, WPS shall have all pumps stopped. \colorbox{green}{Implemented}
+		\item If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS). \colorbox{green}{Implemented}
+		\item A second pump shall be turned on only when the water level is above 2/3 the maximum water level. \colorbox{green}{Implemented}
+		\item When only one pump is available, the maximum water level shall be reduced to 2/3. \colorbox{green}{Implemented}
+		\item If the readings of the sensor are uneven, the system shall choose the worst case scenario, following the table below:  \colorbox{green}{Implemented}
+		
+\begin{table}[H]
+\begin{tabular}{lllllll}
+                                &                                 & \multicolumn{5}{c}{sensor \#1}                                                                                                                                          \\ \cline{3-7} 
+                                & \multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{0}} & \multicolumn{1}{l|}{\textbf{1}} & \multicolumn{1}{l|}{\textbf{2}} & \multicolumn{1}{l|}{\textbf{3}} & \multicolumn{1}{l|}{\textbf{4}} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{0}} & \multicolumn{1}{l|}{-}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{4}          \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{1}} & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{4}          \\ \cline{2-7} 
+\multicolumn{1}{l|}{sensor \#2} & \multicolumn{1}{l|}{\textbf{2}} & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{4}          \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{3}} & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{1}          & \multicolumn{1}{l|}{2}          & \multicolumn{1}{l|}{3}          & \multicolumn{1}{l|}{4}          \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{\textbf{4}} & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{4}          & \multicolumn{1}{l|}{4}          \\ \cline{2-7} 
+\end{tabular}
+\end{table}
+
+\textbf{1}: below min; \textbf{2}: above min; \textbf{3}: above med; \textbf{4}: above max.
+
+\textbf{0}: no connection to the sensor - if both sensors are unavailable, the alarm shall be triggered.
+		\end{enumerate}
+		
+	\item
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item The status of all WPS shall be displayed on all RSS. \colorbox{yellow}{Partially Implemented:} \textcolor{gray}{the hadware available was not enough to add a second WPS and RSS.}
+		\item If the alarm is ON, the button in the RSS shall only disable it. \colorbox{green}{Implemented}
+		\item The RSS shall have an independent power supply from the WPS. \colorbox{pink}{Not Implemented}
+		\item The alarm on the RSS shall have an independent power supply from the RSS itself and from the WPS. \colorbox{pink}{Not Implemented}
+		\end{enumerate}
+	
+	\item	
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item The status of all WPS shall be visible on a web page. \colorbox{green}{Implemented}
+		\end{enumerate}
+
+	\item
+		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
+		\setlength\itemsep{0em}
+		\item To improve the system´s communication reliability, a cluster of 2(two) MQTT brokers shall be deployed. \colorbox{pink}{Not Implemented} 
+		\end{enumerate}
+
+\end{enumerate}
+
+%%%
+\subsubsection{Hazard Analysis}
+
+To the hazard analysis, we added one more entry. Below, we also added comments about the implementation of the prototype.
+
+\begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{H-\arabic*:}]
+	\setlength\itemsep{.5em}
+	\item see SR-1.5
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Both pumps stopped working.
+    		\item \textbf{Mitigation:} Trigger alarm. \colorbox{green}{Implemented} 
+		\end{itemize} 	
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} A pump doesn't turn OFF when the water level in bellow minimum.
+    		\item \textbf{Mitigation:} Trigger alarm. \colorbox{pink}{Not Implemented} 
+		\end{itemize} 
+	\item see SR-1.6
+	\item see SR-2.3 and SR-2.4
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} RSS are not getting information from WPS.
+    		\item \textbf{Mitigation:} Implement a cluter of MQTT Brokers or remove this single point of failure by adopting DDS. Trigger alarm. \colorbox{yellow}{Partially Implemented:} \textcolor{gray}{the alarm is triggered}
+
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} RSS stops working.
+    		\item \textbf{Mitigation:} Have redundancy by having multiple RSS and each one displaying all statuses from all WPS. \colorbox{pink}{Not Implemented} 
+		\end{itemize} 
+	\item 
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Control Unit stops working.
+    		\item \textbf{Mitigation:} Implement redundancy by having a cluster of nodes running the Control Unit. If the number of nodes is 3 we can implement a voting system and run the same process with the same input in parallel. This would improve the system's fault tolerance. \colorbox{pink}{Not Implemented} 
+		\end{itemize} 
+	\item
+		\begin{itemize}
+		\setlength\itemsep{0em}
+    		\item \textbf{Description:} Rapid wear of the first water pump.
+    		\item \textbf{Mitigation:}  Distribute evenly the work done by the pumps. This can be done, by choosing a random pump when one is need first. \colorbox{pink}{Not Implemented} 
+		\end{itemize} 
+\end{enumerate}
 
 %%%
 \subsection{System Structure and Traceability}
@@ -77,7 +178,7 @@ Although the following chapter are tightly defined, the report should be read as
 
 \begin{table}[!htb]
     \caption{Theoretical values (left) and implemented values (right) in \textit{ms}:}
-    \begin{minipage}{0.75\linewidth}
+    \begin{minipage}{0.7\linewidth}
 		\begin{table}[H]
 		\begin{tabular}{lll}
 		\textbf{Task} & \textbf{Ci} & \textbf{Ti} \\
@@ -85,6 +186,7 @@ Although the following chapter are tightly defined, the report should be read as
 		\textbf{2}    & 25         & 200           \\
 		\textbf{3}    & 35         & 250          
 		\end{tabular}
+		\label{table:rt-1}
 		\end{table}
 
     \end{minipage}%
@@ -96,12 +198,15 @@ Although the following chapter are tightly defined, the report should be read as
 		\textbf{2}    & 500         & 4000           \\
 		\textbf{3}    & 700         & 5000          
 		\end{tabular}
+		\label{table:rt-2}
 		\end{table}
 
     \end{minipage} 
 \end{table}
 
-The values on the right side table were found by running the code in different situations.
+The values on the right side table were achieved by running the code in different situations. A closer look, shows that we incresed the values \textbf{x 20}.
+
+To track the execution time we added the following code to each task:
 
 \begin{minted}{c}
 for (;;) {
@@ -118,36 +223,48 @@ for (;;) {
 }
 \end{minted}
 
+\noindent
+And here is some of the outputs:
+
 \begin{minted}{bash}
 TASK 3 - Duration[ms]: 40
 TASK 1 - Duration[ms]: 917
-TASK 2 - Duration[ms]: 1
+TASK 2 - Duration[ms]: 475
 TASK 1 - Duration[ms]: 658
 TASK 1 - Duration[ms]: 754
-TASK 3 - Duration[ms]: 770
-TASK 2 - Duration[ms]: 0
+TASK 3 - Duration[ms]: 770  < above WCET
+TASK 2 - Duration[ms]: 476
 TASK 1 - Duration[ms]: 649
 TASK 1 - Duration[ms]: 799
 TASK 3 - Duration[ms]: 29
-TASK 2 - Duration[ms]: 0
+TASK 2 - Duration[ms]: 477
 TASK 1 - Duration[ms]: 176
 TASK 1 - Duration[ms]: 997
-TASK 2 - Duration[ms]: 0
+TASK 2 - Duration[ms]: 481
 TASK 1 - Duration[ms]: 187
 TASK 3 - Duration[ms]: 157
 TASK 1 - Duration[ms]: 990
-TASK 2 - Duration[ms]: 1
+TASK 2 - Duration[ms]: 475
 TASK 1 - Duration[ms]: 1036
 \end{minted}
 
+The execution time of task 2 that was calculated in the last report is very close to the measured values. Because of this, we needed to add a sleep function to increase its execution.
+However, task 1 and task 3 execution time was poorly estimated. This is because of the latency during the TCP and MQTT requests.
+
+To simulate the conclusions from the schedulability analysis, we also increased the periods - as visible in the table \ref{table:rt-2}.
+
+Also, to control that the tasks didn't extended beyond its deadline, we added the following code:
+
 \begin{minted}{c}
-long next_release = 5000 - duration;
+long next_release = 5000 - duration; // 5 seconds deadline for Task 3
 if (next_release > 0) {
-  vTaskDelay(next_release / portTICK_PERIOD_MS);
+    vTaskDelay(next_release / portTICK_PERIOD_MS);
 } else {
-  Serial.println("TRASK 3 - FAILED Deadline !!!");
+    Serial.println("TRASK 3 - FAILED Deadline !!!");
 }
 \end{minted}
+
+In some cases, task 1 failed the deadline by a couple of miliseconds. Because we defined a timeout value of 2 second, when the request to the two sensors fail, we get this result.
 
 \begin{minted}{bash}
 TASK 1 - Connection failed: 172.20.10.13
