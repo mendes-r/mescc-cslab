@@ -213,10 +213,8 @@ The output is an 8-bit integer. If we have as output the decimal number \texttt{
 
 \begin{minted}{c}
 // more code
-
   mask = getMask(level); // ASM code
   implementMask(mask);
-
 // more code
 
 void implementMask(int8_t mask)
@@ -416,33 +414,32 @@ String getWpsStatus(){
 
 \subsubsection{TCP pull strategy}
 
-We have each sensor in a WPS acting as a TCP server and the Control Unit connects as client to both sensors.
-The direct TCP request was chosen here due to the simplicity of the network, up to two Control Units and two sensors. The MQTT would bring an advantage in that it can ensure that the Control Unit got the message from the sensor, but since we are pulling from the sensors in very short periods, it was not necessary to implement it here.
+We have each sensor acting as a TCP server and the Control Unit connecting as a client to both.
+The direct TCP request was chosen here due to the simplicity of the network, which has up to two Control Units and two sensors. The MQTT would have an advantage in that it can ensure that the Control Unit gets the message from the sensor, but since we are pulling from the sensors in very short periods, it was not necessary to implement it here.
 
 \subsubsection{MQTT communication}
 
-We have the MQTT broker running in a host machine for prototype purposes. This machine is connected to the same WLAN and its address is used by the publishers and subscribers.
+We have the MQTT broker running on a host machine for prototype purposes. This machine is connected to the same WLAN, and its address is used by the publishers and subscribers.
 The Control Unit publishes to this broker the data from the WPS every 5 seconds.
-As subscribers, we have the RSS and the WebServer. We do not adopt any QoS now, but we may try at least QoS1 depending on the severity of those 5 seconds without the alarm received from the maintenance team.
+As subscribers, we have the RSS and the Web Server. We do not adopt any QoS now, but we may try at least QoS1 \cite{c2} depending on the severity of those 5 seconds without the alarm received from the maintenance team.
 
 \subsubsection{Reconnection mechanisms}
 
 \begin{itemize}
-	\item  \textbf{The Control Unit}: Before trying to read from the sensors, check the WiFi connectivity and try to reconnect.
+	\item  \textbf{The Control Unit}: Before trying to read from the sensors, check the Wi-Fi connectivity and try to reconnect.
 If the connection with the sensors fails, it logs to the serial console.
-Before publishing to the MQTT Broker, it validates the wifi connection and tries to reconnect if it is not connected
-it also tries to connect to the MQTT Broker every time before publishing.
+Before publishing to the MQTT Broker, it validates the Wi-Fi connection and tries to reconnect if it is not connected. It also tries to connect to the MQTT Broker every time before publishing.
 
-	\item  \textbf{The RSS}: It checks for WiFi connection, and tries to establish the connection in case it drops.
-It also monitors if it does not receive more messages and raises the alarm on RSS
+	\item  \textbf{The RSS}: It checks for a Wi-Fi connection, and tries to establish the connection in case it drops.
+It also monitors if it does not receive more messages and raises the alarm on RSS.
 
 	\item  \textbf{The WebServer}: We implemented a re-connection mechanism when the MQTT connection drops. This mechanism increases the delay for every re-connection attempt until a maximum time is defined. The number of attempts is also configurable.
 \end{itemize}
 
 \subsubsection{Connection lifetime}
 
-We do not keep the TCP connection between the Control Unit and sensors, neither between the Control Unit and the MQTT Broker open, to avoid having hanging connections that are stuck. Instead, we connect and disconnect on every task execution span. 
-We have dedicated tasks for publishing to the MQTT Broker and for reading from the sensors via TCP, they are scheduled by FreeRTOS implementation and on each task execution we connect, execute the job and disconnect.
+We do not keep the TCP connection between the Control Unit and sensors, nor between the Control Unit and the MQTT Broker open, to avoid having hanging connections that are stuck. Instead, we connect and disconnect on every task execution span. 
+We have dedicated tasks for publishing to the MQTT Broker and for reading from the sensors via TCP; they are scheduled by FreeRTOS implementation and on each task execution, we connect, execute the job and disconnect.
 
 %%%
 \subsection{Prototype}
@@ -556,7 +553,9 @@ In conclusion, the teamwork ran smoothly, mainly because of an initial good anal
 
 \bibitem{c1}
  Espressif FreeRTOS API: {\url{https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/api-reference/system/freertos.html}}
- MQTT for Python with Paho Client: {\url{https://www.emqx.com/en/blog/how-to-use-mqtt-in-python}}
+
+\bibitem{c2}
+MQTT QoS: {\url{https://cedalo.com/blog/understanding-mqtt-qos/}}
 
 \end{thebibliography}
 
