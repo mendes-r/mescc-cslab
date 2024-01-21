@@ -40,7 +40,7 @@
 %
 \section{Introduction}
 
-As this is the last report, we will try to summarize all the previous analyses, with the main focus being to achieve a conclusion and not only repeat the specificity of the last reports. 
+Being our last report, we tried to summarize the previous analyses, focusing on achieving a concise conclusion without repeating the specificity of the last couple of weeks. 
 
 Although the following chapters are tightly defined, the report should be read as a whole. 
 
@@ -50,7 +50,7 @@ Although the following chapters are tightly defined, the report should be read a
 %%%
 \subsection{System Requirements}
 
-There was no change in the system requirements. Below, we listed all the identified system requirements and a comment about its implementation on the prototype. 
+There was no change in the system requirements. Below, we listed all the identified requirements and commented on their implementation on the prototype. 
 
 \begin{enumerate}[leftmargin=4em, font=\small, label=\textbf{SR-\arabic*}]
 	\setlength\itemsep{.5em}
@@ -170,7 +170,7 @@ Although, both are ways to visualize the WPS status, they have very different ob
   \label{fig:System Structure Diagram}
 \end{figure}
 
-Looking at the prototype's deployment diagram \ref{fig:deployment-diagram}, we can clearly see that, the output of the modeling, traces nicely to its implementation.
+Looking at the prototype's deployment diagram (see fig. \ref{fig:deployment-diagram}), we can clearly see that, the output of the modeling, traces nicely to its implementation.
 The grayed parts of the diagram don't make up the prototype. 
 
 \begin{figure}[H]
@@ -187,7 +187,7 @@ The grayed parts of the diagram don't make up the prototype.
 %%%
 \subsection{CCSYA - Assembly}
 
-The following code snippet in implemented on the Sensor Sim, as it was in the previous delivery. The only change was done on one of the comments that had a typo.
+The following code snippet was implemented on the Sensor Sim, as it was in the previous delivery. The only change was done on one of the comments that had a typo.
 
 \begin{minted}[linenos]{gas}
 .global getMask
@@ -209,7 +209,7 @@ end:
 
 As an input, the code receives the position of the LED that needs to turn ON. So to ensure that only one of the LEDs is turned ON, we start with the value 1 (see line 6). This value in a byte is represented by \texttt{'0000 0001'}. From now on, we only shift the leftmost bit, one position at a time, until we reach the selected position.
 
-The output is an 8-bit integer. If we have as output the decimal number \texttt{'16'}, and convert it to binary \texttt{´0000 1000´}, we can see that we want to turn ON the LED in the 4th position. The following code implements this logic. 
+The output is an 8-bit integer. If we have as output the decimal number \texttt{'8'}, and convert it to binary \texttt{´0000 1000´}, we can see that we want to turn ON the LED in the 4th position. The following code implements this logic. 
 
 \begin{minted}{c}
 // more code
@@ -249,7 +249,7 @@ As a reminder, the following tasks are being run in a ESP-WROOM-32 on a single c
 \end{itemize}
 
 \noindent
-The creation of the tasks was achieved by using the \textbf{xTaskCreatePinnedToCore(...)} \cite{c1} function from the FreeRTOS API. The function \textbf{xTaskCreate(...)} was also available, but we wanted to ensure that the proposed tasks would run on the same core.
+The creation of the tasks was achieved by using the \textbf{xTaskCreatePinnedToCore} \cite{c1} function from the FreeRTOS API. The function \textbf{xTaskCreate} was also available, but we wanted to ensure that the proposed tasks would run on the same core.
 
 \begin{minted}{c}
 xTaskCreatePinnedToCore(
@@ -303,7 +303,7 @@ As a practical solution, we chose to update the values from the last report in a
     \end{minipage} 
 \end{table}
 
-The values on the right side were achieved by running the code in different situations. A closer look, shows that we increased all values \textbf{x 20}.
+The values on the right side were achieved by running the code in different situations. A closer look, shows that we increased all values \textbf{20x}.
 
 To track the execution time we added the following code to each task:
 
@@ -341,15 +341,11 @@ TASK 1 - Duration[ms]: 176
 TASK 1 - Duration[ms]: 997
 TASK 2 - Duration[ms]: 481
 TASK 1 - Duration[ms]: 187
-TASK 3 - Duration[ms]: 157
-TASK 1 - Duration[ms]: 990
-TASK 2 - Duration[ms]: 475
-TASK 1 - Duration[ms]: 1036
 \end{minted}
 
-It is important to state, that given the short execution time of Task 2, we needed to add a sleep function to increase it and so bring it closer to the values on the right side table \ref{table:rt-2}.
+It is important to state, that given the short execution time of Task 2, we needed to add a sleep function to increase it and so bring it closer to the values on the table \ref{table:rt-2} at the right side.
 
-Also, to ensure that the tasks didn't extended beyond its deadline, we added the following code:
+Also, to track that the tasks didn't extended beyond its deadline, we added the following code:
 
 \begin{minted}{c}
 long next_release = 5000 - duration; // 5 seconds deadline for Task 3
@@ -388,7 +384,7 @@ typedef struct{
 } WPS;
 \end{minted}
 
-The changes to the data structure WPS were made by accessing functions instead of accessing the values directly.
+The changes to the data structure named WPS, were made by accessing functions instead of accessing its values directly. By doing this, we insure that only one task is able to edit the data structure at a time.
 
 \begin{minted}{c}
 void set_curr_pump2_status(uint8_t value) {
@@ -398,7 +394,7 @@ void set_curr_pump2_status(uint8_t value) {
 }
 \end{minted}
 
-The status reads, were specially controlled during the publication of the WPS status to the MQTT broker.
+The status reads, are controlled during the publication of the WPS status to the MQTT broker.
 
 \begin{minted}{c}
 String getWpsStatus(){
@@ -441,6 +437,29 @@ It also monitors if it does not receive more messages and raises the alarm on RS
 We do not keep the TCP connection between the Control Unit and sensors, nor between the Control Unit and the MQTT Broker open, to avoid having hanging connections that are stuck. Instead, we connect and disconnect on every task execution span. 
 We have dedicated tasks for publishing to the MQTT Broker and for reading from the sensors via TCP; they are scheduled by FreeRTOS implementation and on each task execution, we connect, execute the job and disconnect.
 
+\subsubsection{MQTT message}
+
+The messages changed between systems are simple integers separated by commas.
+
+The message composition is as follows:
+\newline
+\newline
+\texttt{<alert>,<wps id>,<water level>,<pump1 status>,<pump2 status>}
+ 
+ \begin{itemize}
+ \setlength\itemsep{0em}
+ \item \texttt{ALERT ON = 1}
+ \item \texttt{ALERT OFF = 0}
+ \item \texttt{LEVEL LOW = 1}
+ \item \texttt{LEVEL MIN = 2}
+ \item \texttt{LEVEL MED = 3}
+ \item \texttt{LEVEL MAX = 4}
+ \item \texttt{PUMP STATUS ON = 1}
+ \item \texttt{PUMP STATUS OFF = 0}
+\end{itemize}
+ 
+Here is an example showing the the water level is above max, the two pumps are working and the aler is on: \texttt{´1,1,4,1,1´}.
+
 %%%
 \subsection{Prototype}
 
@@ -449,10 +468,10 @@ We have dedicated tasks for publishing to the MQTT Broker and for reading from t
 
 An overview of what was implemented in the prototype can be found in diagram \ref{fig:deployment-diagram}.
 
-The cluster of MQTT brokers, or Control Units, were not implemented, as were the second WPS and the second RSS.
+The cluster of MQTT brokers, or Control Units, were not implemented, as was not the second WPS and the second RSS.
 However, the system was developed to accommodate the future implementation of all the missing parts.
 
-With a cluster of MQTT brokers, the producer (Control Units) and the consumers (Web server and RSS) would need to connect to all the available nodes and jump from one to the other if there were some type of failure.
+With a cluster of MQTT brokers, the producer (Control Units) and the consumers (Web server and RSS) would need to connect to all the available broker nodes and jump from one to the other if there were some type of failure.
 
 The cluster of Control Units would be implemented by running both systems in parallel but only outputting one of the results. If the computations of both nodes differ, the implementation of a type of voting system needs to be implemented.
 
@@ -460,7 +479,7 @@ A second WPS is easily solved because for each system there must be one MQTT top
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{../diagrams/hardware.jpg}
+  \includegraphics[width=300px]{../diagrams/hardware.jpg}
   \caption{from left to right: Sensor 1, Sensor 2, Control Unit + Pumps, RSS}
   \label{fig:hardware}
 \end{figure}
@@ -477,16 +496,17 @@ Below is a representation of the topological layout of the network that will be 
 %%%
 \subsubsection{Control Unit}
 
-The WPS will publish a message with its status, every 5 seconds.
+The Control Unit will publish a message with the WPS status, every 5 seconds.
 
-Looking at the right tabel \ref{table:rt-2}, we can also notice that we are able to do 2 requests to the sensor (Task 1) for each computation of the systems behavior (Task 2). This gives us the possibility to recover from a communication failure when doing one of the two requests.
+Looking at the right tabel \ref{table:rt-2}, we can also notice that we are able to do 2 requests per sensor (Task 1) for each computation of the systems behavior (Task 2). This gives us the possibility to recover from a communication failure when doing one of the two pair requests.
 
-The main behavior of the system is summurized by all the requirements from SR-1.
+The main behavior of the system is summurized by all the requirements from \textbf{SR-1}.
 \newline
 \newline
 \noindent
 \textbf{Used hardware:}
 \begin{itemize}
+	\setlength\itemsep{0em}
 	\item ESP-32
 	\item 1x alert LED
 	\item 2x pump status LEDs
@@ -504,6 +524,7 @@ Although we are simulating only one WPS, subscribing to a second topic with the 
 \noindent
 \textbf{Used hardware:}
 \begin{itemize}
+	\setlength\itemsep{0em}
 	\item ESP-32
 	\item 1x buzzer module
 	\item 1x button to stop buzzer
@@ -517,6 +538,7 @@ Although we are simulating only one WPS, subscribing to a second topic with the 
 \noindent
 \textbf{Used hardware:}
 \begin{itemize}
+	\setlength\itemsep{0em}
 	\item ESP-32
 	\item 4x water level buttons
 	\item 4x water level LEDs
@@ -528,22 +550,37 @@ The Web Server follows the same logic as the RSS. It consumes the same topics ma
 
 We ponder another approach, where the Web server would query the RSS for the WPS status. This solution would give more responsibilities to a critical system (RSS) and make all the implementation more complex and unnecessary.
 
-It is running also in a host machine connected to the WLAN for this prototype.
-The implementation was made in Python using the module http.server, it is very easy and simple to use and we could have a running server set in a minute.
-We created a separate index.html file to hold the web page format, and the webserver will read and write to this file.
+It is also running on a host machine connected to the WLAN for this prototype.
+The implementation was made in Python using the module \texttt{http.server}, it is very easy and simple to use, and we could have a running server set up in a minute.
+We created a separate \textit{index.html} file to hold the web page format, and the web server will read and write to this file.
 
-For the MQTT, we import the module paho.mqtt, which has straightforward methods to set and subscribe to the MQTT messages. We also implemented a re-connection mechanism, described in item x.xx. We have an unsolved bug here which is after a re-connection occurs, the webserver does not receive more messages. We left this indicated on the code.
+For the MQTT, we import the module \texttt{paho.mqtt}\cite{c3}, which has straightforward methods to set and subscribe to the MQTT messages. We also implemented a re-connection mechanism, described in item x.xx. We have an unsolved bug here which is after a re-connection occurs, the web server does not receive more messages. Furthermore, we left this indicated on the code.
 
-As an additional tool, we used a module called BeautifulSoup for parsing the HTML page, and for searching for the tag ids that we want to update the values.
+As an additional tool, we used a module called \textit{BeautifulSoup} for parsing the HTML page, and for searching for the tag ID's that we want to update the values.
+
+%%%
+\subsubsection{MQTT Broker}
+
+The MQTT broker is running on a host machine connected to the same WLAN. We are using the Eclipse Mosquitto open source message broker. 
+
+The option to run the broker in our laptop has its advantage: easy debugging and easy simulation of published messages or subscription to a topic.
+
+\begin{minted}{sh}
+# subscribing to topic
+$ mosquitto_sub -t wps1/status
+
+# publishing message to a topic
+$ mosquitto_pub -t wps2/status -m "1,1,3,1,1"
+\end{minted}
 
 %%%
 \section{Team Work}
 
-Because of thoughtful analysis during the first delivery, the solution analysis gave us a list of very decoupled subsystems. This enabled us to split the work in a more organized way, as soon as the communication method was defined.
+Because of thoughtful analysis during the first delivery, the solution analysis gave us a list of very decoupled subsystems. This enabled us to split the work in a more organized way as soon as the communication method was defined.
 
 The drafting of the reports was done in cooperation, giving us the opportunity to share some particular knowledge of each subsystem.
 
-In a more concrete way, we create a common repository on Bitbucket, where each main change in the code base is done by creating a Pull Request. This made both of us aware of the work as a whole.
+In a more concrete way, we created a common repository on Bitbucket, where each main change in the code base was done by creating a Pull Request. This made both of us aware of the work as a whole.
 
 In conclusion, the teamwork ran smoothly, mainly because of an initial good analysis of the system requirements, and also because of the focus on the academic objectives of this work.
 
@@ -556,6 +593,9 @@ In conclusion, the teamwork ran smoothly, mainly because of an initial good anal
 
 \bibitem{c2}
 MQTT QoS: {\url{https://cedalo.com/blog/understanding-mqtt-qos/}}
+
+\bibitem{c3}
+MQTT for Python with Paho Client: {\url{https://www.emqx.com/en/blog/how-to-use-mqtt-in-python}}
 
 \end{thebibliography}
 
