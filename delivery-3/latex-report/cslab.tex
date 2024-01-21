@@ -421,7 +421,19 @@ String getWpsStatus(){
 %%%
 \subsection{Prototype}
 
+%%%
 \subsubsection{Overview}
+
+An overview of what was implemented in the prototype can be found in diagram \ref{fig:deployment-diagram}.
+
+The cluster of MQTT brokers, or Control Units, were not implemented, as were the second WPS and the second RSS.
+However, the system was developed to accommodate the future implementation of all the missing parts.
+
+With a cluster of MQTT brokers, the producer (Control Units) and the consumers (Web server and RSS) would need to connect to all the available nodes and jump from one to the other if there were some type of failure.
+
+The cluster of Control Units would be implemented by running both systems in parallel but only outputting one of the results. If the computations of both nodes differ, the implementation of a type of voting system needs to be implemented.
+
+A second WPS is easily solved because for each system there must be one MQTT topic. This means one queue per WPS and a consumer subscription to each one of them.
 
 \begin{figure}[H]
   \centering
@@ -430,7 +442,7 @@ String getWpsStatus(){
   \label{fig:hardware}
 \end{figure}
 
-- diagram if implementation
+Below is a representation of the topological layout of the network that will be presented.
 
 \begin{figure}[H]
   \centering
@@ -439,32 +451,70 @@ String getWpsStatus(){
   \label{fig:network-diagram}
 \end{figure}
 
-\subsubsection{WPS}
+%%%
+\subsubsection{Control Unit}
 
-- explicar a tabela dos inputs dos sensores e levantar alarm caso (A tabela agora é diferente da ultima vez)
-- strategy for cluster of control unit nodes
+The WPS will publish a message with its status, every 5 seconds.
 
-- dois timeouts dos sensores equivale a max level.... nao devia estar assim
+Looking at the right tabel \ref{table:rt-2}, we can also notice that we are able to do 2 requests to the sensor (Task 1) for each computation of the systems behavior (Task 2). This gives us the possibility to recover from a communication failure when doing one of the two requests.
 
-\subsubsection{MQTT Broker}
+The main behavior of the system is summurized by all the requirements from SR-1.
+\newline
+\newline
+\noindent
+\textbf{Used hardware:}
+\begin{itemize}
+	\item ESP-32
+	\item 1x alert LED
+	\item 2x pump status LEDs
+	\item 2x pump state LEDs (able or not to do some work)
+\end{itemize}
 
-publish every 5 sec
-
-subscriber checks every 15sec if message
-- one topic per WPS
-
+%%%
 \subsubsection{RSS}
 
-- reads broker every 1 sec
-- sends alert after 15 sec without message
-- subscribes to each WPS topics (iter)
-- log who clicked the button and maintain LED on... because the system heals it self 
+The MQTT client in the RSS will, every second, query the broker for a new message. If no new message is available in the last 15 seconds, an alarm will be triggered. This means that the Control Unit, which publishes to the broker every 5 seconds, has three chances to recover from some communication failure. 
+
+Although we are simulating only one WPS, subscribing to a second topic with the status of the second WPS is easily done.
+\newline
+\newline
+\noindent
+\textbf{Used hardware:}
+\begin{itemize}
+	\item ESP-32
+	\item 1x buzzer module
+	\item 1x button to stop buzzer
+	\item 1x alert LED
+	\item 2x pump status LEDs
+	\item 4x water level LEDs
+\end{itemize}
+
+%%%
+\subsubsection{Sensor}
+\noindent
+\textbf{Used hardware:}
+\begin{itemize}
+	\item ESP-32
+	\item 4x water level buttons
+	\item 4x water level LEDs
+\end{itemize}
 
 \subsubsection{Web Server}
+
+The Web Server follows the same logic as the RSS. It consumes the same topics made available by the broker.
+
+We ponder another approach, where the Web server would query the RSS for the WPS status. This solution would give more responsibilities to a critical system (RSS) and make all the implementation more complex and unnecessary.
 
 %%%
 \section{Team Work}
 
+Because of thoughtful analysis during the first delivery, the solution analysis gave us a list of very decoupled subsystems. This enabled us to split the work in a more organized way, as soon as the communication method was defined.
+
+The drafting of the reports was done in cooperation, giving us the opportunity to share some particular knowledge of each subsystem.
+
+In a more concrete way, we create a common repository on Bitbucket, where each main change in the code base is done by creating a Pull Request. This made both of us aware of the work as a whole.
+
+In conclusion, the teamwork ran smoothly, mainly because of an initial good analysis of the system requirements, and also because of the focus on the academic objectives of this work.
 
 %%%%%%%%%%%%%%%%%%%%%
 \newpage
