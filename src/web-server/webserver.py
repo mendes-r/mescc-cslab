@@ -21,6 +21,7 @@ MAX_RECONNECT_DELAY = 60
 
 # Class that handles the MQTT connection
 class MQTTClient:
+
     def __init__(self):
         mqtt_client = mqtt_client_lib.Client()
         mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
@@ -34,13 +35,22 @@ class MQTTClient:
 
     # Parsers the message received and update the web page
     def on_message(self, client, userdata, msg):
+
+        if msg.topic == MQTT_TOPIC_WPS1:
+            self.on_message_topic_1(msg)
+        elif msg.topic == MQTT_TOPIC_WPS2:
+            self.on_message_topic_2(msg)
+
+
+    def on_message_topic_1(self, msg):
+
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
 
         message = msg.payload.decode('utf-8')
         values = [int(num) for num in message.split(',')]
-        if len(values) == 4:
-            alarm, level, pump1, pump2 = values
 
+        if len(values) == 5:
+            alarm, id, level, pump1, pump2 = values
 
         with open('index.html', 'r') as file:
             html_content = file.read()
@@ -67,7 +77,47 @@ class MQTTClient:
 
         # Write the modified content back to the file
         with open('index.html', 'w') as file:
-            file.write(str(soup))
+            file.write(str(soup))    
+
+
+
+    def on_message_topic_2(self, msg):
+
+        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+
+        message = msg.payload.decode('utf-8')
+        values = [int(num) for num in message.split(',')]
+
+        if len(values) == 5:
+            alarm, id, level, pump1, pump2 = values
+
+        with open('index.html', 'r') as file:
+            html_content = file.read()
+
+        # Parse the HTML content
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Find the p tag with id "dynamic_status" and update its text
+        dynamic_status_tag = soup.find('p', {'id': 'dynamic_wps2_alarm'})
+        if dynamic_status_tag:
+            dynamic_status_tag.string = f'Alarm: {status_toString(alarm)}'
+        
+        dynamic_status_tag = soup.find('p', {'id': 'dynamic_wps2_level'})
+        if dynamic_status_tag:
+            dynamic_status_tag.string = f'Water Level: {level_toString(level)}'
+
+        dynamic_status_tag = soup.find('p', {'id': 'dynamic_wps2_pump1'})
+        if dynamic_status_tag:
+            dynamic_status_tag.string = f'Pump 1: {status_toString(pump1)}'
+
+        dynamic_status_tag = soup.find('p', {'id': 'dynamic_wps2_pump2'})
+        if dynamic_status_tag:
+            dynamic_status_tag.string = f'Pump 2: {status_toString(pump2)}'
+
+        # Write the modified content back to the file
+        with open('index.html', 'w') as file:
+            file.write(str(soup))    
+
 
     def on_disconnect(self, client, userdata, rc):
         print("Disconnected with result code: %s", rc)
