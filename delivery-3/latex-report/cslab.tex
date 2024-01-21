@@ -40,7 +40,7 @@
 %
 \section{Introduction}
 
-As this is the last report, we will try to summarize all the previous analyses, with the main focus being to achieve a conclusion and not only repeat the specificities of the last reports. 
+As this is the last report, we will try to summarize all the previous analyses, with the main focus being to achieve a conclusion and not only repeat the specificity of the last reports. 
 
 Although the following chapters are tightly defined, the report should be read as a whole. 
 
@@ -59,7 +59,7 @@ There was no change in the system requirements. Below, we listed all the identif
 		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
 		\setlength\itemsep{0em}
 		\item While the water level is above the minimum level, WPS shall have a pump working. \colorbox{green}{Implemented}
-		\item When the water level is below minimum level, WPS shall have all pumps stopped. \colorbox{green}{Implemented}
+		\item When the water level is below the minimum level, WPS shall have all pumps stopped. \colorbox{green}{Implemented}
 		\item If the water level is above the maximum level, then the WPS shall trigger an alarm at the Remote Status Station (RSS). \colorbox{green}{Implemented}
 		\item A second pump shall be turned on only when the water level is above 2/3 the maximum water level. \colorbox{green}{Implemented}
 		\item When only one pump is available, the maximum water level shall be reduced to 2/3. \colorbox{green}{Implemented}
@@ -85,7 +85,7 @@ There was no change in the system requirements. Below, we listed all the identif
 	\item
 		\begin{enumerate}[leftmargin=1.5em, font=\small, label=\textbf{.\arabic*:}]
 		\setlength\itemsep{0em}
-		\item The status of all WPS shall be displayed on all RSS. \colorbox{yellow}{Partially Implemented:} \textcolor{gray}{the hadware available was not enough to add a second WPS and RSS.}
+		\item The status of all WPS shall be displayed on all RSS. \colorbox{yellow}{Partially Implemented:} \textcolor{gray}{the hardware available was not enough to add a second WPS and RSS.}
 		\item If the alarm is ON, the button in the RSS shall only disable it. \colorbox{green}{Implemented}
 		\item The RSS shall have an independent power supply from the WPS. \colorbox{pink}{Not Implemented}
 		\item The alarm on the RSS shall have an independent power supply from the RSS itself and from the WPS. \colorbox{pink}{Not Implemented}
@@ -237,12 +237,12 @@ void implementMask(int8_t mask)
 
 
 %%%
-\subsection{RTAES - Concorrency and Real Time Scheduling}
+\subsection{RTAES - Concurrency and Real-Time Scheduling}
 
 %%%
-\subsubsection{Implementation of the Tasks and Concorrency control}
+\subsubsection{Implementation of the Tasks and Concurrency control}
 
-As a remainder, the following tasks are being run in a ESP-WROOM-32 on a single core:
+As a reminder, the following tasks are being run in a ESP-WROOM-32 on a single core:
 
 \begin{itemize}
 	\item  \textbf{Task 1}: Retrieve data from sensors (TCP Client);
@@ -271,7 +271,7 @@ The access control to the critical section was done thanks to the use of a singl
 
 It must be openly said that this part was the trickiest one.
 
-To check in pratical terms, the results of the schedulability calculation done in the previous report, some changes needed to be added to the code.
+To check in practical terms, the results of the schedulability calculation done in the previous report, some changes needed to be added to the code.
 
 Although the execution times for Task 2 look to be very close to the ones achieved in the calculations, the same doesn't apply for Task 1 and Task 3. This is partly the fault of communication latency. Both tasks need to request or send information using a wireless connection and the TCP/IP protocol.
 
@@ -305,7 +305,7 @@ As a practical solution, we chose to update the values from the last report in a
     \end{minipage} 
 \end{table}
 
-The values on the right side were achieved by running the code in different situations. A closer look, shows that we incresed all values \textbf{x 20}.
+The values on the right side were achieved by running the code in different situations. A closer look, shows that we increased all values \textbf{x 20}.
 
 To track the execution time we added the following code to each task:
 
@@ -351,7 +351,7 @@ TASK 1 - Duration[ms]: 1036
 
 It is important to state, that given the short execution time of Task 2, we needed to add a sleep function to increase it and so bring it closer to the values on the right side table \ref{table:rt-2}.
 
-Also, to control that the tasks didn't extended beyond its deadline, we added the following code:
+Also, to ensure that the tasks didn't extended beyond its deadline, we added the following code:
 
 \begin{minted}{c}
 long next_release = 5000 - duration; // 5 seconds deadline for Task 3
@@ -374,7 +374,7 @@ TASK 1 - FAILED Deadline !!!
 \end{minted}
 
 %%%
-\subsubsection{Concorrency}
+\subsubsection{Concurrency}
 
 In terms of concurrency and, as proposed in the last report, we identified as a critical section the read and write of a data structure that encapsulates the WPS status.
 
@@ -414,9 +414,35 @@ String getWpsStatus(){
 %%%
 \subsection{COMCS - Communication}
 
-- TCP pull strategy
+\subsubsection{TCP pull strategy}
 
-- Arthur
+We have each sensor in a WPS acting as a TCP server and the Control Unit connects as client to both sensors.
+The direct TCP request was chosen here due to the simplicity of the network, up to two Control Units and two sensors. The MQTT would bring an advantage in that it can ensure that the Control Unit got the message from the sensor, but since we are pulling from the sensors in very short periods, it was not necessary to implement it here.
+
+\subsubsection{MQTT communication}
+
+We have the MQTT broker running in a host machine for prototype purposes. This machine is connected to the same WLAN and its address is used by the publishers and subscribers.
+The Control Unit publishes to this broker the data from the WPS every 5 seconds.
+As subscribers, we have the RSS and the WebServer. We do not adopt any QoS now, but we may try at least QoS1 depending on the severity of those 5 seconds without the alarm received from the maintenance team.
+
+\subsubsection{Reconnection mechanisms}
+
+\begin{itemize}
+	\item  \textbf{The Control Unit}: Before trying to read from the sensors, check the WiFi connectivity and try to reconnect.
+If the connection with the sensors fails, it logs to the serial console.
+Before publishing to the MQTT Broker, it validates the wifi connection and tries to reconnect if it is not connected
+it also tries to connect to the MQTT Broker every time before publishing.
+
+	\item  \textbf{The RSS}: It checks for WiFi connection, and tries to establish the connection in case it drops.
+It also monitors if it does not receive more messages and raises the alarm on RSS
+
+	\item  \textbf{The WebServer}: We implemented a re-connection mechanism when the MQTT connection drops. This mechanism increases the delay for every re-connection attempt until a maximum time is defined. The number of attempts is also configurable.
+\end{itemize}
+
+\subsubsection{Connection lifetime}
+
+We do not keep the TCP connection between the Control Unit and sensors, neither between the Control Unit and the MQTT Broker open, to avoid having hanging connections that are stuck. Instead, we connect and disconnect on every task execution span. 
+We have dedicated tasks for publishing to the MQTT Broker and for reading from the sensors via TCP, they are scheduled by FreeRTOS implementation and on each task execution we connect, execute the job and disconnect.
 
 %%%
 \subsection{Prototype}
@@ -505,6 +531,14 @@ The Web Server follows the same logic as the RSS. It consumes the same topics ma
 
 We ponder another approach, where the Web server would query the RSS for the WPS status. This solution would give more responsibilities to a critical system (RSS) and make all the implementation more complex and unnecessary.
 
+It is running also in a host machine connected to the WLAN for this prototype.
+The implementation was made in Python using the module http.server, it is very easy and simple to use and we could have a running server set in a minute.
+We created a separate index.html file to hold the web page format, and the webserver will read and write to this file.
+
+For the MQTT, we import the module paho.mqtt, which has straightforward methods to set and subscribe to the MQTT messages. We also implemented a re-connection mechanism, described in item x.xx. We have an unsolved bug here which is after a re-connection occurs, the webserver does not receive more messages. We left this indicated on the code.
+
+As an additional tool, we used a module called BeautifulSoup for parsing the HTML page, and for searching for the tag ids that we want to update the values.
+
 %%%
 \section{Team Work}
 
@@ -522,6 +556,7 @@ In conclusion, the teamwork ran smoothly, mainly because of an initial good anal
 
 \bibitem{c1}
  Espressif FreeRTOS API: {\url{https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/api-reference/system/freertos.html}}
+ MQTT for Python with Paho Client: {\url{https://www.emqx.com/en/blog/how-to-use-mqtt-in-python}}
 
 \end{thebibliography}
 
