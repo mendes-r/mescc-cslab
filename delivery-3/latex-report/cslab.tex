@@ -170,14 +170,14 @@ Although, both are ways to visualize the WPS status, they have very different ob
   \label{fig:System Structure Diagram}
 \end{figure}
 
-Looking at the Deployment diagram for the implementation of the prototype, we can clearly see that the output of the modeling traces nicely to the implementation.
+Looking at the prototype's deployment diagram \ref{fig:deployment-diagram}, we can clearly see that, the output of the modeling, traces nicely to its implementation.
 The grayed parts of the diagram don't make up the prototype. 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../diagrams/deployment-diagram.jpg}
-  \caption{Deployment diagram}
-  \label{fig:Deployment Diagram}
+  \caption{Prototype's deployment diagram}
+  \label{fig:deployment-diagram}
 \end{figure}
 
 \newpage
@@ -187,16 +187,99 @@ The grayed parts of the diagram don't make up the prototype.
 %%%
 \subsection{CCSYA - Assembly}
 
-- mostrar codigo da implementacao
-- um dos comentarios no codigo de assembly está mal (beq)
+The following code snippet in implemented on the Sensor Sim, as it was in the previous delivery. The only change was done on one of the comments that had a typo.
+
+\begin{minted}[linenos]{gas}
+.global getMask
+
+getMask:    entry a1, 48
+            movi a5, 0          # init increment
+            mov a6, a2          # save inputed water level
+            movi a2, 1          # init return value
+
+loop: 
+            addi a5, a5, 1      # increment by one
+            beq a5, a6, end     # branch to 'end' if equal
+            slli a2, a2, 1      # left shif by 1, i.e. 0001 -> 0010
+            j loop              # jump to loop 
+
+end:
+            retw.n
+\end{minted}
+
+As an input, the code receives the position of the LED that needs to turn ON. So to ensure that only one of the LEDs is turned ON, we start with the value 1 (see line 6). This value in a byte is represented by \texttt{'0000 0001'}. From now on, we only shift the leftmost bit, one position at a time, until we reach the selected position.
+
+The output is an 8-bit integer. If we have as output the decimal number \texttt{'16'}, and convert it to binary \texttt{´0000 1000´}, we can see that we want to turn ON the LED in the 4th position. The following code implements this logic. 
+
+\begin{minted}{c}
+// more code
+
+  mask = getMask(level); // ASM code
+  implementMask(mask);
+
+// more code
+
+void implementMask(int8_t mask)
+{
+  int8_t n_bit = 0;
+  while (n_bit < MAX_LEVELS) {
+    if (mask & 0x01) {
+      digitalWrite(STATES[n_bit], HIGH);
+    }
+    else {
+      digitalWrite(STATES[n_bit], LOW);
+    }
+    n_bit++;
+    mask = mask >> 1;
+  }
+}
+\end{minted}
+
 
 %%%
 \subsection{RTAES - Concorrency and Real Time Scheduling}
 
 %%%
+\subsubsection{Implementation of the Tasks and Concorrency control}
+
+As a remainder, the following tasks are being run in a ESP-WROOM-32 on a single core:
+
+\begin{itemize}
+	\item  \textbf{Task 1}: Retrieve data from sensors (TCP Client);
+	\item  \textbf{Task 2}: Process data and give instructions to pumps;
+	\item  \textbf{Task 3}: Publish WPS status to MQTT broker (MQTT client).
+\end{itemize}
+
+\noindent
+The creation of the tasks was achieved by using the \textbf{xTaskCreatePinnedToCore(...)} \cite{c1} function from the FreeRTOS API. The function \textbf{xTaskCreate(...)} was also available, but we wanted to ensure that the proposed tasks would run on the same core.
+
+\begin{minted}{c}
+xTaskCreatePinnedToCore(
+                    requestSensorData,   /* Task function. */
+                    "Task1",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &Task1,      /* Task handle to keep track of created task */
+                    0);          /* pin task to core 0 */  
+\end{minted}
+
+The access control to the critical section was done thanks to the use of a single semaphore: \texttt{xSemaphoreHandle xMutex;}.
+
+%%%
 \subsubsection{Real Time Scheduling}
 
-\begin{table}[!htb]
+It must be openly said that this part was the trickiest one.
+
+To check in pratical terms, the results of the schedulability calculation done in the previous report, some changes needed to be added to the code.
+
+Although the execution times for Task 2 look to be very close to the ones achieved in the calculations, the same doesn't apply for Task 1 and Task 3. This is partly the fault of communication latency. Both tasks need to request or send information using a wireless connection and the TCP/IP protocol.
+
+Another problem was the method implemented to track the task's execution time. The granularity wasn't enough, especially for Task 2.
+
+As a practical solution, we chose to update the values from the last report in a proportionally way.
+ 
+\begin{table}[H]
     \caption{Theoretical values (left) and implemented values (right) in \textit{ms}:}
     \begin{minipage}{0.7\linewidth}
 		\begin{table}[H]
@@ -222,7 +305,7 @@ The grayed parts of the diagram don't make up the prototype.
     \end{minipage} 
 \end{table}
 
-The values on the right side table were achieved by running the code in different situations. A closer look, shows that we incresed the values \textbf{x 20}.
+The values on the right side were achieved by running the code in different situations. A closer look, shows that we incresed all values \textbf{x 20}.
 
 To track the execution time we added the following code to each task:
 
@@ -242,7 +325,7 @@ for (;;) {
 \end{minted}
 
 \noindent
-And here is some of the outputs:
+And here are some of the outputs:
 
 \begin{minted}{bash}
 TASK 3 - Duration[ms]: 40
@@ -266,10 +349,7 @@ TASK 2 - Duration[ms]: 475
 TASK 1 - Duration[ms]: 1036
 \end{minted}
 
-The execution time of task 2 that was calculated in the last report is very close to the measured values. Because of this, we needed to add a sleep function to increase its execution.
-However, task 1 and task 3 execution time was poorly estimated. This is because of the latency during the TCP and MQTT requests.
-
-To simulate the conclusions from the schedulability analysis, we also increased the periods - as visible in the table \ref{table:rt-2}.
+It is important to state, that given the short execution time of Task 2, we needed to add a sleep function to increase it and so bring it closer to the values on the right side table \ref{table:rt-2}.
 
 Also, to control that the tasks didn't extended beyond its deadline, we added the following code:
 
@@ -282,7 +362,9 @@ if (next_release > 0) {
 }
 \end{minted}
 
-In some cases, task 1 failed the deadline by a couple of miliseconds. Because we defined a timeout value of 2 second, when the request to the two sensors fail, we get this result.
+In some cases, Task 1 failed the deadline by a couple of milliseconds. This was because of the defined timeout value of 1 second for each TCP request (one request per sensor). When the two requests reached a timeout, we already had a 2-second execution time. Unfortunately, the library used for the TCP connection has a lower limit of 1 second for the timeout. 
+
+We consciously chose not to fix this issue, mostly because a fix would mean a more extended increase of the values, beyond the x20, and when we have at least one sensor responding, the execution time are very close to the ones in the table \ref{table:rt-2}.
 
 \begin{minted}{bash}
 TASK 1 - Connection failed: 172.20.10.13
@@ -291,17 +373,43 @@ TASK 1 - Duration[ms]: 2009
 TASK 1 - FAILED Deadline !!!
 \end{minted}
 
-
-connection timeout = 1s
-that gives a lot of timeouts. specially with one of the sensors
-mitigation.
-
 %%%
 \subsubsection{Concorrency}
 
-- mostrar codigo da implementacao
+In terms of concurrency and, as proposed in the last report, we identified as a critical section the read and write of a data structure that encapsulates the WPS status.
 
-- onde mutex
+\begin{minted}{c}
+typedef struct{
+  volatile bool alert;
+  volatile uint8_t id;
+  volatile uint8_t curr_water_level;
+  volatile uint8_t curr_pump1_status;
+  volatile uint8_t curr_pump2_status;  
+  volatile uint8_t curr_pump1_state;
+  volatile uint8_t curr_pump2_state;
+} WPS;
+\end{minted}
+
+The changes to the data structure WPS were made by accessing functions instead of accessing the values directly.
+
+\begin{minted}{c}
+void set_curr_pump2_status(uint8_t value) {
+  xSemaphoreTake(xMutex, portMAX_DELAY);
+  _wps.curr_pump2_status = value;
+  xSemaphoreGive(xMutex);
+}
+\end{minted}
+
+The status reads, were specially controlled during the publication of the WPS status to the MQTT broker.
+
+\begin{minted}{c}
+String getWpsStatus(){
+    xSemaphoreTake(xMutex, portMAX_DELAY);
+    String message = String(_wps.alert) + "," + String(_wps.id) + "," + String(_wps.curr_water_level) + "," + String(_wps.curr_pump1_status) + "," + String(_wps.curr_pump2_status);
+    xSemaphoreGive(xMutex);
+    return message;
+}
+\end{minted}
 
 %%%
 \subsection{COMCS - Communication}
@@ -315,7 +423,21 @@ mitigation.
 
 \subsubsection{Overview}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../diagrams/hardware.jpg}
+  \caption{from left to right: Sensor 1, Sensor 2, Control Unit + Pumps, RSS}
+  \label{fig:hardware}
+\end{figure}
+
 - diagram if implementation
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=300px]{../diagrams/network-diagram.jpg}
+  \caption{Network diagram}
+  \label{fig:network-diagram}
+\end{figure}
 
 \subsubsection{WPS}
 
@@ -326,6 +448,9 @@ mitigation.
 
 \subsubsection{MQTT Broker}
 
+publish every 5 sec
+
+subscriber checks every 15sec if message
 - one topic per WPS
 
 \subsubsection{RSS}
@@ -346,7 +471,7 @@ mitigation.
 \begin{thebibliography}{8}
 
 \bibitem{c1}
- Espressif documentation: {\url{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos_idf.html#id23/}}
+ Espressif FreeRTOS API: {\url{https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/api-reference/system/freertos.html}}
 
 \end{thebibliography}
 
